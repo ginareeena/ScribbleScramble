@@ -22,9 +22,9 @@ const DrawingCanvas = () => {
     return document.getElementById("id");
   };
 
-  let brushColor;
-  let brushWidth;
-  let clear;
+  // let brushColor;
+  // let brushWidth;
+  // let clear;
 
   //   var brush = canvas.freeDrawingBrush=
 
@@ -68,25 +68,25 @@ const DrawingCanvas = () => {
   return (
     <div>
       <div id="drawing-mode-options">
-        <label for="drawing-mode-selector">Mode:</label>
+        <label htmlFor="drawing-mode-selector">Mode:</label>
         <select id="drawing-mode-selector">
           <option>Pencil</option>
           <option>Circle</option>
           <option>Pattern</option>
         </select>
 
-        <label for="drawing-line-width">Line width:</label>
-        <span class="info">30</span>
+        <label htmlFor="drawing-line-width">Line width:</label>
+        <span className="info">30</span>
         <input
           type="range"
-          value="30"
+          defaultValue="30"
           min="0"
           max="150"
           id="drawing-line-width"
         />
 
-        <label for="drawing-color">Line color:</label>
-        <input type="color" value="#005E7A" id="drawing-color" />
+        <label htmlFor="drawing-color">Line color:</label>
+        <input type="color" defaultValue="#005E7A" id="drawing-color" />
       </div>
 
       <h1>Drawing Canvas !</h1>
