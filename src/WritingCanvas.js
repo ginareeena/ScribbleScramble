@@ -10,10 +10,12 @@ const WritingCanvas = () => {
         top: 800,
         isContentEditable: true
       })
+      console.log('inside handle text btn')
       canvas.add(newWord);
   }
 
   useEffect(() => {
+      console.log('inside use effect')
     setTextCanvas(initCanvas());
   }, []);
 
