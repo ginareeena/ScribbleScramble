@@ -3,8 +3,9 @@
 import Routes from "./Routes";
 // import {BrowserRouter as Router, Link} from 'react-router-dom'
 //
-import CanvasComp from "./Canvas.js";
+// import CanvasComp from "./Canvas.js";
 import Drawing from "./Drawing.js";
+import WritingCanvas from "./WritingCanvas"
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         {/* <Drawing /> */}
         <Drawing />
         <Routes />
+      </div>
+      <div>
+      <WritingCanvas />
       </div>
     </div>
   );
