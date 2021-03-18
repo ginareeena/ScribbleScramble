@@ -18,7 +18,9 @@ const CanvasComp = () => {
   return (
     <div>
       <h1>Canvas!</h1>
-      <canvas id="canvas"> </canvas>
+      <div id="canvasContainer">
+        <canvas id="canvas"> </canvas>
+      </div>
     </div>
   );
 };
