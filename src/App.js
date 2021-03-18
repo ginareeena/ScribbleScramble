@@ -14,9 +14,6 @@ function App() {
       <div>
         <Routes />
       </div>
-      <div>
-      <WritingCanvas />
-      </div>
     </div>
   );
 }
