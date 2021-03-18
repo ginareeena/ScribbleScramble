@@ -1,10 +1,8 @@
 import React from 'react'
-import { fabric } from 'fabric'
+// import { fabric } from 'fabric'
 import CanvasComp from './Canvas'
 
-const Strings = () => {
-
-
+const String = () => {
     return (
         <div>Hiya
             <CanvasComp />
@@ -12,4 +10,4 @@ const Strings = () => {
     )
 }
 
-export default Strings
+export default String

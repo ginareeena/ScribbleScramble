@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Strings from './String'
-import {BrowserRouter as Router, Link} from 'react-router-dom'
+import Routes from './Routes'
+// import {BrowserRouter as Router, Link} from 'react-router-dom'
 
 function App() {
   return (
@@ -13,9 +13,7 @@ function App() {
         </p>
       </header>
       <div>
-      <Router>
-      <Link to='/string'><Strings /></Link>
-      </Router>
+        <Routes />
       </div>
     </div>
   );
