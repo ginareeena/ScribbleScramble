@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
-const httpServer = require('http').createServer(app)
+// const httpServer = require('http').createServer(app)
 const socketIo = require("socket.io")(httpServer)
 const index = require('./api/index')
 
-const io = socketIo(httpServer)
+// const io = socketIo(httpServer)
 
-const PORT = process.env.PORT || 8080
+// const PORT = 8080
 
 app.use(morgan('dev'))
 
@@ -38,6 +38,6 @@ const getApiAndEmit = socket => {
 
 
 
-httpServer.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`)
-})
+// httpServer.listen(PORT, () => {
+//     console.log(`listening on port ${PORT}`)
+// })
