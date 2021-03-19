@@ -1,26 +1,32 @@
-const path = require('path')
+// const path = require('path')
 const express = require('express')
 const app = express()
-const morgan = require('morgan')
-const httpServer = require('http').createServer(app)
-const socketIo = require("socket.io")(httpServer)
+// const morgan = require('morgan')
+const http = require('http')
+
 const index = require('./api/index')
 
-const io = socketIo(httpServer)
+const port = process.env.PORT || 4001
 
-const PORT = process.env.PORT || 4001
+// app.use(morgan('dev'))
 
-app.use(morgan('dev'))
-
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+// app.use(express.json())
+// app.use(express.urlencoded({extended: true}))
 
 
 app.use(index)
 
+const server = http.createServer(app)
+const socketIo = require("socket.io")(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+})
+
 let interval
 
-io.on("connection", (socket) => {
+socketIo.on("connection", (socket) => {
     console.log("New client connected")
     if(interval) {
         clearInterval(interval)
@@ -37,8 +43,6 @@ const getApiAndEmit = socket => {
     socket.emit("FromAPI", response)
 }
 
-
-
-httpServer.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`)
+server.listen(port, () => {
+    console.log(`listening on port ${port}`)
 })

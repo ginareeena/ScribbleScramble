@@ -1,7 +1,6 @@
-const router = require('express').Router()
-module.exports = router
+const express = require("express")
+const router = express.Router()
 
-router.use('/string', require('./string'))
 
 router.get("/", (req, res, next) => {
     try {
@@ -11,9 +10,12 @@ router.get("/", (req, res, next) => {
     }
 })
 
+// server.listen(port, () => console.log(`listening on port ${port}`))
 
-router.use((req, res, next) => {
-    const error = new Error('Route not found')
-    error.status = 404
-    next(error)
-})
+module.exports = router
+
+// router.use((req, res, next) => {
+//     const error = new Error('Route not found')
+//     error.status = 404
+//     next(error)
+// })

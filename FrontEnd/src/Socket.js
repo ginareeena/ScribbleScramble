@@ -10,7 +10,6 @@ const SocketComp = () => {
         socket.on("FromAPI", data => {
             setResponse(data)
         })
-
         return () => socket.disconnect()
     }, [])
 
