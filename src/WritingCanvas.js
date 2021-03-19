@@ -7,7 +7,7 @@ const WritingCanvas = () => {
   const handleTextBtn = () => {
     const newWord = new fabric.IText("Type more here...", {
         left: 150,
-        top: 800,
+        top: 100,
         isContentEditable: true
       })
       console.log('inside handle text btn')
@@ -22,15 +22,18 @@ const WritingCanvas = () => {
   const initCanvas = () => 
   new fabric.Canvas("canvas", {
     height: 600,
-    width: 800
+    width: 800,
+    isContentEditable: true
   }
     );
 
-  const canvas = new fabric.Canvas("canvas")
+  const canvas = new fabric.Canvas("canvas", {
+    isContentEditable: true
+  })
 
   let word = new fabric.IText("Type here...", {
     left: 100,
-    top: 700
+    top: 100
   })
 
   canvas.add(word);
