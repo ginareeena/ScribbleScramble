@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
+import {Button} from './AppCSS'
 
 const WritingCanvas = () => {
   const [text, setTextCanvas] = useState("");
@@ -10,12 +11,10 @@ const WritingCanvas = () => {
         top: 100,
         isContentEditable: true
       })
-      console.log('inside handle text btn')
       canvas.add(newWord);
   }
 
   useEffect(() => {
-      console.log('inside use effect')
     setTextCanvas(initCanvas());
   }, []);
 
@@ -41,7 +40,7 @@ const WritingCanvas = () => {
   return (
     <div>
       <h1>Writing Canvas !</h1>
-      <button onClick={handleTextBtn()}>Add Text</button>
+      <Button onClick={handleTextBtn()}>Add Text</Button>
       <canvas
         id="canvas" style={{border: "1px solid black", width: "500px"}}
       ></canvas>

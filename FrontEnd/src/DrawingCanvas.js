@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 // import { copiedText } from "fabric/fabric-impl";
+import {Button} from './AppCSS'
 
 const DrawingCanvas = () => {
   const [canvas, setCanvas] = useState("");
@@ -91,7 +92,7 @@ const DrawingCanvas = () => {
 
       <h1>Drawing Canvas !</h1>
       <canvas id="canvas"></canvas>
-      <button onClick={() => canvas.clear()}>clear</button>
+      <Button onClick={() => canvas.clear()}>clear</Button>
     </div>
   );
 };
