@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
-// import logo from "./logo.svg";
-// import "./App.css";
+import styled, {css} from 'styled-components'
 import Routes from "./Routes";
-// import {BrowserRouter as Router, Link} from 'react-router-dom'
-//
-// import CanvasComp from "./Canvas.js";
-// import WritingCanvas from "./WritingCanvas"
 import SocketComp from "./Socket"
 
+const Button = styled.button`
+background: transparent;
+border-radius: 3px;
+border: 2px solid palevioletred;
+color: palevioletred;
+margin: 0 1em;
+padding: 0.25em 1em;`
 
 function App() {
   const [loadClient, setLoadClient] = useState(true)
+
 
   return (
     <div className="App">
@@ -21,6 +24,10 @@ function App() {
           Stop Client
         </button>
         {loadClient && <SocketComp /> }
+      </div>
+      <div>
+        Test Button
+        <Button>Testing</Button>
       </div>
     </div>
   );
