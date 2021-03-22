@@ -10,8 +10,6 @@ router.get("/", (req, res, next) => {
     }
 })
 
-// server.listen(port, () => console.log(`listening on port ${port}`))
-
 module.exports = router
 
 // router.use((req, res, next) => {

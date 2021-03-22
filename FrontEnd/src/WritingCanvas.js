@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 import { Button } from "./AppCSS";
+import { StyledCanvas } from "./AppCSS"
+import { PlayArea } from "./AppCSS"
 
 const WritingCanvas = () => {
   const [textCanvas, setTextCanvas] = useState("");
@@ -37,10 +39,11 @@ const WritingCanvas = () => {
           <option>Literally anything but Comic Sans</option>
         </select>
       </div>
-      <canvas
+      <PlayArea>
+      <StyledCanvas
         id="canvas"
-        style={{ border: "1px solid black", width: "500px" }}
-      ></canvas>
+      ></StyledCanvas>
+      </PlayArea>
     </div>
   );
 };

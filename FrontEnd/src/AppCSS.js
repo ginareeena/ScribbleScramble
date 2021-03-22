@@ -19,6 +19,16 @@ export const Title = styled.h1`
     text-align: center;
     color: darkgrey;
 `
+
+export const PlayArea = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 export const StyledCanvas = styled.canvas`
-    align: center;
+    width: 450px;
+    margin: auto;
+    border: 3px outset black;
+    border-radius: 3px;
 `
