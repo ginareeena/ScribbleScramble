@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import { Button } from "./AppCSS";
+import { Button, Title2, Body } from "./AppCSS";
+import { StyledCanvas } from "./AppCSS"
+import { PlayArea } from "./AppCSS"
+import { CanvasBackground } from "./AppCSS"
 
 const WritingCanvas = () => {
   const [textCanvas, setTextCanvas] = useState("");
@@ -27,8 +30,8 @@ const WritingCanvas = () => {
   };
 
   return (
-    <div>
-      <h1>Writing Canvas !</h1>
+    <Body>
+      <Title2>Writing Canvas !</Title2>
       <Button onClick={() => handleTextBtn(textCanvas)}>Add Text</Button>
       <div id="text-options">
         <label htmlFor="font-selector">Font:</label>
@@ -37,11 +40,14 @@ const WritingCanvas = () => {
           <option>Literally anything but Comic Sans</option>
         </select>
       </div>
-      <canvas
+      <PlayArea>
+      <CanvasBackground>
+      <StyledCanvas
         id="canvas"
-        style={{ border: "1px solid black", width: "500px" }}
-      ></canvas>
-    </div>
+      ></StyledCanvas>
+      </CanvasBackground>
+      </PlayArea>
+    </Body>
   );
 };
 
