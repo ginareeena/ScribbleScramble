@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Routes from "./Routes";
 import SocketComp from "./Socket"
-import {Button} from './AppCSS'
+import {Button, Body, Header, Title} from './AppCSS'
 
 function App() {
   const [loadClient, setLoadClient] = useState(true)
 
 
   return (
-    <div className="App">
-      <header className="App-header"></header>
+    <Body className="App">
+      <Header className="App-header"><Title>Scribble Scramble</Title></Header>
       <div>
         <Routes />
         <Button onClick={() => setLoadClient(prevState => !prevState)}>
@@ -17,7 +17,7 @@ function App() {
         </Button>
         {loadClient && <SocketComp /> }
       </div>
-    </div>
+    </Body>
   );
 }
 

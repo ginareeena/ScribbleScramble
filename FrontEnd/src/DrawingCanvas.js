@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 // import { copiedText } from "fabric/fabric-impl";
-import {Button} from './AppCSS'
+import {Button, Title2} from './AppCSS'
 import { StyledCanvas } from "./AppCSS"
 import { PlayArea } from "./AppCSS"
+import { CanvasBackground } from "./AppCSS"
 
 const DrawingCanvas = () => {
   const [canvas, setCanvas] = useState("");
@@ -92,11 +93,13 @@ const DrawingCanvas = () => {
         <input type="color" defaultValue="#005E7A" id="drawing-color" />
       </div>
 
-      <h1>Drawing Canvas !</h1>
+      <Title2>Drawing Canvas !</Title2>
       <PlayArea>
+        <CanvasBackground>
       <StyledCanvas
         id="canvas"
       ></StyledCanvas>
+      </CanvasBackground>
       </PlayArea>
       <Button onClick={() => canvas.clear()}>clear</Button>
     </div>
