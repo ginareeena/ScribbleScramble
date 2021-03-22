@@ -30,6 +30,13 @@ const WritingCanvas = () => {
     <div>
       <h1>Writing Canvas !</h1>
       <Button onClick={() => handleTextBtn(textCanvas)}>Add Text</Button>
+      <div id="text-options">
+        <label htmlFor="font-selector">Font:</label>
+        <select id="font-selector">
+          <option>Comic Sans</option>
+          <option>Literally anything but Comic Sans</option>
+        </select>
+      </div>
       <canvas
         id="canvas"
         style={{ border: "1px solid black", width: "500px" }}
