@@ -1,48 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import {Button} from './AppCSS'
+import { Button } from "./AppCSS";
 
 const WritingCanvas = () => {
-  const [text, setTextCanvas] = useState("");
+  const [textCanvas, setTextCanvas] = useState("");
 
-  const handleTextBtn = () => {
-    const newWord = new fabric.IText("Type more here...", {
-        left: 150,
-        top: 100,
-        isContentEditable: true
-      })
-      canvas.add(newWord);
-  }
+  const initCanvas = () =>
+    new fabric.Canvas("canvas", {
+      height: 600,
+      width: 800,
+      isContentEditable: true,
+    });
 
   useEffect(() => {
     setTextCanvas(initCanvas());
   }, []);
 
-  const initCanvas = () => 
-  new fabric.Canvas("canvas", {
-    height: 600,
-    width: 800,
-    isContentEditable: true
-  }
-    );
+  const handleTextBtn = (canvas) => {
+    const newText = new fabric.IText("Type here...", {
+      left: 150,
+      top: 100,
+      isContentEditable: true,
+    });
+    canvas.add(newText);
+    canvas.renderAll();
+  };
 
-  const canvas = new fabric.Canvas("canvas", {
-    isContentEditable: true
-  })
-
-  let word = new fabric.IText("Type here...", {
-    left: 100,
-    top: 100
-  })
-
-  canvas.add(word);
-  
   return (
     <div>
       <h1>Writing Canvas !</h1>
-      <Button onClick={handleTextBtn()}>Add Text</Button>
+      <Button onClick={() => handleTextBtn(textCanvas)}>Add Text</Button>
       <canvas
-        id="canvas" style={{border: "1px solid black", width: "500px"}}
+        id="canvas"
+        style={{ border: "1px solid black", width: "500px" }}
       ></canvas>
     </div>
   );
