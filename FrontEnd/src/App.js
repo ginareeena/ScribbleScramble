@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Routes from "./Routes";
-// import SocketComp from "./Socket";
+import SocketComp from "./Socket";
 import { Button, Body, Header, Title } from "./AppCSS";
 
 function App() {
@@ -16,10 +16,7 @@ function App() {
         <Button onClick={() => setLoadClient((prevState) => !prevState)}>
           Stop Client
         </Button>
-        {
-          loadClient
-          //  && <SocketComp />
-        }
+        {loadClient && <SocketComp />}
       </div>
     </Body>
   );
