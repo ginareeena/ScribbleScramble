@@ -1,5 +1,5 @@
 {
     "scripts": {
-        "start": "nodemon node ./Server/index.js & (cd FrontEnd && yarn start)"
+        "start": "nodemon node ./Server/index.js & (cd FrontEnd && npm run start)"
       }
 }
