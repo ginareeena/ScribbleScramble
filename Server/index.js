@@ -47,5 +47,5 @@ const getApiAndEmit = (socket) => {
 };
 
 server.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  console.log(`server listening on port ${port}`);
 });
