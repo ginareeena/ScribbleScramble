@@ -17,7 +17,7 @@ app.use(index);
 const server = http.createServer(app);
 const serverSocket = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
