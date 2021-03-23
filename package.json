@@ -1,5 +1,8 @@
 {
     "scripts": {
         "start": "nodemon node ./Server/index.js & (cd FrontEnd && npm run start)"
-      }
+    },
+    "dependencies": {
+        "nodemon": "^2.0.7"
+    }
 }
