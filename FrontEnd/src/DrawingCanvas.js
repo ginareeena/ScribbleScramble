@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 // import { copiedText } from "fabric/fabric-impl";
-import {Button, Title2} from './AppCSS'
-import { StyledCanvas } from "./AppCSS"
-import { PlayArea } from "./AppCSS"
-import { CanvasBackground } from "./AppCSS"
+import { Button, Title2 } from "./AppCSS";
+import { StyledCanvas } from "./AppCSS";
+import { PlayArea } from "./AppCSS";
+import { CanvasBackground } from "./AppCSS";
+
+// import { clientSocket } from "./Socket";
+
+// clientSocket.on("connect", () => {
+//   console.log("client socket!");
+// });
 
 const DrawingCanvas = () => {
   const [canvas, setCanvas] = useState("");
@@ -13,6 +19,16 @@ const DrawingCanvas = () => {
     setCanvas(initCanvas());
   }, []);
 
+  // useEffect(() => {
+  //   clientSocket.on("connect", () => {
+  //     console.log("client socket!");
+  //   });
+  // });
+
+  let drawingColorEl = document.getElementById("drawing-color");
+  let drawingModeEl = document.getElementById("drawing-mode-selector");
+  let drawingLineWidthEl = document.getElementById("drawing-line-width");
+  let brushSizeText = document.getElementById("brushSize");
   // maybe need to position with value inside canvas
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
@@ -20,7 +36,10 @@ const DrawingCanvas = () => {
       width: 800,
       backgroundColor: "white",
       isDrawingMode: true,
+      // freeDrawingBrush: new fabric.PencilBrush(),
     });
+
+  // canvas.freeDrawingBrush.width = drawingLineWidthEl.value;
 
   // let getElement = function (id) {
   //   return document.getElementById("id");
@@ -31,12 +50,8 @@ const DrawingCanvas = () => {
   // canvas.freeDrawingBrush.width = 20;
   // canvas.freeDrawingBrush.color = "#ff0000";
 
-  let drawingColorEl = document.getElementById("drawing-color");
-  let drawingModeEl = document.getElementById("drawing-mode-selector");
-  let drawingLineWidthEl = document.getElementById("drawing-line-width");
-
-  let brushSizeText = document.getElementById("brushSize");
   // let canvasEl = document.getElementById("canvas");
+
   // let drawingModeEl = getElement("drawing-mode-selector");
   // let drawingColorEl = getElement("drawing-color");
   // // let drawingLineWidthEl = getElement("drawing-line-width");
@@ -47,24 +62,33 @@ const DrawingCanvas = () => {
   //     brush.width
   //   }
   // }
-
+  // canvas.freeDrawingBrush = new fabric[drawingModeEl.value + "Brush"](canvas);
   // canvas.freeDrawingBrush = new fabric[drawingModeEl.value + "Brush"](canvas);
 
   // canvasEl.onclick(updateBrush(canvas));
 
   fabric.Object.prototype.transparentCorners = false;
 
+  // let pencil = new fabric.PencilBrush(canvas);
+  // let brush = canvas.freeDrawingBrush;
+
   // let brush = canvas.freeDrawingBrush;
   function updateBrush(canvas) {
+    // console.log("updateBrush");
     if (!canvas.freeDrawingBrush) {
+      // console.log("no free drawing brush");
       canvas.freeDrawingBrush = new fabric[drawingModeEl.value + "Brush"]();
     }
+    // console.log("after free drawing brush");
+
     let brush = canvas.freeDrawingBrush;
     brush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
     brushSizeText.innerHTML = drawingLineWidthEl.value;
     brush.color = drawingColorEl.value;
     // canvas.renderAll();
   }
+
+  // updateBrush(canvas);
 
   return (
     <div>
@@ -99,10 +123,12 @@ const DrawingCanvas = () => {
       <Title2>Drawing Canvas !</Title2>
       <PlayArea>
         <CanvasBackground>
-      <StyledCanvas
-        id="canvas"
-      ></StyledCanvas>
-      </CanvasBackground>
+          <StyledCanvas
+            id="canvas"
+            onClick={() => updateBrush(canvas)}
+            onMouseDown={() => updateBrush(canvas)}
+          ></StyledCanvas>
+        </CanvasBackground>
       </PlayArea>
       <Button onClick={() => canvas.clear()}>clear</Button>
     </div>
