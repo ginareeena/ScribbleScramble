@@ -1,9 +1,5 @@
 {
     "scripts": {
-        "start": "nodemon node ./Server/index.js & (cd FrontEnd && yarn start)"
-    },
-    "dependencies": {
-        "nodemon": "^2.0.7",
-        "yarn": "^1.22.10"
-    }
+        "start": "nodemon node ./Server/index.js & (cd FrontEnd && npm run start)"
+      }
 }
