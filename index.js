@@ -19,14 +19,11 @@ app.get("/", (req, res, next) => {
   }
 })
 
-// if(process.env.NODE_ENV === 'production'){
-//   //serve any static files
-//   app.use(express.static(path.join(__dirname, 'FrontEnd/build')))
-//   //handle React routing; return all requests to React app
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'FrontEnd/build', 'index.html'))
-//   })
-// }
+  app.use(express.static(path.join(__dirname, 'FrontEnd/build')))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'FrontEnd/build', 'index.html'))
+  })
+
 
 const serverSocket = require("socket.io")(http, {
   cors: {
