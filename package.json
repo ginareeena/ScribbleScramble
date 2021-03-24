@@ -15,7 +15,8 @@
   },
   "homepage": "https://github.com/AthenaCapstone/ScribbleScramble#readme",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "start-dev" : "nodemon index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
