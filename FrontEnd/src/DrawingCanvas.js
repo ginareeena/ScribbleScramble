@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import { Button, Title2, StyledCanvas, PlayArea, CanvasBackground } from "./AppCSS";
+import {
+  Button,
+  Title2,
+  StyledCanvas,
+  PlayArea,
+  CanvasBackground,
+} from "./AppCSS";
 
 const DrawingCanvas = () => {
   const [canvas, setCanvas] = useState("");
@@ -8,6 +14,15 @@ const DrawingCanvas = () => {
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
+
+  // useEffect(() => {
+  //   if (canvas.freeDrawingBrush) {
+  //     updateBrush();
+  //     // console.log("second useEffect");
+  //   }
+  //   // setBrushSize()
+  //   // setBrushColor()
+  // }, [canvas]);
 
   let drawingColorEl = document.getElementById("drawing-color");
   let drawingModeEl = document.getElementById("drawing-mode-selector");
@@ -20,10 +35,9 @@ const DrawingCanvas = () => {
       width: 800,
       backgroundColor: "white",
       isDrawingMode: true,
-  
     });
 
-  fabric.Object.prototype.transparentCorners = false;
+  // fabric.Object.prototype.transparentCorners = false;
 
   function updateBrush(canvas) {
     if (!canvas.freeDrawingBrush) {
@@ -36,7 +50,6 @@ const DrawingCanvas = () => {
     brushSizeText.innerHTML = drawingLineWidthEl.value;
     brush.color = drawingColorEl.value;
   }
-
 
   return (
     <div>

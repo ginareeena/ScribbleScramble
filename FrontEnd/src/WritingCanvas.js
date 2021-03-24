@@ -31,19 +31,31 @@ const WritingCanvas = () => {
     });
   }, []);
 
-
-
-  const handleTextBtn = (canvas) => {
+  const handleTextBtn = () => {
     const newText = new fabric.IText("Type here...", {
       left: 150,
       top: 100,
       isContentEditable: true,
       fontFamily: font,
     });
-    console.log("canvas", canvas);
-    canvas.add(newText);
-    canvas.renderAll();
-    socket.emit("add text box", canvas);
+
+    // const handleDownload = () => {
+    //   const img = this.canvas.current.toDataURL();
+    //   this.downloadURI(img, `${this.props.match.params.room}-corpse.png`);
+    // };
+
+    // console.log("styleHas:", textCanvas.styleHas(1));
+
+    let sendBackText = textCanvas.toObject();
+
+    console.log("textCanvas", textCanvas);
+    console.log("sendBackText.styleHas(3)", sendBackText.styleHas(3));
+
+    textCanvas.add(newText);
+    textCanvas.renderAll();
+    textCanvas.toDataURl();
+
+    socket.emit("add text box", sendBackText);
   };
 
   const changeFont = (evt) => {
@@ -57,7 +69,7 @@ const WritingCanvas = () => {
   return (
     <Body>
       <Title2>Writing Canvas !</Title2>
-      <Button onClick={() => handleTextBtn(textCanvas)}>Add Text</Button>
+      <Button onClick={() => handleTextBtn()}>Add Text</Button>
       <div id="text-options">
         <label htmlFor="font-family">Font:</label>
         <select id="font-family" value={font} onChange={changeFont}>
