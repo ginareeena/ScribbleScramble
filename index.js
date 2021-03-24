@@ -11,7 +11,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use("/", require("./api/index"));
+app.get("/", (req, res, next) => {
+  try {
+    res.send({response: "Alive!"}).status(200)
+  } catch (error) {
+      next(error)
+  }
+})
 
 const serverSocket = require("socket.io")(http, {
   cors: {
