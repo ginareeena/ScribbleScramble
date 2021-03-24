@@ -1,6 +1,10 @@
 {
     "scripts": {
-        "start": "nodemon node ./Server/index.js & (cd FrontEnd && npm run start)"
+        "start": "node index.js",
+        "dev-server": "nodemon index.js",
+        "dev-app": "cd FrontEnd && yarn start",
+        "build": "cd FrontEnd && yarn build",
+        "heroku-postbuild": "cd FrontEnd && npm install && npm install --only=dev --noshrinkwrap && npm run build"
     },
     "dependencies": {
         "express": "^4.17.1",
