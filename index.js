@@ -10,7 +10,7 @@ const port = process.env.PORT || 4001;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "FrontEnd/build")));
+app.use(express.static(path.join(__dirname, "..", "/FrontEnd/build")));
 
 //api routes
 app.get("/", (req, res, next) => {
@@ -21,16 +21,18 @@ app.get("/", (req, res, next) => {
   }
 });
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "FrontEnd/build", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "/FrontEnd/build", "index.html"));
 });
 
 //sockets
-const serverSocket = require("socket.io")(http, {
+const serverSocket = require("socket.io")(http,
+   {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
-});
+}
+);
 
 serverSocket.on("connection", (socket) => {
   console.log(`server new client connected on ${socket.id}`);
