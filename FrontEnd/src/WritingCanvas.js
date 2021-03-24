@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 import { Button, Title2, Body } from "./AppCSS";
 import { StyledCanvas } from "./AppCSS";
@@ -20,23 +20,28 @@ const WritingCanvas = () => {
     Removed 'canvas' as a parameter in the initCanvas function, set add and renderAll
     methods to act on textCanvas. 
 
-    Thought: we're getting a data url value now from backend (value) —> maybe need to convert 
-    back to an object for display?
     */
   useEffect(() => {
     setTextCanvas(initCanvas());
     socket.on("create new text box", (value) => {
-      // let text = value.toObject();
+      // bringing back dataUrl and converting to image with src of the data url
+      let textImage = new Image();
+      textImage.onload = () => {
+        return fabric.Image(textImage, 0, 0);
+      };
+      textImage.src = value;
       console.log("front end heard create new text box");
-      const newText = new fabric.IText("Type here...", {
-        left: 150,
-        top: 100,
-        isContentEditable: true,
-        // fontFamily: font,
-      });
-      textCanvas.add(newText);
-      textCanvas.renderAll();
+      console.log('text image string: ', textImage)
     });
+    const newText = new fabric.IText("Type here...", {
+      left: 150,
+      top: 100,
+      isContentEditable: true,
+      // fontFamily: font,
+    });
+    // POSSIBLY UNNECESSARY: 
+    // textCanvas.add(newText);
+    // textCanvas.renderAll();
   }, []);
 
   const handleTextBtn = () => {
@@ -47,14 +52,10 @@ const WritingCanvas = () => {
       fontFamily: font,
     });
 
-    let sendBackText = textCanvas.toObject();
-
-    console.log("textCanvas", textCanvas);
     textCanvas.add(newText);
     textCanvas.renderAll();
     let dataUrl = textCanvas.toDataURL();
-    //sending data url to back end via socket
-    // console.log('data url: ', dataUrl)
+    // sending data url to back end via socket
     socket.emit("add text box", dataUrl);
   };
 
