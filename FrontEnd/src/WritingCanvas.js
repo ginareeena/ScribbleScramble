@@ -16,9 +16,17 @@ const WritingCanvas = () => {
       isContentEditable: true,
     });
 
+  /*
+    Removed 'canvas' as a parameter in the initCanvas function, set add and renderAll
+    methods to act on textCanvas. 
+
+    Thought: we're getting a data url value now from backend (value) —> maybe need to convert 
+    back to an object for display?
+    */
   useEffect(() => {
     setTextCanvas(initCanvas());
-    socket.on("create new text box", (canvas) => {
+    socket.on("create new text box", (value) => {
+      // let text = value.toObject();
       console.log("front end heard create new text box");
       const newText = new fabric.IText("Type here...", {
         left: 150,
@@ -26,8 +34,8 @@ const WritingCanvas = () => {
         isContentEditable: true,
         // fontFamily: font,
       });
-      canvas.add(newText);
-      canvas.renderAll();
+      textCanvas.add(newText);
+      textCanvas.renderAll();
     });
   }, []);
 
@@ -39,23 +47,15 @@ const WritingCanvas = () => {
       fontFamily: font,
     });
 
-    // const handleDownload = () => {
-    //   const img = this.canvas.current.toDataURL();
-    //   this.downloadURI(img, `${this.props.match.params.room}-corpse.png`);
-    // };
-
-    // console.log("styleHas:", textCanvas.styleHas(1));
-
     let sendBackText = textCanvas.toObject();
 
     console.log("textCanvas", textCanvas);
-    console.log("sendBackText.styleHas(3)", sendBackText.styleHas(3));
-
     textCanvas.add(newText);
     textCanvas.renderAll();
-    textCanvas.toDataURl();
-
-    socket.emit("add text box", sendBackText);
+    let dataUrl = textCanvas.toDataURL();
+    //sending data url to back end via socket
+    // console.log('data url: ', dataUrl)
+    socket.emit("add text box", dataUrl);
   };
 
   const changeFont = (evt) => {
