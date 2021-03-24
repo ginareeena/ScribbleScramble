@@ -9,7 +9,9 @@ function App() {
   return (
     <Body className="App">
       <Header className="App-header">
-        <Title>Scribble Scramble</Title>
+        <Title>
+          <a href="/">Scribble Scramble</a>
+        </Title>
       </Header>
       <div>
         <Routes />
@@ -18,6 +20,8 @@ function App() {
         </Button>
         {/* {loadClient && } */}
       </div>
+      <a href="/write">I want to write!</a>
+      <a href="/draw">I want to draw!</a>
     </Body>
   );
 }
