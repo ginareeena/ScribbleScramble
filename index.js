@@ -1,18 +1,30 @@
-// const path = require('path')
+const path = require("path");
+const morgan = require("morgan");
+
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 const port = process.env.PORT || 4001;
 
-// const morgan = require('morgan')
+//middleware
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "FrontEnd/build")));
 
-const index = require("./api/index");
-app.use(index);
+//api routes
+app.get("/", (req, res, next) => {
+  try {
+    res.send({ response: "Alive!" }).status(200);
+  } catch (error) {
+    next(error);
+  }
+});
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "FrontEnd/build", "index.html"));
+});
 
-// app.use(morgan('dev'))
-// app.use(express.json())
-// app.use(express.urlencoded({extended: true}))
-
+//sockets
 const serverSocket = require("socket.io")(http, {
   cors: {
     origin: "http://localhost:3000",
@@ -28,6 +40,7 @@ serverSocket.on("connection", (socket) => {
     socket.broadcast.emit("create new text box", value);
   });
 });
+
 
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);

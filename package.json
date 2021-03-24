@@ -1,10 +1,28 @@
 {
-    "scripts": {
-        "start": "nodemon node ./Server/index.js & (cd FrontEnd && npm run start)"
-    },
-    "dependencies": {
-        "express": "^4.17.1",
-        "nodemon": "^2.0.7",
-        "socket.io": "^4.0.0"
-    }
+  "name": "scribblescramble",
+  "description": "## `npm install` necessary in both the Server directory, and then again in the FrontEnd directories.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AthenaCapstone/ScribbleScramble.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AthenaCapstone/ScribbleScramble/issues"
+  },
+  "homepage": "https://github.com/AthenaCapstone/ScribbleScramble#readme",
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
+    "heroku-postbuild": "cd FrontEnd && npm install && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "socket.io": "^4.0.0"
+  }
 }
