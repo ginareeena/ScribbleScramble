@@ -13,10 +13,9 @@
     "url": "https://github.com/AthenaCapstone/ScribbleScramble/issues"
   },
   "homepage": "https://github.com/AthenaCapstone/ScribbleScramble#readme",
-
   "scripts": {
     "start": "node index.js",
-    "start-dev" : "nodemon index.js",
+    "start-dev": "nodemon index.js",
     "heroku-postbuild": "cd FrontEnd && npm install && npm run build"
   },
   "dependencies": {
