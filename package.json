@@ -15,10 +15,11 @@
   "homepage": "https://github.com/AthenaCapstone/ScribbleScramble#readme",
   "scripts": {
     "start": "node ./Server/index.js & (cd FrontEnd && npm run start)",
-    "start-dev": "nodemon ./Server/index.js & (cd FrontEnd && npm run start)",
+    "dev": "concurrently --kill-others \"nodemon ./Server/index.js\" \"(cd FrontEnd && npm run start)\"",
     "heroku-postbuild": "cd FrontEnd && npm install && npm run build"
   },
   "dependencies": {
+    "concurrently": "^6.0.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
