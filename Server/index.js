@@ -9,10 +9,7 @@ const port = process.env.PORT || 4001;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../FrontEnd", "public")));
-app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../FrontEnd", "public", "index.html"));
-});
+
 
 app.use("/", require("./api/index"));
 
