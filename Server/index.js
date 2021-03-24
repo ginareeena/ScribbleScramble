@@ -1,17 +1,16 @@
-// const path = require('path')
+const path = require("path");
+const morgan = require("morgan");
+
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 const port = process.env.PORT || 4001;
 
-// const morgan = require('morgan')
-
-const index = require("./api/index");
-app.use(index);
-
-// app.use(morgan('dev'))
-// app.use(express.json())
-// app.use(express.urlencoded({extended: true}))
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../FrontEnd", "public")));
+app.use("/", require("./api/index"));
 
 const serverSocket = require("socket.io")(http, {
   cors: {
