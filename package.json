@@ -3,7 +3,6 @@
   "description": "## `npm install` necessary in both the Server directory, and then again in the FrontEnd directories.",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AthenaCapstone/ScribbleScramble.git"
@@ -14,9 +13,11 @@
     "url": "https://github.com/AthenaCapstone/ScribbleScramble/issues"
   },
   "homepage": "https://github.com/AthenaCapstone/ScribbleScramble#readme",
+
   "scripts": {
     "start": "node index.js",
-    "start-dev" : "nodemon index.js"
+    "start-dev" : "nodemon index.js",
+    "heroku-postbuild": "cd FrontEnd && npm install && npm run build"
   },
   "dependencies": {
     "express": "^4.17.1",
