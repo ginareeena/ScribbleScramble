@@ -2,7 +2,7 @@
   "name": "scribblescramble",
   "description": "you scribble, we scramble.",
   "version": "1.0.0",
-  "main": "FrontEnd/src/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AthenaCapstone/ScribbleScramble.git"
