@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import { Button, Title2, Body, Palette, AddTxtBtn } from "./AppCSS";
+import { 
+  // Button, 
+  Title2, 
+  // Body, 
+  Palette, 
+  AddTxtBtn } from "./AppCSS";
 import { StyledCanvas } from "./AppCSS";
 import { PlayArea } from "./AppCSS";
 import { CanvasBackground } from "./AppCSS";
@@ -16,15 +21,6 @@ const WritingCanvas = () => {
       isContentEditable: true,
     });
 
-  /*
-    Removed 'canvas' as a parameter in the initCanvas function, set add and renderAll
-    methods to act on textCanvas.
-
-
-    Thought: we're getting a data url value now from backend (value) —> maybe need to convert
-    back to an object for display?
-
-    */
   useEffect(() => {
     setTextCanvas(initCanvas());
     socket.on("create new text box", (value) => {
@@ -35,7 +31,7 @@ const WritingCanvas = () => {
       };
       textImage.src = value;
       console.log("front end heard create new text box");
-      console.log('text image string: ', textImage)
+      console.log("text image string: ", textImage);
     });
     const newText = new fabric.IText("Type here...", {
       left: 150,
@@ -43,7 +39,7 @@ const WritingCanvas = () => {
       isContentEditable: true,
       // fontFamily: font,
     });
-    // POSSIBLY UNNECESSARY: 
+    // POSSIBLY UNNECESSARY:
     // textCanvas.add(newText);
     // textCanvas.renderAll();
   }, []);

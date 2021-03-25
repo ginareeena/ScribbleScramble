@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import styled from "styled-components";
+import { BrowserRouter as Link } from "react-router-dom";
 
 export const Body = styled.div`
   display: flex;

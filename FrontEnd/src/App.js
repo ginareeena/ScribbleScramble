@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import Routes from "./Routes";
-import socket from "./Socket";
 import {
-  Button,
+  // Button,
   Body,
   Header,
   Title,
-  StartDrawBtn,
-  StartWriteBtn,
-  LandingBtns,
-  LandingPage,
-  StartDrawImg,
+  // StartDrawBtn,
+  // StartWriteBtn,
+  // LandingBtns,
+  // LandingPage,
+  // StartDrawImg,
 } from "./AppCSS";
-
-import LandingPageComp from "./LandingPage";
+// import LandingPageComp from "./LandingPage";
 
 function App() {
   const [loadClient, setLoadClient] = useState(true);
@@ -29,11 +27,6 @@ function App() {
       </Header>
       <div>
         <Routes />
-
-        {/* <Button onClick={() => setLoadClient((prevState) => !prevState)}>
-          Stop Client
-        </Button> */}
-        {/* {loadClient && } */}
       </div>
     </Body>
   );

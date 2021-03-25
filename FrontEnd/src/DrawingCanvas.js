@@ -7,7 +7,7 @@ import {
   PlayArea,
   CanvasBackground,
   Palette,
-  ClearButton,
+  // ClearButton,
   PngButton,
 } from "./AppCSS";
 
@@ -23,15 +23,6 @@ const DrawingCanvas = () => {
       updateBrush();
     }
   }, [canvas]);
-
-  // useEffect(() => {
-  //   if (canvas.freeDrawingBrush) {
-  //     updateBrush();
-  //     // console.log("second useEffect");
-  //   }
-  //   // setBrushSize()
-  //   // setBrushColor()
-  // }, [canvas]);
 
   let drawingColorEl = document.getElementById("drawing-color");
   let drawingModeEl = document.getElementById("drawing-mode-selector");
