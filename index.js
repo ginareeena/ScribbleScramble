@@ -33,15 +33,12 @@ const serverSocket = require("socket.io")(http, {
 });
 
 serverSocket.on("connection", (socket) => {
-  let userAdded = false;
   console.log(`server new client connected on ${socket.id}`);
 
+  let userAdded = false;
   socket.on("add new player", (username) => {
-    //if user has already been added, return
     if (userAdded) return;
-    //store client's username in socket session
     socket.username = username;
-    numUsers++;
     userAdded = true;
   });
 
