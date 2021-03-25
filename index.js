@@ -10,22 +10,28 @@ const port = process.env.PORT || 4001;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+// app.use(express.static(path.join(__dirname, "FrontEnd/build")));
 
 //api routes
+
 app.get("/", (req, res, next) => {
   try {
+    // res.sendFile(path.join(__dirname, "/FrontEnd/build", "index.html"));
     res.send({ response: "Alive!" }).status(200);
   } catch (error) {
     next(error);
   }
 });
 
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "FrontEnd/build", "index.html"));
+});
+
 //sockets
 const serverSocket = require("socket.io")(http,
    {
   cors: {
-    origins: ["http://localhost:3000", "http://localhost:4001"],
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 }
@@ -40,12 +46,14 @@ serverSocket.on("connection", (socket) => {
   });
 });
 
-  // error handling endware
-  app.use((err, req, res, next) => {
-    console.error(err)
-    console.error(err.stack)
-    res.status(err.status || 500).send(err.message || 'Internal server error.')
-  })
+
+  // // error handling endware
+  // app.use((err, req, res, next) => {
+  //   console.error(err)
+  //   console.error(err.stack)
+  //   res.status(err.status || 500).send(err.message || 'Internal server error.')
+  // })
+
 
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
