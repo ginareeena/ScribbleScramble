@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import { Button, Title2, Body } from "./AppCSS";
+import { Button, Title2, Body, Palette, AddTxtBtn } from "./AppCSS";
 import { StyledCanvas } from "./AppCSS";
 import { PlayArea } from "./AppCSS";
 import { CanvasBackground } from "./AppCSS";
@@ -18,7 +18,11 @@ const WritingCanvas = () => {
 
   /*
     Removed 'canvas' as a parameter in the initCanvas function, set add and renderAll
-    methods to act on textCanvas. 
+    methods to act on textCanvas.
+
+
+    Thought: we're getting a data url value now from backend (value) —> maybe need to convert
+    back to an object for display?
 
     */
   useEffect(() => {
@@ -68,24 +72,27 @@ const WritingCanvas = () => {
   };
 
   return (
-    <Body>
-      <Title2>Writing Canvas !</Title2>
-      <Button onClick={() => handleTextBtn()}>Add Text</Button>
-      <div id="text-options">
-        <label htmlFor="font-family">Font:</label>
-        <select id="font-family" value={font} onChange={changeFont}>
-          <option value="arial">Arial</option>
-          <option value="comic sans ms">Comic Sans MS</option>
-          <option value="impact">Impact</option>
-          <option value="monaco">Monaco</option>
-        </select>
-      </div>
+    <div>
+      <Title2></Title2>
+
       <PlayArea>
         <CanvasBackground>
           <StyledCanvas id="canvas"></StyledCanvas>
         </CanvasBackground>
       </PlayArea>
-    </Body>
+      <Palette>
+        <div id="text-options" style={{ marginTop: "10px" }}>
+          <label htmlFor="font-family">Font:</label>
+          <select id="font-family" value={font} onChange={changeFont}>
+            <option value="arial">Arial</option>
+            <option value="comic sans ms">Comic Sans MS</option>
+            <option value="impact">Impact</option>
+            <option value="monaco">Monaco</option>
+          </select>
+        </div>
+        <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
+      </Palette>
+    </div>
   );
 };
 
