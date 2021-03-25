@@ -36,10 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-/* Not doing anything for some reason! */
-#canvas {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

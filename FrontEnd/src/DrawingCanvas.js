@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 import {
-  Button,
+  // Button,
   Title2,
   StyledCanvas,
   PlayArea,
   CanvasBackground,
+  Palette,
+  ClearButton,
+  PngButton,
 } from "./AppCSS";
 
 const DrawingCanvas = () => {
@@ -14,6 +17,12 @@ const DrawingCanvas = () => {
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
+
+  useEffect(() => {
+    if (canvas) {
+      updateBrush();
+    }
+  }, [canvas]);
 
   // useEffect(() => {
   //   if (canvas.freeDrawingBrush) {
@@ -39,7 +48,7 @@ const DrawingCanvas = () => {
 
   // fabric.Object.prototype.transparentCorners = false;
 
-  function updateBrush(canvas) {
+  function updateBrush() {
     if (!canvas.freeDrawingBrush) {
       // console.log("no free drawing brush");
       canvas.freeDrawingBrush = new fabric[drawingModeEl.value + "Brush"]();
@@ -53,45 +62,52 @@ const DrawingCanvas = () => {
 
   return (
     <div>
-      <div id="drawing-mode-options">
-        <label htmlFor="drawing-mode-selector">Mode:</label>
-        <select id="drawing-mode-selector" onChange={() => updateBrush(canvas)}>
-          <option value="Pencil">Pencil</option>
-          <option value="Circle">Circle</option>
-          <option value="Pattern">Pattern</option>
-        </select>
-
-        <label htmlFor="drawing-line-width">Line width:</label>
-        <span id="brushSize">11</span>
-        <input
-          type="range"
-          defaultValue="11"
-          min="0"
-          max="150"
-          id="drawing-line-width"
-          onChange={() => updateBrush(canvas)}
-        />
-
-        <label htmlFor="drawing-color">Line color:</label>
-        <input
-          type="color"
-          defaultValue="#005E7A"
-          id="drawing-color"
-          onChange={() => updateBrush(canvas)}
-        />
-      </div>
-
-      <Title2>Drawing Canvas!</Title2>
+      <Title2></Title2>
       <PlayArea>
         <CanvasBackground>
           <StyledCanvas
             id="canvas"
-            onClick={() => updateBrush(canvas)}
-            onMouseDown={() => updateBrush(canvas)}
+            onClick={() => updateBrush()}
+            onMouseDown={() => updateBrush()}
           ></StyledCanvas>
         </CanvasBackground>
       </PlayArea>
-      <Button onClick={() => canvas.clear()}>clear</Button>
+
+      <Palette>
+        <div id="drawing-mode-options" style={{ marginTop: "10px" }}>
+          <label htmlFor="drawing-mode-selector">Mode:</label>
+          <select id="drawing-mode-selector" onChange={() => updateBrush()}>
+            <option value="Pencil">Pencil</option>
+            <option value="Circle">Circle</option>
+            <option value="Pattern">Pattern</option>
+          </select>
+
+          <label htmlFor="drawing-line-width">Line width:</label>
+          <span id="brushSize">11</span>
+          <input
+            type="range"
+            defaultValue="11"
+            min="0"
+            max="150"
+            id="drawing-line-width"
+            onChange={() => updateBrush()}
+          />
+
+          <label htmlFor="drawing-color">Line color:</label>
+          <input
+            type="color"
+            defaultValue="#005E7A"
+            id="drawing-color"
+            onChange={() => updateBrush()}
+          />
+        </div>
+        <PngButton onClick={() => canvas.clear()}>
+          <img
+            src="/images/trashBtn.png"
+            style={{ width: "100%", marginTop: "2px" }}
+          />
+        </PngButton>
+      </Palette>
     </div>
   );
 };

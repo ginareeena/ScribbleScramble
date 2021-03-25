@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 import Routes from "./Routes";
 import socket from "./Socket";
-import { Button, Body, Header, Title } from "./AppCSS";
+import {
+  Button,
+  Body,
+  Header,
+  Title,
+  StartDrawBtn,
+  StartWriteBtn,
+  LandingBtns,
+  LandingPage,
+  StartDrawImg,
+} from "./AppCSS";
+
+import LandingPageComp from "./LandingPage";
 
 function App() {
   const [loadClient, setLoadClient] = useState(true);
@@ -10,18 +22,19 @@ function App() {
     <Body className="App">
       <Header className="App-header">
         <Title>
-          <a href="/">Scribble Scramble</a>
+          <a href="/">
+            <img src="/images/logoSm.png" />
+          </a>
         </Title>
       </Header>
       <div>
         <Routes />
-        <Button onClick={() => setLoadClient((prevState) => !prevState)}>
+
+        {/* <Button onClick={() => setLoadClient((prevState) => !prevState)}>
           Stop Client
-        </Button>
+        </Button> */}
         {/* {loadClient && } */}
       </div>
-      <a href="/write">I want to write!</a>
-      <a href="/draw">I want to draw!</a>
     </Body>
   );
 }

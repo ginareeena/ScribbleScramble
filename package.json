@@ -2,7 +2,7 @@
   "name": "scribblescramble",
   "description": "you scribble, we scramble.",
   "version": "1.0.0",
-  "main": "FrontEnd/src/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AthenaCapstone/ScribbleScramble.git"
@@ -14,9 +14,9 @@
   },
   "homepage": "https://github.com/AthenaCapstone/ScribbleScramble#readme",
   "scripts": {
-    "start": "node ./Server/index.js & (cd FrontEnd && npm run start)",
-    "dev": "concurrently --kill-others \"nodemon ./Server/index.js\" \"(cd FrontEnd && npm run start)\"",
-    "heroku-postbuild": "cd .. && cd FrontEnd && npm install && npm run build"
+    "start": "node index.js",
+    "dev": "concurrently --kill-others \"nodemon index.js\" \"(cd FrontEnd && npm run start)\"",
+    "heroku-postbuild": "cd FrontEnd && npm install && npm run build"
   },
   "dependencies": {
     "concurrently": "^6.0.0",

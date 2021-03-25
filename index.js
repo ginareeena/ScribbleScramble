@@ -25,12 +25,14 @@ app.get("*", (req, res) => {
 });
 
 //sockets
-const serverSocket = require("socket.io")(http, {
+const serverSocket = require("socket.io")(http,
+   {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
-});
+}
+);
 
 serverSocket.on("connection", (socket) => {
   console.log(`server new client connected on ${socket.id}`);
