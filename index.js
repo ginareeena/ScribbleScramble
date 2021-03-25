@@ -13,18 +13,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "/FrontEnd/build")));
 
 //api routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "/FrontEnd/build", "index.html"));
-});
 
 app.get("/", (req, res, next) => {
   try {
-    res.send({ response: "Alive!" }).status(200);
+    res.sendFile(path.join(__dirname, "..", "/FrontEnd/build", "index.html"));
+    // res.send({ response: "Alive!" }).status(200);
   } catch (error) {
     next(error);
   }
 });
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/FrontEnd/build", "index.html"));
+});
 
 //sockets
 const serverSocket = require("socket.io")(http,
