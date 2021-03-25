@@ -4,12 +4,13 @@ import socket from "./Socket";
 
 const Username = () => {
   const [username, setUsername] = useState("");
+  const [userConnected, setUserConnected] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
     if (username) {
-      console.log("username is ", username);
+      console.log("a new player has joined: ", username);
+      socket.emit("add new player", username);
     } else {
       alert("you didn't actually choose one tho...");
     }
