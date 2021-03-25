@@ -7,8 +7,8 @@ const Username = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    //need to control for just spaces!
-    if (username !== "") {
+
+    if (username) {
       console.log("username is ", username);
     } else {
       alert("you didn't actually choose one tho...");
@@ -23,7 +23,7 @@ const Username = () => {
           <input
             type="text"
             name="username"
-            onChange={(evt) => setUsername(evt.target.value)}
+            onChange={(evt) => setUsername(evt.target.value.trim())}
           />
           <br />
           <br />
