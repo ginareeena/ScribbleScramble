@@ -1,20 +1,15 @@
 import { useState, useEffect } from "react";
 import { LandingPage } from "./AppCSS";
+import socket from "./Socket";
 
 const Username = () => {
   const [username, setUsername] = useState("");
-  const [hasUsername, setHasUsername] = useState(false);
-
-  // useEffect( () => {
-  //   // setUsernameSelected(true)
-  // }, [username])
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     //need to control for just spaces!
     if (username !== "") {
-      setHasUsername(true);
-      console.log("username is ", username, hasUsername);
+      console.log("username is ", username);
     } else {
       alert("you didn't actually choose one tho...");
     }
