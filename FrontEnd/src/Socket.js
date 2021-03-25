@@ -1,7 +1,7 @@
 import socketIOClient from "socket.io-client";
 const SERVER = "http://127.0.0.1:4001";
 
-const socket = socketIOClient(SERVER);
+const socket = socketIOClient(SERVER, {autoConnect: false })
 
 //maybe this should be connection?
 // index.js serverSocket is on "connection"
