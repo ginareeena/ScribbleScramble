@@ -17,13 +17,13 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/FrontEnd/build", "index.html"));
 });
 
-// app.get("/", (req, res, next) => {
-//   try {
-//     res.send({ response: "Alive!" }).status(200);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+app.get("/", (req, res, next) => {
+  try {
+    res.send({ response: "Alive!" }).status(200);
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 //sockets
