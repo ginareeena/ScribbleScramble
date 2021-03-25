@@ -7,8 +7,4 @@ socket.on("connect", () => {
   console.log("i'm connected with the front end!");
 });
 
-socket.onAny((event, ...args) => {
-  console.log(event, args);
-});
-
 export default socket;
