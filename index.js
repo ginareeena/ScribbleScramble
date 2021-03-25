@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res, next) => {
   try {
-    // res.sendFile(path.join(__dirname, "/FrontEnd/build", "index.html"));
     res.send({ response: "Alive!" }).status(200);
   } catch (error) {
     next(error);
@@ -30,10 +29,10 @@ app.use("*", (req, res) => {
 //sockets
 const serverSocket = require("socket.io")(http,
    {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
+    cors: {
+      origins: ["http://localhost:3000", "http://localhost:4001"],
+      methods: ["GET", "POST"],
+    },
 }
 );
 
