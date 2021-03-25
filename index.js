@@ -46,14 +46,6 @@ serverSocket.on("connection", (socket) => {
 });
 
 
-  // // error handling endware
-  // app.use((err, req, res, next) => {
-  //   console.error(err)
-  //   console.error(err.stack)
-  //   res.status(err.status || 500).send(err.message || 'Internal server error.')
-  // })
-
-
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
