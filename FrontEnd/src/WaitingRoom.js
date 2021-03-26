@@ -1,10 +1,10 @@
 import React from "react";
-import { LandingPage, Title2 } from "./AppCSS";
+import { LandingPage } from "./AppCSS";
 
 const WaitingRoom = () => {
   return (
     <LandingPage>
-      <Title2>Waiting for other players...</Title2>
+      <h2>Waiting for other players...</h2>
     </LandingPage>
   );
 };
