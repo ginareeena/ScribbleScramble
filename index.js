@@ -1,4 +1,9 @@
-const { blueBright, magenta } = require("chalk");
+const { yellow, red, blueBright, magenta, cyan } = require("chalk");
+//yellow: new client connected
+// red: client disconnected
+// magenta: event from front end
+// blueBright: server 'message'
+// cyan: current players
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
@@ -39,31 +44,37 @@ const serverSocket = require("socket.io")(http, {
 });
 
 let players = {};
+//testing only!
+const listPlayers = (players) => {
+  console.log(cyan(JSON.stringify(players)));
+};
+
 serverSocket.on("connection", (socket) => {
-  console.log(blueBright(`server new client connected on ${socket.id}`));
+  console.log(yellow(`(server) new client connected: ${socket.id}`));
 
   let userAdded = false;
   socket.on("add new player", (username) => {
+    console.log(magenta("on: add new player"));
     //if player has already registered, return
-    if (userAdded) {
-      console.log(magenta("this player has already been added"));
-      return;
-    } else {
-      socket.username = username;
-      players[socket.id] = socket.username;
-      userAdded = true;
-      console.log(magenta("server added new player"));
-    }
+    // if (userAdded) {
+    //   console.log(magenta("this player has already been added"));
+    //   return;
+    // } else {
+    socket.username = username;
+    players[socket.id] = socket.username;
+    userAdded = true;
+    console.log(blueBright(`player ${socket.username} has been added`));
+    console.log(cyan(JSON.stringify(players)));
   });
 
   socket.on("add text box", (value) => {
-    console.log("server side heard add text box!");
-    console.log("server/add text box value", value);
+    console.log(magenta("on: add text box"));
+    console.log(blueBright("server/add text box value", value));
     socket.broadcast.emit("create new text box", value);
   });
 
   socket.on("disconnect", () => {
-    console.log(blueBright(`client ${socket.id} has left the building.`));
+    console.log(blueBright(red(`(id: ${socket.id}) has left the building.`)));
   });
 });
 
