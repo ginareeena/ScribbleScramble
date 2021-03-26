@@ -12,7 +12,7 @@ const Routes = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/write" component={WritingCanvas} />
         <Route exact path="/draw" component={DrawingCanvas} />
-        <Route path="/connecting" component={WaitingRoom} />
+        {/* <Route path="/connecting" component={WaitingRoom} /> */}
       </Switch>
       f
     </Router>
