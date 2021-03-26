@@ -53,6 +53,12 @@ serverSocket.on("connection", (socket) => {
     console.log("server/add text box value", value);
     socket.broadcast.emit("create new text box", value);
   });
+
+  socket.on('disconnect', () => {
+    console.log(`client ${socket.id} has left the building.`)
+  })
+
+
 });
 
 http.listen(port, () => {
