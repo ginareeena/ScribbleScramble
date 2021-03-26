@@ -31,7 +31,6 @@ export const Button = styled.button`
   margin: 0 1em;
   height: 30px;
   width: 80px;
-
   `;
 
 export const Title = styled.h1`
@@ -45,6 +44,7 @@ export const Title = styled.h1`
   margin-top: 20px;
   border-radius: 20px;
 `;
+
 export const Title2 = styled.h2`
   font-size: 2em;
   text-align: center;
@@ -64,6 +64,7 @@ export const StyledCanvas = styled.canvas`
   border-radius: 3px;
   z-index: 2;
 `;
+
 export const CanvasBackground = styled.div`
   display: flex;
   width: 800px;
