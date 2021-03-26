@@ -26,20 +26,18 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "FrontEnd/build", "index.html"));
 });
 
-// error handling
+//error handling
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).send(err.message || 'Internal server error')
-})
+  res.status(err.status || 500).send(err.message || "Internal server error");
+});
 
 //sockets
-const serverSocket = require("socket.io")(http,
-   {
-    cors: {
-      origins: ["http://localhost:3000", "http://localhost:4001"],
-      methods: ["GET", "POST"],
-    },
-}
-);
+const serverSocket = require("socket.io")(http, {
+  cors: {
+    origins: ["http://localhost:3000", "http://localhost:4001"],
+    methods: ["GET", "POST"],
+  },
+});
 
 serverSocket.on("connection", (socket) => {
   console.log(`server new client connected on ${socket.id}`);
@@ -49,7 +47,6 @@ serverSocket.on("connection", (socket) => {
     socket.broadcast.emit("create new text box", value);
   });
 });
-
 
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
