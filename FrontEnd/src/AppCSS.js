@@ -86,6 +86,12 @@ export const Palette = styled.div`
   border-radius: 20px;
 `;
 
+export const PaletteColors = styled.div`
+  margin: 5px;
+  margin-left: 8px;
+  margin-right: 0px;
+`;
+
 export const PaletteBtns = styled.div`
   margin-top: 10px;
 `;

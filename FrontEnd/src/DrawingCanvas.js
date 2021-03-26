@@ -7,9 +7,10 @@ import {
   PlayArea,
   CanvasBackground,
   Palette,
-  // ClearButton,
   PngButton,
+  PaletteColors,
 } from "./AppCSS";
+import PaletteComp from "./Palette";
 
 const DrawingCanvas = () => {
   const [canvas, setCanvas] = useState("");
@@ -23,6 +24,8 @@ const DrawingCanvas = () => {
       updateBrush();
     }
   }, [canvas]);
+
+  // const drawingColorEl= useRef()
 
   let drawingColorEl = document.getElementById("drawing-color");
   let drawingModeEl = document.getElementById("drawing-mode-selector");
@@ -41,14 +44,13 @@ const DrawingCanvas = () => {
 
   function updateBrush() {
     if (!canvas.freeDrawingBrush) {
-      // console.log("no free drawing brush");
       canvas.freeDrawingBrush = new fabric[drawingModeEl.value + "Brush"]();
     }
 
     let brush = canvas.freeDrawingBrush;
     brush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
     brushSizeText.innerHTML = drawingLineWidthEl.value;
-    brush.color = drawingColorEl.value;
+    brush.color = brush.color = drawingColorEl.value;
   }
 
   return (
@@ -92,13 +94,22 @@ const DrawingCanvas = () => {
             onChange={() => updateBrush()}
           />
         </div>
+        <PaletteColors>
+          <PaletteComp />
+        </PaletteColors>
+
         <PngButton onClick={() => canvas.clear()}>
           <img
             src="/images/trashBtn.png"
             style={{ width: "100%", marginTop: "2px" }}
           />
         </PngButton>
+        {/* <PaletteComp /> */}
       </Palette>
+
+      <div>test!</div>
+
+      {/* <PaletteComp /> */}
     </div>
   );
 };
