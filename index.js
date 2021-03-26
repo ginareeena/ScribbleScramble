@@ -43,12 +43,26 @@ const serverSocket = require("socket.io")(http, {
   },
 });
 
+let players = {};
 let roomId = 0;
+const listPlayers = () => {
+  console.log(cyan(JSON.stringify(players)));
+};
+
 serverSocket.on("connection", (socket) => {
   console.log(
     magenta("on: connection"),
     yellow(`(server) new client connected: ${socket.id}`)
   );
+
+  socket.on("add new player", (username) => {
+    console.log(magenta("on: add new player"));
+    socket.username = username;
+    players[socket.id] = socket.username;
+    console.log(blueBright(`player ${socket.username} has been added`));
+    listPlayers();
+  });
+
   socket.on("create new game", (data) => {
     console.log(magenta("on: create new game"));
     socket.join(`room ${++roomId}`);
@@ -57,27 +71,19 @@ serverSocket.on("connection", (socket) => {
     console.log(blueBright(`new game ready in room ${game.room}`));
   });
 
-  socket.on("add new player", (username) => {
-    console.log(magenta("on: add new player"));
-    socket.username = username;
-    players[username] = { status: null };
-    console.log(blueBright(`player ${socket.username} has been added`));
-    listPlayers();
-  });
+  // socket.on("player chose to draw", (username) => {
+  //   console.log(magenta("on: player chose to draw"));
+  //   players[username] = { ...players[username], status: "draw" };
+  //   // console.log(blueBright(`${username} chose ${username.status}`));
+  //   console.log(blueBright("chose draw"));
+  // });
 
-  socket.on("player chose to draw", (username) => {
-    console.log(magenta("on: player chose to draw"));
-    players[username] = { ...players[username], status: "draw" };
-    // console.log(blueBright(`${username} chose ${username.status}`));
-    console.log(blueBright("chose draw"));
-  });
-
-  socket.on("player chose to write", (username) => {
-    console.log(magenta("on: player chose to write"));
-    players[username] = { ...players[username], status: "write" };
-    // console.log(blueBright(`${username} chose ${players[username][status]}`));
-    console.log(blueBright("chose write"));
-  });
+  // socket.on("player chose to write", (username) => {
+  //   console.log(magenta("on: player chose to write"));
+  //   players[username] = { ...players[username], status: "write" };
+  //   // console.log(blueBright(`${username} chose ${players[username][status]}`));
+  //   console.log(blueBright("chose write"));
+  // });
 
   socket.on("disconnect", () => {
     delete players[socket.username];
