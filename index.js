@@ -86,7 +86,7 @@ serverSocket.on("connection", (socket) => {
   // });
 
   socket.on("disconnect", () => {
-    delete players[socket.username];
+    delete players[socket.id];
     console.log(red(`(${socket.username}) has left the building.`));
     listPlayers();
     serverSocket.emit("player");
