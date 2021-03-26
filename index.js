@@ -26,6 +26,11 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "FrontEnd/build", "index.html"));
 });
 
+// error handling
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).send(err.message || 'Internal server error')
+})
+
 //sockets
 const serverSocket = require("socket.io")(http,
    {
