@@ -43,16 +43,19 @@ const serverSocket = require("socket.io")(http, {
   },
 });
 
-let players = {};
-const listPlayers = () => {
-  console.log(cyan(JSON.stringify(players)));
-};
-
+let roomId = 0;
 serverSocket.on("connection", (socket) => {
   console.log(
     magenta("on: connection"),
     yellow(`(server) new client connected: ${socket.id}`)
   );
+  socket.on("create new game", (data) => {
+    console.log(magenta("on: create new game"));
+    socket.join(`room ${++roomId}`);
+    const game = { name: data.name, room: `room ${roomId}` };
+    socket.emit("newGame", game);
+    console.log(blueBright(`new game ready in room ${game.room}`));
+  });
 
   socket.on("add new player", (username) => {
     console.log(magenta("on: add new player"));
