@@ -1,3 +1,4 @@
+const { blueBright, magenta } = require("chalk");
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
@@ -26,8 +27,8 @@ app.use("*", (req, res) => {
 
 // error handling
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).send(err.message || 'Internal server error')
-})
+  res.status(err.status || 500).send(err.message || "Internal server error");
+});
 
 //sockets
 const serverSocket = require("socket.io")(http, {
@@ -37,15 +38,22 @@ const serverSocket = require("socket.io")(http, {
   },
 });
 
+let players = {};
 serverSocket.on("connection", (socket) => {
-  console.log(`server new client connected on ${socket.id}`);
+  console.log(blueBright(`server new client connected on ${socket.id}`));
 
   let userAdded = false;
   socket.on("add new player", (username) => {
-    console.log("server added new player");
-    if (userAdded) return;
-    socket.username = username;
-    userAdded = true;
+    //if player has already registered, return
+    if (userAdded) {
+      console.log(magenta("this player has already been added"));
+      return;
+    } else {
+      socket.username = username;
+      players[socket.id] = socket.username;
+      userAdded = true;
+      console.log(magenta("server added new player"));
+    }
   });
 
   socket.on("add text box", (value) => {
@@ -54,11 +62,9 @@ serverSocket.on("connection", (socket) => {
     socket.broadcast.emit("create new text box", value);
   });
 
-  socket.on('disconnect', () => {
-    console.log(`client ${socket.id} has left the building.`)
-  })
-
-
+  socket.on("disconnect", () => {
+    console.log(blueBright(`client ${socket.id} has left the building.`));
+  });
 });
 
 http.listen(port, () => {
