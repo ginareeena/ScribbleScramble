@@ -49,7 +49,6 @@ const listPlayers = () => {
 };
 
 serverSocket.on("connection", (socket) => {
-  // players[socket.id] = { username: null };
   console.log(
     magenta("on: connection"),
     yellow(`(server) new client connected: ${socket.id}`)
@@ -58,15 +57,30 @@ serverSocket.on("connection", (socket) => {
   socket.on("add new player", (username) => {
     console.log(magenta("on: add new player"));
     socket.username = username;
-    players[username] = socket.id;
+    players[username] = { status: null };
     console.log(blueBright(`player ${socket.username} has been added`));
     listPlayers();
   });
 
+  socket.on("player chose to draw", (username) => {
+    console.log(magenta("on: player chose to draw"));
+    players[username] = { ...players[username], status: "draw" };
+    // console.log(blueBright(`${username} chose ${username.status}`));
+    console.log(blueBright("chose draw"));
+  });
+
+  socket.on("player chose to write", (username) => {
+    console.log(magenta("on: player chose to write"));
+    players[username] = { ...players[username], status: "write" };
+    // console.log(blueBright(`${username} chose ${players[username][status]}`));
+    console.log(blueBright("chose write"));
+  });
+
   socket.on("disconnect", () => {
-    delete players[socket.id];
-    console.log(red(`(id: ${socket.id}) has left the building.`));
+    delete players[socket.username];
+    console.log(red(`(${socket.username}) has left the building.`));
     listPlayers();
+    serverSocket.emit("player");
   });
 
   //drawing
