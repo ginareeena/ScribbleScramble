@@ -90,9 +90,9 @@ export const PaletteBtns = styled.div`
 `;
 
 export const StartDrawBtn = styled.div`
-display: flex;
-justify-content: center;
-flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export const StartDrawImg = styled.div`
