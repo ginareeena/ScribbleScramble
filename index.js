@@ -37,6 +37,7 @@ serverSocket.on("connection", (socket) => {
 
   let userAdded = false;
   socket.on("add new player", (username) => {
+    console.log("server added new player");
     if (userAdded) return;
     socket.username = username;
     userAdded = true;
