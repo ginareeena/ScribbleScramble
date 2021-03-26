@@ -44,37 +44,36 @@ const serverSocket = require("socket.io")(http, {
 });
 
 let players = {};
-//testing only!
-const listPlayers = (players) => {
+const listPlayers = () => {
   console.log(cyan(JSON.stringify(players)));
 };
 
 serverSocket.on("connection", (socket) => {
-  console.log(yellow(`(server) new client connected: ${socket.id}`));
+  // players[socket.id] = { username: null };
+  console.log(
+    magenta("on: connection"),
+    yellow(`(server) new client connected: ${socket.id}`)
+  );
 
-  let userAdded = false;
   socket.on("add new player", (username) => {
     console.log(magenta("on: add new player"));
-    //if player has already registered, return
-    // if (userAdded) {
-    //   console.log(magenta("this player has already been added"));
-    //   return;
-    // } else {
     socket.username = username;
-    players[socket.id] = socket.username;
-    userAdded = true;
+    players[username] = socket.id;
     console.log(blueBright(`player ${socket.username} has been added`));
-    console.log(cyan(JSON.stringify(players)));
+    listPlayers();
   });
 
+  socket.on("disconnect", () => {
+    delete players[socket.id];
+    console.log(red(`(id: ${socket.id}) has left the building.`));
+    listPlayers();
+  });
+
+  //drawing
   socket.on("add text box", (value) => {
     console.log(magenta("on: add text box"));
     console.log(blueBright("server/add text box value", value));
     socket.broadcast.emit("create new text box", value);
-  });
-
-  socket.on("disconnect", () => {
-    console.log(blueBright(red(`(id: ${socket.id}) has left the building.`)));
   });
 });
 
