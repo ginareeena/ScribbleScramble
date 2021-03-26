@@ -71,20 +71,6 @@ serverSocket.on("connection", (socket) => {
     console.log(blueBright(`new game ready in room ${game.room}`));
   });
 
-  // socket.on("player chose to draw", (username) => {
-  //   console.log(magenta("on: player chose to draw"));
-  //   players[username] = { ...players[username], status: "draw" };
-  //   // console.log(blueBright(`${username} chose ${username.status}`));
-  //   console.log(blueBright("chose draw"));
-  // });
-
-  // socket.on("player chose to write", (username) => {
-  //   console.log(magenta("on: player chose to write"));
-  //   players[username] = { ...players[username], status: "write" };
-  //   // console.log(blueBright(`${username} chose ${players[username][status]}`));
-  //   console.log(blueBright("chose write"));
-  // });
-
   socket.on("disconnect", () => {
     delete players[socket.id];
     console.log(red(`(${socket.username}) has left the building.`));
@@ -93,10 +79,10 @@ serverSocket.on("connection", (socket) => {
   });
 
   //drawing
-  socket.on("add text box", (value) => {
-    console.log(magenta("on: add text box"));
-    console.log(blueBright("server/add text box value", value));
-    socket.broadcast.emit("create new text box", value);
+  socket.on("add text box", (value, textCanvas) => {
+    console.log("server side heard add text box!");
+    // console.log("server/add text box value", value);
+    socket.broadcast.emit("create new text box", value, textCanvas);
   });
 });
 

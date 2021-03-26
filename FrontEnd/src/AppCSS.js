@@ -6,7 +6,6 @@ export const Body = styled.div`
   flex-flow: column wrap;
   width: 100%;
   background-image: url(./images/background.jpg);
-  height: 100%;
 `;
 
 export const Header = styled.header`
