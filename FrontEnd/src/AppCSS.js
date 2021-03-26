@@ -90,7 +90,9 @@ export const PaletteBtns = styled.div`
 `;
 
 export const StartDrawBtn = styled.div`
-  margin-left: 10px;
+display: flex;
+justify-content: center;
+flex-direction: column;
 `;
 
 export const StartDrawImg = styled.div`
