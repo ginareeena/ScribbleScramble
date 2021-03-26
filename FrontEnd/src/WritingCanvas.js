@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import { 
-  // Button, 
-  Title2, 
-  // Body, 
-  Palette, 
-  AddTxtBtn } from "./AppCSS";
+import {
+  // Button,
+  Title2,
+  // Body,
+  Palette,
+  AddTxtBtn,
+} from "./AppCSS";
 import { StyledCanvas } from "./AppCSS";
 import { PlayArea } from "./AppCSS";
 import { CanvasBackground } from "./AppCSS";
