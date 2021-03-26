@@ -43,11 +43,11 @@ const serverSocket = require("socket.io")(http, {
   },
 });
 
-let players = {};
+// let players = {};
 let roomId = 0;
-const listPlayers = () => {
-  console.log(cyan(JSON.stringify(players)));
-};
+// const listPlayers = () => {
+//   console.log(cyan(JSON.stringify(players)));
+// };
 
 serverSocket.on("connection", (socket) => {
   console.log(
@@ -55,13 +55,13 @@ serverSocket.on("connection", (socket) => {
     yellow(`(server) new client connected: ${socket.id}`)
   );
 
-  socket.on("add new player", (username) => {
-    console.log(magenta("on: add new player"));
-    socket.username = username;
-    players[socket.id] = socket.username;
-    console.log(blueBright(`player ${socket.username} has been added`));
-    listPlayers();
-  });
+  // socket.on("add new player", (username) => {
+  //   console.log(magenta("on: add new player"));
+  //   socket.username = username;
+  //   players[socket.id] = socket.username;
+  //   console.log(blueBright(`player ${socket.username} has been added`));
+  //   listPlayers();
+  // });
 
   socket.on("create new game", (data) => {
     console.log(magenta("on: create new game"));
@@ -72,10 +72,9 @@ serverSocket.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    delete players[socket.id];
+    // delete players[socket.id];
     console.log(red(`(${socket.username}) has left the building.`));
-    listPlayers();
-    serverSocket.emit("player");
+    // listPlayers();
   });
 
   //drawing
