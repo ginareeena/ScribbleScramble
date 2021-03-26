@@ -8,3 +8,5 @@ const WaitingRoom = () => {
     </LandingPage>
   );
 };
+
+export default WaitingRoom;
