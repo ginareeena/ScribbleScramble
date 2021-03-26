@@ -11,7 +11,8 @@ const Home = () => {
     evt.preventDefault();
     if (username) {
       setHasUsername(true);
-      socket.emit("add new player", username);
+      socket.auth = { username };
+      socket.connect();
     } else {
       alert("please choose a valid username");
     }
