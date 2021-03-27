@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Modal from 'styled-react-modal';
 import { BrowserRouter as Link } from "react-router-dom";
 
 /*
@@ -8,10 +9,10 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 *** Table of Contents ***
 
  - Line 15: Container Elements
- - Line 60: Basic Elements
- - Line 100: Canvas Elements
- - Line 140: Image Elements
- - Line 170: Button Elements
+ - Line 70: Basic Elements
+ - Line 110: Canvas Elements
+ - Line 150: Image Elements
+ - Line 180: Button Elements
 
 */
 
@@ -51,6 +52,13 @@ export const PlayArea = styled.div`
   align-items: center;
 `;
 
+export const StyledModal = styled.div`
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 
 
@@ -93,16 +101,6 @@ export const Paragraph = styled.p`
   color: black;
 `;
 
-
-
-
-
-
-
-
-
-
-
 // Canvas Elements
 
 export const StyledCanvas = styled.canvas`
@@ -134,15 +132,6 @@ export const Palette = styled.div`
   border-radius: 20px;
 `;
 
-
-
-
-
-
-
-
-
-
 // Image Elements
 
 export const StartDrawImg = styled.div`
@@ -158,17 +147,6 @@ export const StartWriteImg = styled.div`
   width: 10%;
   height: 50%;
 `;
-
-
-
-
-
-
-
-
-
-
-
 
 // Button Elements
 
