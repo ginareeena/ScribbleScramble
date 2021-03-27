@@ -9,3 +9,14 @@
 ## Build 
 
 - Build can be run from root directory with `cd FrontEnd` and then `npm run build`
+
+## Database
+
+- Database is setup in PostGreSQL with the DB named 'scribble'
+
+## Image Handling
+
+- Images handled as JSON data in components and saved as JSON data in the database
+- On save, will download as jpeg via data URL
+  - This data url will be temporary, and once user navigates from page, will lose access
+  - We will have the JSON version saved in the DB for use in our gallery
