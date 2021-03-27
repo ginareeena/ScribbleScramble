@@ -18,5 +18,5 @@
 
 - Images handled as JSON data in components and saved as JSON data in the database
 - On save, will download as jpeg via data URL
-  - This data url will be temporary, and once user navigates from page, will lose access
+  - This data url will be temporary and stored locally; once user navigates from 'EndGame' page, will lose access
   - We will have the JSON version saved in the DB for use in our gallery
