@@ -4,6 +4,8 @@ import WritingCanvas from "./WritingCanvas";
 import DrawingCanvas from "./DrawingCanvas";
 import LandingPageComp from "./LandingPage";
 import EndGame from "./EndGame"
+// Importing Modal for testing
+import ModalComp from "./Modal"
 
 const Routes = () => {
   return (
@@ -13,6 +15,8 @@ const Routes = () => {
         <Route path="/write" component={WritingCanvas} />
         <Route path="/draw" component={DrawingCanvas} />
         <Route path="/end" component={EndGame} />
+        {/* Route for testing Modal component */}
+        <Route path="/testing" component={ModalComp} />
       </Switch>
     </Router>
   );
