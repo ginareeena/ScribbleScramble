@@ -73,7 +73,7 @@ serverSocket.on("connection", (socket) => {
       username: socket.username,
     });
   }
-  socket.emit("players", players);
+  socket.emit("new player added", players);
   console.log(blueBright("players: ", JSON.stringify(players)));
 
   // socket.on("add new player", (username) => {
