@@ -4,9 +4,7 @@ import socketIOClient from "socket.io-client";
 // UUIDs to create rooms?
 // sockets have ids on server side can use for room logic
 // const SERVER = "http://127.0.0.1:80";
-//TCP:80
-// const SERVER = "http://localhost:80";
-const SERVER = "TCP:80";
+const SERVER = "http://localhost:80";
 
 const socket = socketIOClient(SERVER);
 
