@@ -32,6 +32,7 @@ app.use((err, req, res, next) => {
 });
 
 //sockets
+// might need to add heroku's path/port?
 const serverSocket = require("socket.io")(http, {
   cors: {
     origins: ["http://localhost:3000", "http://localhost:4001"],
