@@ -69,7 +69,7 @@ const DrawingCanvas = () => {
   //   }
   // }, [canvas]);
 
-  let drawingColorEl = document.getElementById("drawing-color");
+  // let drawingColorEl = document.getElementById("drawing-color");
   let drawingModeEl = document.getElementById("drawing-mode-selector");
 
   // maybe need to position with value inside canvas
