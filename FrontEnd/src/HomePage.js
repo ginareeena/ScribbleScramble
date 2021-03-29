@@ -6,6 +6,7 @@ import socket from "./Socket";
 const Home = () => {
   const [username, setUsername] = useState("");
   const [hasUsername, setHasUsername] = useState(false);
+  const [players, setPlayers] = useState([]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -17,6 +18,21 @@ const Home = () => {
       alert("please choose a valid username");
     }
   };
+
+  socket.on("connect", () => {
+    players.forEach((player) => {});
+  });
+  socket.on("new player added", (players) => {
+    players.forEach((player) => {
+      player.self = player.userId === socket.id;
+    });
+    console.log(players);
+  });
+
+  socket.on("new player connected", (player) => {
+    player.connected = true;
+    setPlayers(players.push(player));
+  });
 
   return (
     <div>
