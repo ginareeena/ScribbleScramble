@@ -1,12 +1,28 @@
 import styled from "styled-components";
+import Modal from 'styled-react-modal';
 import { BrowserRouter as Link } from "react-router-dom";
+
+/*
+SPACE IS INCLUDED FOR ADDITIONAL ELEMENTS TO BE ADDED IN 
+THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
+
+*** Table of Contents ***
+
+ - Line 15: Container Elements
+ - Line 70: Basic Elements
+ - Line 110: Canvas Elements
+ - Line 150: Image Elements
+ - Line 180: Button Elements
+
+*/
+
+// Container Elements
 
 export const Body = styled.div`
   display: flex;
   flex-flow: column wrap;
   width: 100%;
   background-image: url(./images/background.jpg);
-  height: 100%;
 `;
 
 export const Header = styled.header`
@@ -19,19 +35,44 @@ export const Header = styled.header`
   no-repeat: true
 `;
 
+export const LandingPage = styled.div`
+  background-color: #ecf6f0;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  width: 800px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 250px;
+`;
+
+export const PlayArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledModal = styled.div`
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+
+
+
+
+
+
+
+// Basic Elements
 export const StyledLink = styled(Link)`
   color: white;
   font-weight: bold;
 `;
-export const Button = styled.button`
-  border-radius: 3px;
-  border: 2px solid darkgrey;
-  align: center;
-  color: #216858
-  margin: 0 1em;
-  height: 30px;
-  width: 80px;
-  `;
 
 export const Title = styled.h1`
   font-size: 2em;
@@ -51,11 +92,16 @@ export const Title2 = styled.h2`
   color: white;
 `;
 
-export const PlayArea = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const Paragraph = styled.p`
+  align-self: center;
+  position: absolute;
+  top: 40%;
+  font-size: 1.2em;
+  text-align: center;
+  color: black;
 `;
+
+// Canvas Elements
 
 export const StyledCanvas = styled.canvas`
   width: 450px;
@@ -86,6 +132,7 @@ export const Palette = styled.div`
   margin-bottom: 125px;
   border-radius: 20px;
 `;
+
 
 //this is for just the color swatches in the palette
 
@@ -157,6 +204,9 @@ export const StartDrawBtn = styled.div`
   flex-direction: column;
 `;
 
+// Image Elements
+
+
 export const StartDrawImg = styled.div`
   display: flex;
   justify-content: center;
@@ -171,21 +221,32 @@ export const StartWriteImg = styled.div`
   height: 50%;
 `;
 
-export const StartWriteBtn = styled.div`
+// Button Elements
+
+export const Button = styled.button`
+  border-radius: 3px;
+  border: 2px solid darkgrey;
+  align: center;
+  color: #216858
+  margin: 0 1em;
+  height: 30px;
+  width: 80px;
+  `;
+
+export const PaletteBtns = styled.div`
+  margin-top: 10px;
+`;
+
+export const StartDrawBtn = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
 `;
 
-export const LandingPage = styled.div`
-  background-color: #ecf6f0;
-  height: 600px;
+export const StartWriteBtn = styled.div`
   display: flex;
   justify-content: center;
-  width: 800px;
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 250px;
+  flex-direction: column;
 `;
 
 export const LandingBtns = styled.div`
@@ -197,22 +258,21 @@ export const LandingBtns = styled.div`
 `;
 
 export const LandingButton = styled.button`
-  border-radius: 3px;
+  border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  color: #216858;
   margin: 0 1em;
-  height: 43px;
-  width: 150px;
+  padding: 15px;
   background-color: #134d44;
   color: white;
+  font-size: 1.2em;
+  font-weight: bold;
 `;
 
 export const ClearButton = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  color: #216858;
   margin: 0 1em;
   margin-top: 10px;
   height: 28px;
@@ -225,7 +285,6 @@ export const PngButton = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  color: #216858;
   margin: 0 1em;
   margin-top: 10px;
   margin-right: 0px;
@@ -241,11 +300,24 @@ export const AddTxtBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  color: #216858;
   margin: 0 1em;
   margin-top: 5px;
   height: 28px;
   width: 80px;
   background-color: #134d44;
   color: white;
+`;
+
+export const DownloadBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  position: absolute;
+  top: 50%;
+  height: 10%;
+  width: 15%;
+  background-color: #134d44;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
 `;
