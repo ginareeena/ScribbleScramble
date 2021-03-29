@@ -7,6 +7,12 @@ const { yellow, red, blueBright, magenta, cyan } = require("chalk");
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
+const {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals,
+} = require("unique-names-generator");
 
 const app = express();
 const http = require("http").createServer(app);
@@ -43,18 +49,30 @@ const serverSocket = require("socket.io")(http, {
   },
 });
 
-// let players = {};
-let roomId = 0;
-// const listPlayers = () => {
-//   console.log(cyan(JSON.stringify(players)));
-// };
+const makeID = uniqueNamesGenerator({
+  dictionaries: [adjectives, colors, animals],
+  length: 3,
+});
 
 //socket middleware -> add username to socket object
 serverSocket.use((socket, next) => {
+  const sessionID = socket.handshake.auth.sessionID;
+
+  if (sessionID) {
+    const session = sessionStore.findSession(sessionID);
+    if (session) {
+      socket.sessionID = sessionID;
+      socket.userID = session.userID;
+      socket.username = session.username;
+      return next();
+    }
+  }
   const username = socket.handshake.auth.username;
   if (!username) {
     return next(new Error("invalid username"));
   }
+  socket.sessionID = makeID();
+  socket.userID = makeID();
   socket.username = username;
   next();
 });
@@ -65,7 +83,7 @@ serverSocket.on("connection", (socket) => {
     yellow(`(server) new client connected: ${socket.id}`)
   );
 
-  //get all existing users
+  //get all existing players + add new player
   const players = [];
   for (let [id, socket] of serverSocket.of("/").sockets) {
     players.push({
@@ -73,31 +91,22 @@ serverSocket.on("connection", (socket) => {
       username: socket.username,
     });
   }
-
   socket.emit("new player added", players);
   const player = {
     userId: socket.id,
     username: socket.username,
   };
-  //notify existing players
+  //notify existing players of new player
   socket.broadcast.emit("new player connected", player);
   console.log(blueBright("players: ", JSON.stringify(players)));
 
-  // socket.on("add new player", (username) => {
-  //   console.log(magenta("on: add new player"));
-  //   socket.username = username;
-  //   players[socket.id] = socket.username;
-  //   console.log(blueBright(`player ${socket.username} has been added`));
-  //   listPlayers();
+  // socket.on("create new game", (data) => {
+  //   console.log(magenta("on: create new game"));
+  //   socket.join(`room ${++roomId}`);
+  //   const game = { name: data.name, room: `room ${roomId}` };
+  //   socket.emit("newGame", game);
+  //   console.log(blueBright(`new game ready in room ${game.room}`));
   // });
-
-  socket.on("create new game", (data) => {
-    console.log(magenta("on: create new game"));
-    socket.join(`room ${++roomId}`);
-    const game = { name: data.name, room: `room ${roomId}` };
-    socket.emit("newGame", game);
-    console.log(blueBright(`new game ready in room ${game.room}`));
-  });
 
   socket.on("disconnect", () => {
     // delete players[socket.id];
@@ -117,10 +126,6 @@ serverSocket.on("connection", (socket) => {
     socket.broadcast.emit("load new lines", value);
   });
 });
-
-
-
-
 
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
