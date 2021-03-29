@@ -16,30 +16,29 @@ import {
   SelectedColor,
 } from "./AppCSS";
 import PaletteComp from "./Palette";
+import socket from "./Socket";
 
-//store color in state for everything... i think actually
-//
+//storing color, brush size and canvas in state
 
 const DrawingCanvas = () => {
   const [canvas, setCanvas] = useState("");
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
-  // const [drawing, setDrawing] = useState({});
 
-  console.log("currColor inside drawing canvas--->", currColor);
-  console.log("brushSize inside drawing canvas--->", brushSize);
-
+  //creates initial canvas
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
 
-  // useEffect(()=>{
-  //   setBrushSize(value)
-  // })
+  // when canvas is first created we initialize the brush
+  // if canvas changes we convert it to JSON
+  // and send that over sockets
 
   useEffect(() => {
     if (canvas) {
       updateBrush();
+      let drawingCanvasJSON = canvas.toJSON();
+      socket.emit("drawing", drawingCanvasJSON);
     }
   }, [canvas]);
 
@@ -55,7 +54,17 @@ const DrawingCanvas = () => {
     }
   }, [brushSize]);
 
-  // SENDING DRAWINGS OVER SOCKETS:
+  // SOCKET TESTS:
+
+  useEffect(() => {
+    if (canvas) {
+      socket.on("drawing", (value) => {
+        console.log("front end heard drawing");
+        canvas.loadFromJSON(value);
+        setCanvas(canvas);
+      });
+    }
+  }, [canvas]);
 
   // useEffect(() => {
   //   if (!Object.keys(canvas).length) {
@@ -98,8 +107,6 @@ const DrawingCanvas = () => {
       //parseInt(drawingLineWidthEl.value, 10)
       // brushSizeTextEl.innerHTML = drawingLineWidthEl.value;
       brush.color = currColor || "#005E7A";
-
-      //
     }
   }
 
@@ -108,11 +115,7 @@ const DrawingCanvas = () => {
       <Title2></Title2>
       <PlayArea>
         <CanvasBackground>
-          <StyledCanvas
-            id="canvas"
-            // onClick={() => updateBrush()}
-            // onMouseDown={() => updateBrush()}
-          ></StyledCanvas>
+          <StyledCanvas id="canvas"></StyledCanvas>
         </CanvasBackground>
       </PlayArea>
 
@@ -129,6 +132,7 @@ const DrawingCanvas = () => {
             <option value="Circle">Circle</option>
             <option value="Pattern">Pattern</option>
           </select>
+          {/* below are old buttons for additional brush size/color controls might want to keep them as well  */}
 
           {/* <label htmlFor="drawing-line-width">Line width:</label>
           <span id="brushSize">11</span>
