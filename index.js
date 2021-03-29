@@ -49,7 +49,7 @@ let roomId = 0;
 //   console.log(cyan(JSON.stringify(players)));
 // };
 
-//socket middleware
+//socket middleware -> add username to socket object
 serverSocket.use((socket, next) => {
   const username = socket.handshake.auth.username;
   if (!username) {
@@ -58,11 +58,23 @@ serverSocket.use((socket, next) => {
   socket.username = username;
   next();
 });
+
 serverSocket.on("connection", (socket) => {
   console.log(
     magenta("on: connection"),
     yellow(`(server) new client connected: ${socket.id}`)
   );
+
+  //get all existing users
+  const players = [];
+  for (let [id, socket] of serverSocket.of("/").sockets) {
+    players.push({
+      userId: id,
+      username: socket.username,
+    });
+  }
+  socket.emit("players", players);
+  console.log(blueBright("players: ", JSON.stringify(players)));
 
   // socket.on("add new player", (username) => {
   //   console.log(magenta("on: add new player"));
