@@ -51,9 +51,9 @@ const DrawingCanvas = () => {
   useEffect(() => {
     console.log("canvas is updating", canvas);
     if (canvas) {
-      let drawingCanvasJSON = canvas.toJSON();
-      console.log("front end emiting drawingtoJSON:", drawingCanvasJSON);
-      socket.emit("send new lines", drawingCanvasJSON);
+      // let drawingCanvasJSON = canvas.toJSON();
+      // console.log("front end emiting drawingtoJSON:", drawingCanvasJSON);
+      // socket.emit("send new lines", drawingCanvasJSON);
     }
   }, [canvas]);
 
@@ -91,10 +91,23 @@ const DrawingCanvas = () => {
     }
   }
 
+  function handleDraw() {
+    console.log("handleDraw triggered!");
+    setCanvas(canvas);
+    let drawingCanvasJSON = canvas.toJSON();
+    console.log("front end emiting drawingtoJSON:", drawingCanvasJSON);
+    // socket.emit("send new lines", drawingCanvasJSON);
+    socket.emit("send new lines", drawingCanvasJSON);
+  }
+
   return (
     <div>
       <Title2></Title2>
-      <PlayArea>
+      <PlayArea
+        onClick={() => {
+          handleDraw();
+        }}
+      >
         <CanvasBackground>
           <StyledCanvas id="canvas"></StyledCanvas>
         </CanvasBackground>
