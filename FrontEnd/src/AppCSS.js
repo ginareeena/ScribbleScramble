@@ -120,6 +120,7 @@ export const CanvasBackground = styled.div`
   margin-bottom: 10px;
 `;
 
+// this styles all buttons in the "palette"-> brush type, color, size etc
 export const Palette = styled.div`
   display: flex;
   justify-content: center;
@@ -132,7 +133,79 @@ export const Palette = styled.div`
   border-radius: 20px;
 `;
 
+
+//this is for just the color swatches in the palette
+
+export const BrushSizesContainer = styled.div`
+  display: flex;
+  height: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+`;
+
+export const SmallBrushBtn = styled.button`
+  height: 35px;
+  width: 35px;
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  background-color: #4c9c8a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MedBrushBtn = styled.button`
+  height: 35px;
+  width: 35px;
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  background-color: #4c9c8a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LargeBrushBtn = styled.button`
+  height: 35px;
+  width: 35px;
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  background-color: #4c9c8a;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SelectedSize = styled.div`
+  border-size: 5px;
+  border-color: black;
+`;
+
+export const SelectedColor = styled.div`
+  display: flex;
+  margin-top: 10px;
+  margin-right: 0px;
+`;
+
+export const PaletteColors = styled.div`
+  margin: 5px;
+  margin-left: 8px;
+  margin-right: 0px;
+`;
+
+export const PaletteBtns = styled.div`
+  margin-top: 10px;
+`;
+
+export const StartDrawBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 // Image Elements
+
 
 export const StartDrawImg = styled.div`
   display: flex;
@@ -214,11 +287,14 @@ export const PngButton = styled.button`
   align: center;
   margin: 0 1em;
   margin-top: 10px;
+  margin-right: 0px;
   height: 28px;
   width: 33px;
   background-color: #4c9c8a;
   color: white;
 `;
+
+// export const brushBtn= style.button
 
 export const AddTxtBtn = styled.button`
   border-radius: 6px;
