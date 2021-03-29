@@ -1,5 +1,9 @@
 import socketIOClient from "socket.io-client";
-const SERVER = "http://127.0.0.1:4001";
+
+// also might not be pointing to heroku's port -> might need to point this to heroku's port
+// UUIDs to create rooms?
+// sockets have ids on server side can use for room logic
+const SERVER = "http://127.0.0.1:80";
 
 const socket = socketIOClient(SERVER);
 
