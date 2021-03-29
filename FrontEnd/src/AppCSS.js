@@ -198,11 +198,7 @@ export const PaletteBtns = styled.div`
   margin-top: 10px;
 `;
 
-export const StartDrawBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
+
 
 // Image Elements
 
@@ -232,10 +228,6 @@ export const Button = styled.button`
   height: 30px;
   width: 80px;
   `;
-
-export const PaletteBtns = styled.div`
-  margin-top: 10px;
-`;
 
 export const StartDrawBtn = styled.div`
   display: flex;
