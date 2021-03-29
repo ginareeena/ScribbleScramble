@@ -73,7 +73,14 @@ serverSocket.on("connection", (socket) => {
       username: socket.username,
     });
   }
+
   socket.emit("new player added", players);
+  const player = {
+    userId: socket.id,
+    username: socket.username,
+  };
+  //notify existing players
+  socket.broadcast.emit("new player connected", player);
   console.log(blueBright("players: ", JSON.stringify(players)));
 
   // socket.on("add new player", (username) => {
@@ -111,14 +118,9 @@ serverSocket.on("connection", (socket) => {
   });
 });
 
-// serverSocket.on("connection", (socket) => {
-//   console.log(`server new client connected on ${socket.id}`);
-//   socket.on("drawing", (value) => {
-//     console.log("server side heard drawing!");
-//     console.log("drawing value received in back: --->", value);
-//     socket.broadcast.emit("adding to drwing", value);
-//   });
-// });
+
+
+
 
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
