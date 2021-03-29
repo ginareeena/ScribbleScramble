@@ -49,6 +49,15 @@ let roomId = 0;
 //   console.log(cyan(JSON.stringify(players)));
 // };
 
+//socket middleware
+serverSocket.use((socket, next) => {
+  const username = socket.handshake.auth.username;
+  if (!username) {
+    return next(new Error("invalid username"));
+  }
+  socket.username = username;
+  next();
+});
 serverSocket.on("connection", (socket) => {
   console.log(
     magenta("on: connection"),
