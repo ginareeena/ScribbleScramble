@@ -97,62 +97,38 @@ export const BrushSizesContainer = styled.div`
 `;
 
 export const SmallBrushBtn = styled.button`
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   border-radius: 6px;
   border: 2px solid darkgrey;
-  justify-content: center;
   background-color: #4c9c8a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const MedBrushBtn = styled.button`
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   border-radius: 6px;
   border: 2px solid darkgrey;
-  justify-content: center;
   background-color: #4c9c8a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const LargeBrushBtn = styled.button`
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   border-radius: 6px;
   border: 2px solid darkgrey;
   background-color: #4c9c8a;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
-
-// export const SmallBrushBtn = styled.button`
-//   height: 30px;
-//   width: 30px;
-//   margin-right: 0;
-//   margin-left: 5px;
-//   border-radius: 6px;
-//   border: 2px solid darkgrey;
-//   justify-content: center;
-//   background-color: #4c9c8a;
-// `;
-
-// export const MedBrushBtn = styled.button`
-//   height: 30px;
-//   width: 30px;
-//   background-color: #4c9c8a;
-//   border-radius: 6px;
-//   border: 2px solid darkgrey;
-// `;
-
-// export const LargeBrushBtn = styled.button`
-//   height: 30px;
-//   width: 30px;
-//   background-color: #4c9c8a;
-//   border-radius: 6px;
-//   border: 2px solid darkgrey;
-//   margin-right: 5px;
-//   margin-left: 0;
-//   justify-content: center;
-//   align-items: center;
-// `;
 
 export const SelectedSize = styled.div`
   border-size: 5px;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 import {
-  // Button,
   Title2,
   StyledCanvas,
   PlayArea,
@@ -32,13 +31,29 @@ const DrawingCanvas = () => {
 
   // when canvas is first created we initialize the brush
   // if canvas changes we convert it to JSON
-  // and send that over sockets
+  //and send that over sockets
+  // however UseEffect does not know when we're drawing
+  // because we don't have need a change handler to draw so we don't set the canvas
+  // when we do, so the canvas in state doesn't update
 
   useEffect(() => {
     if (canvas) {
       updateBrush();
+
+      socket.on("load new lines", (value) => {
+        console.log("drawing received in front end: ", value);
+        canvas.loadFromJSON(value);
+        setCanvas(canvas);
+      });
+    }
+  }, [canvas]);
+
+  useEffect(() => {
+    console.log("canvas is updating", canvas);
+    if (canvas) {
       let drawingCanvasJSON = canvas.toJSON();
-      socket.emit("drawing", drawingCanvasJSON);
+      console.log("front end emiting drawingtoJSON:", drawingCanvasJSON);
+      socket.emit("send new lines", drawingCanvasJSON);
     }
   }, [canvas]);
 
@@ -54,34 +69,8 @@ const DrawingCanvas = () => {
     }
   }, [brushSize]);
 
-  // SOCKET TESTS:
-
-  useEffect(() => {
-    if (canvas) {
-      socket.on("drawing", (value) => {
-        console.log("front end heard drawing");
-        canvas.loadFromJSON(value);
-        setCanvas(canvas);
-      });
-    }
-  }, [canvas]);
-
-  // useEffect(() => {
-  //   if (!Object.keys(canvas).length) {
-  //     setTextCanvas(initCanvas());
-  //   } else {
-  //     socket.on("draw", (value) => {
-  //       console.log("front end heard drawing");
-  //       canvas.loadFromJSON(value);
-  //       setCanvas(canvas);
-  //     });
-  //   }
-  // }, [canvas]);
-
-  // let drawingColorEl = document.getElementById("drawing-color");
   let drawingModeEl = document.getElementById("drawing-mode-selector");
 
-  // maybe need to position with value inside canvas
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
       height: 600,
@@ -90,23 +79,15 @@ const DrawingCanvas = () => {
       isDrawingMode: true,
     });
 
-  // fabric.Object.prototype.transparentCorners = false;
-
   function updateBrush() {
     if (canvas) {
       if (!canvas.freeDrawingBrush) {
         canvas.freeDrawingBrush = new fabric[drawingModeEl.value + "Brush"]();
       }
       let brush = canvas.freeDrawingBrush;
-      // brush.width = brushSize || parseInt(drawingLineWidthEl.value);
-      // brushSizeTextEl.innerHTML = brushSize || drawingLineWidthEl.value;
       brush.width = brushSize || 11;
-      // || parseInt(drawingLineWidthEl.value);
-      // brushSizeTextEl.innerHTML = Number(brushSize) || 11;
-      // drawingLineWidthEl.value = brushSize || 11;
-      //parseInt(drawingLineWidthEl.value, 10)
-      // brushSizeTextEl.innerHTML = drawingLineWidthEl.value;
       brush.color = currColor || "#005E7A";
+      setCanvas(canvas);
     }
   }
 
@@ -132,7 +113,7 @@ const DrawingCanvas = () => {
             <option value="Circle">Circle</option>
             <option value="Pattern">Pattern</option>
           </select>
-          {/* below are old buttons for additional brush size/color controls might want to keep them as well  */}
+          {/* below are old buttons for additional brush size/color controls in case we want to add them */}
 
           {/* <label htmlFor="drawing-line-width">Line width:</label>
           <span id="brushSize">11</span>
@@ -163,27 +144,21 @@ const DrawingCanvas = () => {
               setBrushSize(5);
             }}
           >
-            <img
-              src="/images/point.png"
-              style={{ width: "30%", marginBottom: "2px" }}
-            />
+            <img src="/images/point.png" style={{ width: "30%" }} />
           </SmallBrushBtn>
           <MedBrushBtn
             onClick={() => {
               setBrushSize(15);
             }}
           >
-            <img
-              src="/images/point.png"
-              style={{ width: "90%", marginTop: "2px" }}
-            />
+            <img src="/images/point.png" style={{ width: "90%" }} />
           </MedBrushBtn>
           <LargeBrushBtn
             onClick={() => {
               setBrushSize(35);
             }}
           >
-            <img src="/images/point.png" style={{ width: "155%" }} />
+            <img src="/images/point.png" style={{ height: "90%" }} />
           </LargeBrushBtn>
         </BrushSizesContainer>
         <SelectedColor>

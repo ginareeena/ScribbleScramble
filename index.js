@@ -46,7 +46,21 @@ serverSocket.on("connection", (socket) => {
     console.log("server/add text box value", value);
     socket.broadcast.emit("create new text box", value);
   });
+  socket.on("send new lines", (value) => {
+    console.log("server side heard drawing from front end!");
+    console.log("drawing value received in back: --->", value);
+    socket.broadcast.emit("load new lines", value);
+  });
 });
+
+// serverSocket.on("connection", (socket) => {
+//   console.log(`server new client connected on ${socket.id}`);
+//   socket.on("drawing", (value) => {
+//     console.log("server side heard drawing!");
+//     console.log("drawing value received in back: --->", value);
+//     socket.broadcast.emit("adding to drwing", value);
+//   });
+// });
 
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
