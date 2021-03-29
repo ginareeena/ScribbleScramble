@@ -113,27 +113,6 @@ const DrawingCanvas = () => {
             <option value="Circle">Circle</option>
             <option value="Pattern">Pattern</option>
           </select>
-          {/* below are old buttons for additional brush size/color controls in case we want to add them */}
-
-          {/* <label htmlFor="drawing-line-width">Line width:</label>
-          <span id="brushSize">11</span>
-          <input
-            type="range"
-            defaultValue="11"
-            min="0"
-            max="150"
-            id="drawing-line-width"
-            onChange={() => setBrushSize(parseInt(drawingLineWidthEl.value))}
-            // onChange={() => updateBrush()}
-          /> */}
-
-          {/* <label htmlFor="drawing-color">Line color:</label>
-          <input
-            type="color"
-            defaultValue="#005E7A"
-            id="drawing-color"
-            onChange={() => setColor(drawingColorEl.value)}
-          /> */}
         </div>
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
