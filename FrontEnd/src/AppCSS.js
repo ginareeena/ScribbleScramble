@@ -74,6 +74,7 @@ export const CanvasBackground = styled.div`
   margin-bottom: 10px;
 `;
 
+// this styles all buttons in the "palette"-> brush type, color, size etc
 export const Palette = styled.div`
   display: flex;
   justify-content: center;
@@ -84,6 +85,84 @@ export const Palette = styled.div`
   margin-top: 10px;
   margin-bottom: 125px;
   border-radius: 20px;
+`;
+
+//this is for just the color swatches in the palette
+
+export const BrushSizesContainer = styled.div`
+  display: flex;
+  height: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+`;
+
+export const SmallBrushBtn = styled.button`
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  justify-content: center;
+  background-color: #4c9c8a;
+`;
+
+export const MedBrushBtn = styled.button`
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  justify-content: center;
+  background-color: #4c9c8a;
+`;
+
+export const LargeBrushBtn = styled.button`
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  background-color: #4c9c8a;
+  margin-right: 10px;
+`;
+
+// export const SmallBrushBtn = styled.button`
+//   height: 30px;
+//   width: 30px;
+//   margin-right: 0;
+//   margin-left: 5px;
+//   border-radius: 6px;
+//   border: 2px solid darkgrey;
+//   justify-content: center;
+//   background-color: #4c9c8a;
+// `;
+
+// export const MedBrushBtn = styled.button`
+//   height: 30px;
+//   width: 30px;
+//   background-color: #4c9c8a;
+//   border-radius: 6px;
+//   border: 2px solid darkgrey;
+// `;
+
+// export const LargeBrushBtn = styled.button`
+//   height: 30px;
+//   width: 30px;
+//   background-color: #4c9c8a;
+//   border-radius: 6px;
+//   border: 2px solid darkgrey;
+//   margin-right: 5px;
+//   margin-left: 0;
+//   justify-content: center;
+//   align-items: center;
+// `;
+
+export const SelectedSize = styled.div`
+  border-size: 5px;
+  border-color: black;
+`;
+
+export const SelectedColor = styled.div`
+  display: flex;
+  margin-top: 10px;
+  margin-right: 0px;
 `;
 
 export const PaletteColors = styled.div`
@@ -173,11 +252,14 @@ export const PngButton = styled.button`
   color: #216858;
   margin: 0 1em;
   margin-top: 10px;
+  margin-right: 0px;
   height: 28px;
   width: 33px;
   background-color: #4c9c8a;
   color: white;
 `;
+
+// export const brushBtn= style.button
 
 export const AddTxtBtn = styled.button`
   border-radius: 6px;

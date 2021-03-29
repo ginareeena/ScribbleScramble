@@ -1,3 +1,4 @@
+// lightColors[color]
 export const lightColors = {
   red: "#FE797B",
   orange: "#FFB750",
