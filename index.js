@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 4001;
 
 //middleware
 app.use(morgan("dev"));
@@ -33,10 +33,9 @@ app.use((err, req, res, next) => {
 
 //sockets
 // might need to add heroku's path/port?
-
 const serverSocket = require("socket.io")(http, {
   cors: {
-    origins: ["http://localhost:3000", "http://localhost:80"],
+    origins: ["http://localhost:3000", "http://localhost:4001"],
     methods: ["GET", "POST"],
   },
 });
