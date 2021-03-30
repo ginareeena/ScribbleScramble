@@ -37,7 +37,7 @@ app.use((err, req, res, next) => {
 // might need to add heroku's path/port?
 const serverSocket = require("socket.io")(http, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:4001", `http://localhost:${process.env.PORT}`, "https://scribble-scramble.herokuapp.com"],
+    origin: ["http://localhost:3000", "http://localhost:4001"],
     methods: ["GET", "POST"],
     credentials: true
   },
