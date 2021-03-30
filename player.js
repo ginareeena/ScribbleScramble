@@ -1,7 +1,8 @@
 module.exports = class Player {
-  constructor(socketID, username) {
+  constructor(socketID) {
     this.socketID = socketID;
-    this.username = username;
+    this.username = "";
+    this.avatar = "";
     this.isDrawing = false;
     this.isWriting = false;
     this.currentTurn = false;
@@ -9,6 +10,7 @@ module.exports = class Player {
   setUsername(name) {
     this.username = name;
   }
+  setAvatar() {}
   setIsDrawing() {}
   setIsWriting() {}
   setCurrentTurn() {}

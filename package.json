@@ -26,5 +26,8 @@
     "path": "^0.12.7",
     "socket.io": "^4.0.0",
     "styled-react-modal": "^2.0.1"
+  },
+  "devDependencies": {
+    "chalk": "^3.0.0"
   }
 }
