@@ -36,6 +36,15 @@ const LandingPageComp = () => {
             </a>
           </StartWriteBtn>
         </LandingBtns>
+        <StartDrawBtn>
+          <a href="/combined" style={{ color: "black" }}>
+            <StartDrawImg>
+              {" "}
+              {/* <img src="/images/drawBtn.png" /> */}
+            </StartDrawImg>
+            <LandingButton>Combined Canvas</LandingButton>
+          </a>
+        </StartDrawBtn>
       </LandingPage>
     </div>
   );

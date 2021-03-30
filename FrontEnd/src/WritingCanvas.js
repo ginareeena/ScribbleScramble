@@ -62,7 +62,7 @@ const WritingCanvas = () => {
         </CanvasBackground>
       </PlayArea>
       <Palette>
-        <div id="text-options" style={{ marginTop: "10px" }}>
+        <div id="text-options">
           <label htmlFor="font-family">Font:</label>
           <select id="font-family" value={font} onChange={changeFont}>
             <option value="Arial">Arial</option>

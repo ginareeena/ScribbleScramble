@@ -114,7 +114,7 @@ const DrawingCanvas = () => {
       </PlayArea>
 
       <Palette>
-        <div id="drawing-mode-options" style={{ marginTop: "10px" }}>
+        <div id="drawing-mode-options">
           <label
             htmlFor="drawing-mode-selector"
             style={{ marginRight: "8px", fontWeight: "bold", fontSize: "14px" }}
