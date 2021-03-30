@@ -11,7 +11,11 @@ module.exports = class Player {
     this.username = name;
   }
   setAvatar() {}
-  setIsDrawing() {}
-  setIsWriting() {}
+  setIsDraw() {
+    this.isDrawing = true;
+  }
+  setIsWrite() {
+    this.isWriting = true;
+  }
   setCurrentTurn() {}
 };
