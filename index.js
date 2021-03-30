@@ -52,9 +52,16 @@ serverSocket.on("connection", (socket) => {
   console.log(magenta("on: connection"));
   console.log(yellow(`server new client connected on ${socket.id}`));
 
-  socket.on("add new player", (username) => {
+  socket.on("add new player", ({ username, role }) => {
     console.log(magenta("on: add new player"));
     let newPlayer = new Player(socket.id, username);
+    // ENUM vs boolean?
+    if (role === "draw") {
+      newPlayer.setIsDraw();
+    }
+    if (role === "write") {
+      newPlayer.setIsWrite();
+    }
     players.push(newPlayer);
     console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
     socket.broadcast.emit("new player added", players);
