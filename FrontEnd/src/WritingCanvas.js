@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-
-import {
-  Title2,
-  Palette,
-  AddTxtBtn,
-} from "./AppCSS";
-
+import { Title2, Palette, AddTxtBtn } from "./AppCSS";
 import { StyledCanvas } from "./AppCSS";
 import { PlayArea } from "./AppCSS";
 import { CanvasBackground } from "./AppCSS";
@@ -68,7 +62,7 @@ const WritingCanvas = () => {
         </CanvasBackground>
       </PlayArea>
       <Palette>
-        <div id="text-options" style={{ marginTop: "10px" }}>
+        <div id="text-options">
           <label htmlFor="font-family">Font:</label>
           <select id="font-family" value={font} onChange={changeFont}>
             <option value="Arial">Arial</option>

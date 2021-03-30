@@ -42,7 +42,6 @@ app.use(express.static(path.join(__dirname, "FrontEnd/build")));
 app.use(cors())
 
 //api routes
-
 app.get("/", (req, res, next) => {
   try {
     res.send({ response: "Alive!" }).status(200);
@@ -61,10 +60,9 @@ app.use((err, req, res, next) => {
 });
 
 //sockets
-// might need to add heroku's path/port?
 const serverSocket = require("socket.io")(http, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:4001", `http://localhost:${process.env.PORT}`, "https://scribble-scramble.herokuapp.com"],
+    origin: ["http://localhost:3000", "http://localhost:4001"],
     methods: ["GET", "POST"],
     credentials: true
   },
@@ -74,7 +72,6 @@ serverSocket.on("connection", (socket) => {
   console.log(`server new client connected on ${socket.id}`);
   socket.on("add text box", (value, textCanvas) => {
     console.log("server side heard add text box!");
-    // console.log("server/add text box value", value);
     socket.broadcast.emit("create new text box", value, textCanvas);
   });
   socket.on("send new lines", (value) => {
