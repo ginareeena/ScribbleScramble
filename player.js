@@ -1,4 +1,4 @@
-export default class Player {
+module.exports = class Player {
   constructor(socketID, username) {
     this.socketID = socketID;
     this.username = username;
@@ -12,4 +12,4 @@ export default class Player {
   setIsDrawing() {}
   setIsWriting() {}
   setCurrentTurn() {}
-}
+};
