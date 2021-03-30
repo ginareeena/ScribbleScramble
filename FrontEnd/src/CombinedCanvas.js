@@ -92,6 +92,7 @@ const CombinedCanvas = () => {
 
   // text logic
   const handleTextBtn = () => {
+    //remove this when add logic to room/player
     canvas.isDrawingMode = false;
     const newText = new fabric.IText("Type here...", {
       left: 150,
