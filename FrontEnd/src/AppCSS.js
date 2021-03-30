@@ -117,11 +117,13 @@ export const Palette = styled.div`
   display: flex;
   justify-content: center;
   background: #4c9c8a;
+  align-items: center;
+
   width: 800px;
   height: 50px;
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   border-radius: 8px;
 `;
 
@@ -248,6 +250,11 @@ export const LandingButton = styled.button`
   color: white;
   font-size: 1.2em;
   font-weight: bold;
+  height: 45px;
+  width: 223px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ClearButton = styled.button`
@@ -266,13 +273,14 @@ export const PngButton = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  margin: 0 1em;
-  margin-top: 10px;
-  margin-right: 0px;
-  height: 28px;
-  width: 33px;
+  margin-left: 5px;
+  height: 36px;
+  width: 36px;
   background-color: #4c9c8a;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 // export const brushBtn= style.button
@@ -287,6 +295,9 @@ export const AddTxtBtn = styled.button`
   width: 80px;
   background-color: #134d44;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const DownloadBtn = styled.button`

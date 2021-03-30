@@ -32,11 +32,17 @@ const CombinedCanvas = () => {
   }, []);
 
   useEffect(() => {
-    if (canvas) {
+    if (canvas && canvas.isDrawingMode === true) {
       updateBrush();
 
       socket.on("load new lines", (value) => {
         console.log("drawing received in front end: ", value);
+        canvas.loadFromJSON(value);
+        setCanvas(canvas);
+      });
+    } else if (canvas && canvas.isDrawingMode === false) {
+      socket.on("create new text box", (value) => {
+        console.log("front end heard create new text box");
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
@@ -92,6 +98,7 @@ const CombinedCanvas = () => {
 
   // text logic
   const handleTextBtn = () => {
+    //remove this when add logic to room/player
     canvas.isDrawingMode = false;
     const newText = new fabric.IText("Type here...", {
       left: 150,
@@ -127,7 +134,7 @@ const CombinedCanvas = () => {
       </PlayArea>
 
       <Palette>
-        <div id="drawing-mode-options" style={{ marginTop: "10px" }}>
+        <div id="drawing-mode-options">
           <label
             htmlFor="drawing-mode-selector"
             style={{ marginRight: "8px", fontWeight: "bold", fontSize: "14px" }}
@@ -179,22 +186,15 @@ const CombinedCanvas = () => {
         <PaletteColors>
           <PaletteComp currColor={currColor} setColor={setColor} />
         </PaletteColors>
-
         <PngButton onClick={() => canvas.clear()}>
-          <img
-            src="/images/trashBtn.png"
-            style={{ width: "100%", marginTop: "2px" }}
-          />
+          <img src="/images/trashBtn.png" style={{ width: "100%" }} />
         </PngButton>
         <PngButton onClick={() => setColor("white")}>
-          <img
-            src="/images/eraser3.png"
-            style={{ width: "100%", marginTop: "2px" }}
-          />
+          <img src="/images/eraser3.png" style={{ width: "100%" }} />
         </PngButton>
       </Palette>
       <Palette>
-        <div id="text-options" style={{ marginTop: "10px" }}>
+        <div id="text-options">
           <span style={{ fontWeight: "bold" }}>Mess/Text Palette:{"  "}</span>
           <label htmlFor="font-family">Font:</label>
           <select id="font-family" value={font} onChange={changeFont}>
