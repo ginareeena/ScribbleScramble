@@ -13,23 +13,23 @@ import socket from "./Socket";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
   const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (username) {
-      socket.emit("add new player", username);
-      history.push("/combined");
-    } else {
-      //MM: may be better option here!
+    if (!username) {
       alert("please choose a valid username");
+    } else {
+      socket.emit("add new player", { username, role });
     }
+    history.push("/combined");
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <LandingPage>
+      <LandingPage>
+        <form onSubmit={handleSubmit}>
           <LandingBtns>
             <h6>Please choose a username:</h6>
             <input
@@ -42,18 +42,21 @@ const LandingPageComp = () => {
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton type="submit">Start Drawing Collab</LandingButton>
+
+              <LandingButton type="submit" onClick={() => setRole("draw")}>
+                Start Drawing Collab
+              </LandingButton>
             </StartDrawBtn>
           </LandingBtns>
 
           <LandingBtns>
-            <StartWriteBtn type="submit">
+            <StartWriteBtn type="submit" onClick={() => setRole("write")}>
               <StartWriteImg />
               <LandingButton>Start Writing Collab</LandingButton>
             </StartWriteBtn>
           </LandingBtns>
-        </LandingPage>
-      </form>
+        </form>
+      </LandingPage>
     </div>
   );
 };
