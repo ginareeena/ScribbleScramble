@@ -14,7 +14,7 @@ const EndGame = () => {
 
     return (
         <LandingPage>
-            <Paragraph>Want to save this collab?</Paragraph>
+            <Paragraph>Save your ScribScrab?</Paragraph>
             <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn>
         </LandingPage>
     )
