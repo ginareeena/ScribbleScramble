@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import {
   StartDrawBtn,
   StartWriteBtn,
@@ -13,12 +13,13 @@ import socket from "./Socket";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("");
-  // const history = useHistory()
+  const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (username) {
       socket.emit("add new player", username);
+      history.push("/combined");
     } else {
       //MM: may be better option here!
       alert("please choose a valid username");
@@ -40,29 +41,17 @@ const LandingPageComp = () => {
 
           <LandingBtns>
             <StartDrawBtn>
-              <a href="/draw" style={{ color: "black" }}>
-                <StartDrawImg />
-                <LandingButton type="submit">
-                  Start Drawing Collab
-                </LandingButton>
-              </a>
+              <StartDrawImg />
+              <LandingButton type="submit">Start Drawing Collab</LandingButton>
             </StartDrawBtn>
           </LandingBtns>
 
           <LandingBtns>
             <StartWriteBtn type="submit">
-              <a href="/write" style={{ color: "black" }}>
-                <StartWriteImg />
-                <LandingButton>Start Writing Collab</LandingButton>
-              </a>
+              <StartWriteImg />
+              <LandingButton>Start Writing Collab</LandingButton>
             </StartWriteBtn>
           </LandingBtns>
-          {/* <StartDrawBtn>
-          <a href="/combined" style={{ color: "black" }}>
-            <StartDrawImg />
-            <LandingButton>Combined Canvas</LandingButton>
-          </a>
-        </StartDrawBtn> */}
         </LandingPage>
       </form>
     </div>
