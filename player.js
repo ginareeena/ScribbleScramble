@@ -1,7 +1,7 @@
 module.exports = class Player {
-  constructor(socketID) {
+  constructor(socketID, username) {
     this.socketID = socketID;
-    this.username = "";
+    this.username = username;
     this.avatar = "";
     this.isDrawing = false;
     this.isWriting = false;
