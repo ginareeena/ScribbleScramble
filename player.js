@@ -13,4 +13,3 @@ export default class Player {
   setIsWriting() {}
   setCurrentTurn() {}
 }
-qq
