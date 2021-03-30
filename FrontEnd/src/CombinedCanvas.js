@@ -32,11 +32,17 @@ const CombinedCanvas = () => {
   }, []);
 
   useEffect(() => {
-    if (canvas) {
+    if (canvas && canvas.isDrawingMode === true) {
       updateBrush();
 
       socket.on("load new lines", (value) => {
         console.log("drawing received in front end: ", value);
+        canvas.loadFromJSON(value);
+        setCanvas(canvas);
+      });
+    } else if (canvas && canvas.isDrawingMode === false) {
+      socket.on("create new text box", (value) => {
+        console.log("front end heard create new text box");
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
