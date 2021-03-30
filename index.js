@@ -4,6 +4,34 @@ const morgan = require("morgan");
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
+const cors = require("cors")
+
+// const redis = require("redis")
+// const fs = require("fs")
+// const client = redis.createClient(process.env.REDIS_URL, {
+//   tls: {
+//     rejectUnauthorized: false
+//   }
+// })
+
+//read credentials for Redis from json file
+// fs.readFile('creds.json', 'utf-8', function(err, data) {
+  
+//   if(err) throw err;
+//   const creds = JSON.parse(data);
+//   client = redis.createClient(`redis://${creds.user}:${creds.password}@${creds.host}:${creds.port}`)
+
+  //Redis Client Ready
+  // client.once('ready', function() {
+    //Flush Redis DB
+    //client.flushdb()
+
+    //Initialize
+
+  // }
+  // )
+// })
+
 const port = process.env.PORT || 4001;
 
 //middleware
@@ -11,6 +39,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "FrontEnd/build")));
+app.use(cors())
 
 //api routes
 
@@ -35,8 +64,9 @@ app.use((err, req, res, next) => {
 // might need to add heroku's path/port?
 const serverSocket = require("socket.io")(http, {
   cors: {
-    origins: ["http://localhost:3000", "http://localhost:4001"],
+    origin: ["http://localhost:3000", "http://localhost:4001", `http://localhost:${process.env.PORT}`, "https://scribble-scramble.herokuapp.com"],
     methods: ["GET", "POST"],
+    credentials: true
   },
 });
 
