@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Modal from 'styled-react-modal';
+import Modal from "styled-react-modal";
 import { BrowserRouter as Link } from "react-router-dom";
 
 /*
-SPACE IS INCLUDED FOR ADDITIONAL ELEMENTS TO BE ADDED IN 
+SPACE IS INCLUDED FOR ADDITIONAL ELEMENTS TO BE ADDED IN
 THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 *** Table of Contents ***
@@ -59,14 +59,6 @@ export const StyledModal = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-
-
-
-
-
-
-
 
 // Basic Elements
 export const StyledLink = styled(Link)`
@@ -126,21 +118,20 @@ export const Palette = styled.div`
   justify-content: center;
   background: #4c9c8a;
   width: 800px;
-  height: 120px;
+  height: 50px;
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 125px;
-  border-radius: 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
 `;
-
 
 //this is for just the color swatches in the palette
 
 export const BrushSizesContainer = styled.div`
   display: flex;
-  height: 20px;
+  align-items: center;
+  height: 50px;
   margin-left: 10px;
-  margin-top: 10px;
 `;
 
 export const SmallBrushBtn = styled.button`
@@ -184,7 +175,8 @@ export const SelectedSize = styled.div`
 
 export const SelectedColor = styled.div`
   display: flex;
-  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
   margin-right: 0px;
 `;
 
@@ -198,10 +190,7 @@ export const PaletteBtns = styled.div`
   margin-top: 10px;
 `;
 
-
-
 // Image Elements
-
 
 export const StartDrawImg = styled.div`
   display: flex;
