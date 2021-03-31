@@ -1,12 +1,14 @@
 const { yellow, red, blueBright, magenta, cyan } = require("chalk");
 const Player = require("./player");
+
 const path = require("path");
 const morgan = require("morgan");
+
 const express = require("express");
-const app = express()
+const app = express();
 const http = require("http")
-const baseServer = http.createServer()
-const cors = require("cors")
+baseServer = http.createServer()
+const cors = require("cors");
 
 const { Server } = require("socket.io")
 const cluster = require("cluster")
@@ -23,34 +25,31 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "FrontEnd/build")));
-app.use(cors())
+app.use(cors());
 
-<<<<<<< HEAD
-=======
 if (cluster.isMaster) {
-  console.log(`Master ${process.pid} is running`)
+  console.log(`Master ${process.pid} is running`);
 
-  const httpServer = http.createServer()
+  const httpServer = http.createServer();
   setupMaster(httpServer, {
     loadBalancingMethod: "least-connection",
   });
-  httpServer.listen(port)
+  httpServer.listen(port);
 
   for (let i = 0; i < numCPUs; i++) {
-    cluster.fork()
+    cluster.fork();
   }
 
   cluster.on("exit", (worker) => {
-    console.log(`Worker ${worker.process.pid} started`)
+    console.log(`Worker ${worker.process.pid} started`);
 
-    const httpServer = http.createServer()
-    const io = new Server(httpServer)
-    io.adapter(redisAdapter({ host: "localhost", port: 6379}))
+    const httpServer = http.createServer();
+    const io = new Server(httpServer);
+    io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
     setupWorker(io);
-  })
+  });
 }
 
->>>>>>> main
 //api routes
 app.get("/", (req, res, next) => {
   try {
@@ -90,12 +89,19 @@ serverSocket.on("connection", (socket) => {
   console.log(magenta("on: connection"));
   console.log(yellow(`server new client connected on ${socket.id}`));
 
-  socket.on("add new player", (username) => {
+  socket.on("add new player", ({ username, role }) => {
     console.log(magenta("on: add new player"));
     let newPlayer = new Player(socket.id, username);
+    // ENUM vs boolean?
+    if (role === "draw") {
+      newPlayer.setIsDraw();
+    }
+    if (role === "write") {
+      newPlayer.setIsWrite();
+    }
     players.push(newPlayer);
-    console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
-    socket.broadcast.emit("new player added", players);
+    console.log(blueBright("emit: new player added (sends list of players)"));
+    socket.emit("new player added", players);
     listPlayers();
   });
 
