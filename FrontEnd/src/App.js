@@ -1,17 +1,6 @@
 import React, { useState } from "react";
 import Routes from "./Routes";
-import {
-  // Button,
-  Body,
-  Header,
-  Title,
-  // StartDrawBtn,
-  // StartWriteBtn,
-  // LandingBtns,
-  // LandingPage,
-  // StartDrawImg,
-} from "./AppCSS";
-// import LandingPageComp from "./LandingPage";
+import { Body, Header, Title } from "./AppCSS";
 
 function App() {
   const [loadClient, setLoadClient] = useState(true);
