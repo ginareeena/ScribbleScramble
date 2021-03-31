@@ -22,8 +22,9 @@ const LandingPageComp = () => {
       alert("please choose a valid username");
     } else {
       socket.emit("add new player", { username, role });
+      history.push("/combined");
     }
-    history.push("/combined");
+
   };
 
   return (
