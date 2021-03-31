@@ -5,16 +5,8 @@ const express = require("express");
 const app = express()
 const http = require("http")
 // const baseServer = http.createServer()
+
 const cors = require("cors")
-
-const { Server } = require("socket.io")
-const cluster = require("cluster")
-const redisAdapter = require("socket.io-redis")
-// const redis = require("redis")
-const numCPUs = require("os").cpus().length;
-const { setupMaster, setupWorker } = require("@socket.io/sticky")
-// const sticky = require("socketio-sticky-session")
-
 const port = process.env.PORT || 4001;
 
 //middleware
@@ -89,4 +81,11 @@ app.use((err, req, res, next) => {
 // });
 
 
-
+// serverSocket.on("connection", (socket) => {
+//   console.log(`server new client connected on ${socket.id}`);
+//   socket.on("drawing", (value) => {
+//     console.log("server side heard drawing!");
+//     console.log("drawing value received in back: --->", value);
+//     socket.broadcast.emit("adding to drwing", value);
+//   });
+// });
