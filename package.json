@@ -19,6 +19,7 @@
     "heroku-postbuild": "cd FrontEnd && npm install && npm run build"
   },
   "dependencies": {
+    "@socket.io/sticky": "^1.0.0",
     "concurrently": "^6.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -27,6 +28,7 @@
     "path": "^0.12.7",
     "redis": "^3.0.2",
     "socket.io": "^4.0.0",
+    "socket.io-redis": "^6.1.0",
     "styled-react-modal": "^2.0.1"
   }
 }

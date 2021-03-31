@@ -2,35 +2,18 @@ const path = require("path");
 const morgan = require("morgan");
 
 const express = require("express");
-const app = express();
-const http = require("http").createServer(app);
+const app = express()
+const http = require("http")
+const baseServer = http.createServer()
 const cors = require("cors")
 
+const { Server } = require("socket.io")
+const cluster = require("cluster")
+const redisAdapter = require("socket.io-redis")
 // const redis = require("redis")
-// const fs = require("fs")
-// const client = redis.createClient(process.env.REDIS_URL, {
-//   tls: {
-//     rejectUnauthorized: false
-//   }
-// })
-
-//read credentials for Redis from json file
-// fs.readFile('creds.json', 'utf-8', function(err, data) {
-  
-//   if(err) throw err;
-//   const creds = JSON.parse(data);
-//   client = redis.createClient(`redis://${creds.user}:${creds.password}@${creds.host}:${creds.port}`)
-
-  //Redis Client Ready
-  // client.once('ready', function() {
-    //Flush Redis DB
-    //client.flushdb()
-
-    //Initialize
-
-  // }
-  // )
-// })
+const numCPUs = require("os").cpus().length;
+const { setupMaster, setupWorker } = require("@socket.io/sticky")
+// const sticky = require("socketio-sticky-session")
 
 const port = process.env.PORT || 4001;
 
@@ -40,6 +23,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "FrontEnd/build")));
 app.use(cors())
+
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`)
+
+  const httpServer = http.createServer()
+  setupMaster(httpServer, {
+    loadBalancingMethod: "least-connection",
+  });
+  httpServer.listen(port)
+
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork()
+  }
+
+  cluster.on("exit", (worker) => {
+    console.log(`Worker ${worker.process.pid} started`)
+
+    const httpServer = http.createServer()
+    const io = new Server(httpServer)
+    io.adapter(redisAdapter({ host: "localhost", port: 6379}))
+    setupWorker(io);
+  })
+}
 
 //api routes
 app.get("/", (req, res, next) => {
@@ -81,15 +87,7 @@ serverSocket.on("connection", (socket) => {
   });
 });
 
-// serverSocket.on("connection", (socket) => {
-//   console.log(`server new client connected on ${socket.id}`);
-//   socket.on("drawing", (value) => {
-//     console.log("server side heard drawing!");
-//     console.log("drawing value received in back: --->", value);
-//     socket.broadcast.emit("adding to drwing", value);
-//   });
-// });
 
-http.listen(port, () => {
+baseServer.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
