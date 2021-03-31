@@ -7,8 +7,9 @@ const morgan = require("morgan");
 const express = require("express");
 const app = express();
 const http = require("http")
-baseServer = http.createServer()
-const cors = require("cors");
+// const baseServer = http.createServer()
+
+const cors = require("cors")
 
 const { Server } = require("socket.io")
 const cluster = require("cluster")
@@ -17,7 +18,6 @@ const redisAdapter = require("socket.io-redis")
 const numCPUs = require("os").cpus().length;
 const { setupMaster, setupWorker } = require("@socket.io/sticky")
 // const sticky = require("socketio-sticky-session")
-
 const port = process.env.PORT || 4001;
 
 //middleware
@@ -47,7 +47,21 @@ if (cluster.isMaster) {
     const io = new Server(httpServer);
     io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
     setupWorker(io);
-  });
+
+    io.on("connection", (socket) => {
+      console.log(`server new client connected on ${socket.id}`);
+      socket.on("add text box", (value, textCanvas) => {
+        console.log("server side heard add text box!");
+        socket.broadcast.emit("create new text box", value, textCanvas);
+      });
+      socket.on("send new lines", (value) => {
+        console.log("server side heard drawing from front end!");
+        console.log("drawing value received in back: --->", value);
+        socket.broadcast.emit("load new lines", value);
+      });
+    });
+
+  })
 }
 
 //api routes
@@ -69,55 +83,20 @@ app.use((err, req, res, next) => {
 });
 
 //sockets
-const serverSocket = require("socket.io")(http, {
-  cors: {
-    origin: ["http://localhost:3000", "http://localhost:4001"],
-    methods: ["GET", "POST"],
-    credentials: true
-  },
-});
-
-let players = [];
-const listPlayers = () => {
-  console.log(cyan("current players:"));
-  players.forEach((player) => {
-    console.log(cyan(JSON.stringify(player)));
-  });
-};
-
-serverSocket.on("connection", (socket) => {
-  console.log(magenta("on: connection"));
-  console.log(yellow(`server new client connected on ${socket.id}`));
-
-  socket.on("add new player", ({ username, role }) => {
-    console.log(magenta("on: add new player"));
-    let newPlayer = new Player(socket.id, username);
-    // ENUM vs boolean?
-    if (role === "draw") {
-      newPlayer.setIsDraw();
-    }
-    if (role === "write") {
-      newPlayer.setIsWrite();
-    }
-    players.push(newPlayer);
-    console.log(blueBright("emit: new player added (sends list of players)"));
-    socket.emit("new player added", players);
-    listPlayers();
-  });
-
-  //canvas
-  socket.on("add text box", (value, textCanvas) => {
-    console.log("server side heard add text box!");
-    socket.broadcast.emit("create new text box", value, textCanvas);
-  });
-  socket.on("send new lines", (value) => {
-    console.log("server side heard drawing from front end!");
-    console.log("drawing value received in back: --->", value);
-    socket.broadcast.emit("load new lines", value);
-  });
-});
+// const serverSocket = require("socket.io")(http, {
+//   cors: {
+//     origin: ["http://localhost:3000", "http://localhost:4001"],
+//     methods: ["GET", "POST"],
+//     credentials: true
+//   },
+// });
 
 
-baseServer.listen(port, () => {
-  console.log(`server listening on port ${port}`);
-});
+// serverSocket.on("connection", (socket) => {
+//   console.log(`server new client connected on ${socket.id}`);
+//   socket.on("drawing", (value) => {
+//     console.log("server side heard drawing!");
+//     console.log("drawing value received in back: --->", value);
+//     socket.broadcast.emit("adding to drwing", value);
+//   });
+// });
