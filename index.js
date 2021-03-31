@@ -1,8 +1,11 @@
+const { yellow, red, blueBright, magenta, cyan } = require("chalk");
+const Player = require("./player");
+
 const path = require("path");
 const morgan = require("morgan");
 
 const express = require("express");
-const app = express()
+const app = express();
 const http = require("http")
 // const baseServer = http.createServer()
 
@@ -22,27 +25,27 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "FrontEnd/build")));
-app.use(cors())
+app.use(cors());
 
 if (cluster.isMaster) {
-  console.log(`Master ${process.pid} is running`)
+  console.log(`Master ${process.pid} is running`);
 
-  const httpServer = http.createServer()
+  const httpServer = http.createServer();
   setupMaster(httpServer, {
     loadBalancingMethod: "least-connection",
   });
-  httpServer.listen(port)
+  httpServer.listen(port);
 
   for (let i = 0; i < numCPUs; i++) {
-    cluster.fork()
+    cluster.fork();
   }
 
   cluster.on("exit", (worker) => {
-    console.log(`Worker ${worker.process.pid} started`)
+    console.log(`Worker ${worker.process.pid} started`);
 
-    const httpServer = http.createServer()
-    const io = new Server(httpServer)
-    io.adapter(redisAdapter({ host: "localhost", port: 6379}))
+    const httpServer = http.createServer();
+    const io = new Server(httpServer);
+    io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
     setupWorker(io);
 
     io.on("connection", (socket) => {

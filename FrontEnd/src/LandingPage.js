@@ -1,5 +1,5 @@
-import React from "react";
-
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   StartDrawBtn,
   StartWriteBtn,
@@ -9,42 +9,54 @@ import {
   StartDrawImg,
   StartWriteImg,
 } from "./AppCSS";
+import socket from "./Socket";
 
 const LandingPageComp = () => {
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
+  const history = useHistory();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (!username) {
+      alert("please choose a valid username");
+    } else {
+      socket.emit("add new player", { username, role });
+      history.push("/combined");
+    }
+
+  };
+
   return (
     <div>
       <LandingPage>
-        <LandingBtns>
-          <StartDrawBtn>
-            <a href="/draw" style={{ color: "black" }}>
-              <StartDrawImg>
-                {" "}
-                {/* <img src="/images/drawBtn.png" /> */}
-              </StartDrawImg>
-              <LandingButton>Start Drawing Collab</LandingButton>
-            </a>
-          </StartDrawBtn>
-        </LandingBtns>
-        <LandingBtns>
-          <StartWriteBtn>
-            <a href="/write" style={{ color: "black" }}>
-              {" "}
-              <StartWriteImg>
-                {/* <img src="/images/writeBtn.png" /> */}
-              </StartWriteImg>
+        <form onSubmit={handleSubmit}>
+          <LandingBtns>
+            <h6>Please choose a username:</h6>
+            <input
+              type="text"
+              name="username"
+              onChange={(evt) => setUsername(evt.target.value.trim())}
+            />
+          </LandingBtns>
+
+          <LandingBtns>
+            <StartDrawBtn>
+              <StartDrawImg />
+
+              <LandingButton type="submit" onClick={() => setRole("draw")}>
+                Start Drawing Collab
+              </LandingButton>
+            </StartDrawBtn>
+          </LandingBtns>
+
+          <LandingBtns>
+            <StartWriteBtn type="submit" onClick={() => setRole("write")}>
+              <StartWriteImg />
               <LandingButton>Start Writing Collab</LandingButton>
-            </a>
-          </StartWriteBtn>
-        </LandingBtns>
-        <StartDrawBtn>
-          <a href="/combined" style={{ color: "black" }}>
-            <StartDrawImg>
-              {" "}
-              {/* <img src="/images/drawBtn.png" /> */}
-            </StartDrawImg>
-            <LandingButton>Combined Canvas</LandingButton>
-          </a>
-        </StartDrawBtn>
+            </StartWriteBtn>
+          </LandingBtns>
+        </form>
       </LandingPage>
     </div>
   );
