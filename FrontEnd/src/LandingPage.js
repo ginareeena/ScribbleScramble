@@ -31,7 +31,6 @@ const LandingPageComp = () => {
     <div>
       <LandingPage>
         <AvatarCarousel />
-        <br />
         <form onSubmit={handleSubmit}>
           <LandingBtns>
             <h6>Please choose a username:</h6>
