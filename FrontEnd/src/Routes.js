@@ -7,7 +7,6 @@ import EndGame from "./EndGame";
 import CombinedCanvas from "./CombinedCanvas";
 // Importing Modal for testing
 import ModalComp from "./Modal";
-import AvatarCarousel from "./AvatarCarousel";
 
 const Routes = () => {
   return (
@@ -20,7 +19,6 @@ const Routes = () => {
         <Route path="/combined" component={CombinedCanvas} />
         {/* Route for testing Modal component */}
         <Route path="/testing" component={ModalComp} />
-        <Route path="/carousel-test" component={AvatarCarousel} />
       </Switch>
     </Router>
   );
