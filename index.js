@@ -51,72 +51,29 @@ const serverSocket = require("socket.io")(http, {
   // transports: ["websocket"]
 });
 
-const makeID = uniqueNamesGenerator({
-  dictionaries: [adjectives, colors, animals],
-  length: 3,
-});
 
-//socket middleware -> add username to socket object
-serverSocket.use((socket, next) => {
-  const sessionID = socket.handshake.auth.sessionID;
 
-  if (sessionID) {
-    const session = sessionStore.findSession(sessionID);
-    if (session) {
-      socket.sessionID = sessionID;
-      socket.userID = session.userID;
-      socket.username = session.username;
-      return next();
-    }
-  }
-  const username = socket.handshake.auth.username;
-  if (!username) {
-    return next(new Error("invalid username"));
-  }
-  socket.sessionID = makeID();
-  socket.userID = makeID();
-  socket.username = username;
-  next();
-});
 
 serverSocket.on("connection", (socket) => {
-  console.log(
-    magenta("on: connection"),
-    yellow(`(server) new client connected: ${socket.id}`)
-  );
+  let PRIVATE = "private"
+  let PUBLIC = "public"
 
-  //get all existing players + add new player
-  const players = [];
-  for (let [id, socket] of serverSocket.of("/").sockets) {
-    players.push({
-      userId: id,
-      username: socket.username,
+  // put emits in onClicks in front end buttons; if errors, use front end emit to give the room id
+  socket.on('joinPublicRoom', () => {
+    io.of("/").adapter.on("join-room", (PUBLIC, id) => {
+      socket.join(PUBLIC)
+      console.log(`socket ${id} has joined room ${room}`);
     });
-  }
-  socket.emit("new player added", players);
-  const player = {
-    userId: socket.id,
-    username: socket.username,
-  };
-  //notify existing players of new player
-  socket.broadcast.emit("new player connected", player);
-  console.log(blueBright("players: ", JSON.stringify(players)));
+  })
 
-  // socket.on("create new game", (data) => {
-  //   console.log(magenta("on: create new game"));
-  //   socket.join(`room ${++roomId}`);
-  //   const game = { name: data.name, room: `room ${roomId}` };
-  //   socket.emit("newGame", game);
-  //   console.log(blueBright(`new game ready in room ${game.room}`));
-  // });
+  socket.on('joinPrivateRoom', () => {
+    io.of("/").adapter.on("join-room", (PRIVATE, id) => {
+      socket.join(PRIVATE)
+      console.log(`socket ${id} has joined room ${room}`);
+    });
+  })
 
-  socket.on("disconnect", () => {
-    // delete players[socket.id];
-    console.log(red(`(${socket.username}) has left the building.`));
-    // listPlayers();
-  });
-
-  //drawing
+  console.log(`server new client connected on ${socket.id}`);
   socket.on("add text box", (value, textCanvas) => {
     console.log("server side heard add text box!");
     socket.broadcast.emit("create new text box", value, textCanvas);
@@ -128,7 +85,38 @@ serverSocket.on("connection", (socket) => {
   });
 });
 
+const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"
+
+//this variable will increment inside socket
+
+//namespace -> 'nsp' plan had been scribb..../room##; make own room name/hardcoded ?
+//using socket.io's built in adapter instead of the redis-based adapter
+
+// When creating new room, make sure new room is rendering new instance of the canvas
+
+//base case: 2 rooms. 1 private, 1 public
+//after that, expand private room ability to be more exclusive
+
+    //work in progress - room functionality
+    // let roomNo = 1;
+    // //  const {roomId} = socket.handshake.query
+    //  if(serverSocket.nsps['/'].adapter.rooms[roomNo] && serverSocket.nsps['/'].adapter.rooms[roomNo].length > 1)
+    //     {roomNo++
+    //     socket.join(roomNo)
+    //     }
+
+    //  //look for new messages
+    //  socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+    //    serverSocket.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data)
+    //  })
+
+    //   socket.on("send new lines", (value) => {
+    //     console.log("server side heard drawing from front end!");
+    //     console.log("drawing value received in back: --->", value);
+    //     socket.broadcast.emit("load new lines", value);
+    //   });
+    // })
+
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
-
