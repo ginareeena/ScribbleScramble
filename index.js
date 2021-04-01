@@ -3,11 +3,12 @@ const Player = require("./player");
 
 const path = require("path");
 const morgan = require("morgan");
-
 const express = require("express");
+
 const app = express();
 const http = require("http").createServer(app);
-const cors = require("cors")
+const cors = require("cors");
+const { isObject } = require("util");
 
 const port = process.env.PORT || 4001;
 
@@ -26,7 +27,6 @@ app.get("/", (req, res, next) => {
     next(error);
   }
 });
-
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "FrontEnd/build", "index.html"));
 });
@@ -41,12 +41,43 @@ const serverSocket = require("socket.io")(http, {
   cors: {
     origin: ["http://localhost:3000", "http://localhost:4001"],
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
   },
   // transports: ["websocket"]
+  //^^TECHNICALLY NEEDED - currently throwing errors. don't delete. yet.
 });
 
+let players = [];
+const listPlayers = () => {
+  console.log(cyan("current players:"));
+  players.forEach((player) => {
+    console.log(cyan(JSON.stringify(player)));
+  });
+};
+
 serverSocket.on("connection", (socket) => {
+  console.log(yellow(`server new client connected on ${socket.id}`));
+
+  socket.on("add new player", (username) => {
+    console.log(magenta("on: add new player"));
+    let newPlayer = new Player(socket.id, username);
+    players.push(newPlayer);
+    console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
+    socket.broadcast.emit("new player added", players);
+    listPlayers();
+  });
+
+  serverSocket.of("/").adapter.on("create-room", (room) => {
+    console.log(magenta("on: create-room"));
+    console.log(blueBright(`room ${room} was created`));
+  });
+
+  socket.on("join-room", ({ room, id }) => {
+    console.log(magenta("on: join-room"));
+    socket.join(room);
+    console.log(blueBright(`socket ${id} has joined room ${room}`));
+  });
+
   console.log(`server new client connected on ${socket.id}`);
   socket.on("add text box", (value, textCanvas) => {
     console.log("server side heard add text box!");
@@ -54,7 +85,6 @@ serverSocket.on("connection", (socket) => {
   });
   socket.on("send new lines", (value) => {
     console.log("server side heard drawing from front end!");
-    console.log("drawing value received in back: --->", value);
     socket.broadcast.emit("load new lines", value);
   });
 });
@@ -62,4 +92,3 @@ serverSocket.on("connection", (socket) => {
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
-

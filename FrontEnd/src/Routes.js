@@ -20,6 +20,7 @@ const Routes = () => {
         {/* Route for testing Modal component */}
         <Route path="/testing" component={ModalComp} />
       </Switch>
+      f
     </Router>
   );
 };
