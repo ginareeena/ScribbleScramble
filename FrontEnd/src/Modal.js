@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Modal from "styled-react-modal"
+// import Modal from "styled-react-modal"
 import { StyledModal } from "./AppCSS"
 
 const ModalComp = () => {
