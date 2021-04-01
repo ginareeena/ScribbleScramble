@@ -20,10 +20,32 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 export const Body = styled.div`
   display: flex;
-  flex-flow: column wrap;
-  width: 100%;
-  background-image: url(./images/background.jpg);
+
+  @media (max-width: 2650px) {
+    background-image: url(./images/background.jpg);
+
+    flex-flow: column wrap;
+    width: 100%;
+  }
+  @media (max-width: 813px) {
+    background-image: url(./images/background.jpg) repeat;
+
+    width: 813px;
+    margin-right: 5px;
+  }
 `;
+
+// @media (max-width: 1280px);
+
+const size = {
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
+};
 
 export const Header = styled.header`
   background: #000000
@@ -118,13 +140,17 @@ export const Palette = styled.div`
   justify-content: center;
   background: #4c9c8a;
   align-items: center;
-
-  width: 800px;
-  height: 50px;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 15px;
   border-radius: 8px;
+  @media (max-width: 2650px) {
+    width: 800px;
+    height: 50px;
+  }
+  @media (max-width: 813px) {
+    width: 600px;
+  }
 `;
 
 //this is for just the color swatches in the palette

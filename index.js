@@ -1,3 +1,6 @@
+const { yellow, red, blueBright, magenta, cyan } = require("chalk");
+const Player = require("./player");
+
 const path = require("path");
 const morgan = require("morgan");
 
@@ -5,6 +8,7 @@ const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 const cors = require("cors")
+
 const port = process.env.PORT || 4001;
 
 //middleware
@@ -12,7 +16,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "FrontEnd/build")));
-app.use(cors())
+app.use(cors());
 
 //api routes
 app.get("/", (req, res, next) => {
@@ -58,3 +62,4 @@ serverSocket.on("connection", (socket) => {
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
+
