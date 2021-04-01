@@ -27,8 +27,6 @@ const LandingPageComp = () => {
     }
   };
 
-  //old
-  // const [gameReady, setGameReady] = useState(false);
 
   // const createGame = () => {
   //   socket.emit("create new game", socket.id);

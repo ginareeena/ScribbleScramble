@@ -4,12 +4,6 @@ const Player = require("./player");
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
-const {
-  uniqueNamesGenerator,
-  adjectives,
-  colors,
-  animals,
-} = require("unique-names-generator");
 
 const app = express();
 const http = require("http").createServer(app);
@@ -50,8 +44,6 @@ const serverSocket = require("socket.io")(http, {
   },
   // transports: ["websocket"]
 });
-
-
 
 
 serverSocket.on("connection", (socket) => {
