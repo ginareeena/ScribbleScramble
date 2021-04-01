@@ -30,9 +30,10 @@ const LandingPageComp = () => {
   return (
     <div>
       <LandingPage>
+        <AvatarCarousel />
+        <br />
         <form onSubmit={handleSubmit}>
           <LandingBtns>
-            <AvatarCarousel />
             <h6>Please choose a username:</h6>
             <input
               type="text"
