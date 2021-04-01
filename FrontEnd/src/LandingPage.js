@@ -12,6 +12,7 @@ import {
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
 
+
 const LandingPageComp = () => {
   const [username, setUsername] = useState("scribbling");
   const [room, setRoom] = useState("");
@@ -84,6 +85,7 @@ const LandingPageComp = () => {
           </LandingBtns> */}
         </form>
       </LandingPage>
+      
     </div>
   );
 };

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Routes from "./Routes";
 import { Body, Header, Title } from "./AppCSS";
+import Footer from "./Footer"
+
 
 function App() {
   const [loadClient, setLoadClient] = useState(true);
 
   return (
+    <div>
     <Body className="App">
       <Header className="App-header">
         <Title>
@@ -17,7 +20,10 @@ function App() {
       <div>
         <Routes />
       </div>
+      <Footer />
     </Body>
+
+    </div>
   );
 }
 

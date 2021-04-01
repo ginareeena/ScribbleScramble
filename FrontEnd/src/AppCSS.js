@@ -55,9 +55,18 @@ export const Header = styled.header`
   no-repeat: true
 `;
 
+export const FooterStyle = styled.footer`
+  display: flex;
+  background-image: url(./images/background.jpg) repeat;
+  height: 150px;
+  width: 80%
+  justify-content: space-between;
+  margin: auto;
+`
+
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
-  height: 600px;
+  height: 550px;
   display: flex;
   justify-content: center;
   width: 800px;
@@ -104,6 +113,12 @@ export const Title2 = styled.h2`
   color: white;
 `;
 
+export const Title3 = styled.h3`
+  font-size: 1em;
+  text-align: center;
+  color: black;
+`
+
 export const Paragraph = styled.p`
   align-self: center;
   position: absolute;
@@ -112,6 +127,17 @@ export const Paragraph = styled.p`
   text-align: center;
   color: black;
 `;
+
+export const MasterScramblers = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  height: 30px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+`
 
 // Canvas Elements
 
