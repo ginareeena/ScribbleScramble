@@ -3,6 +3,7 @@ import io from "socket.io-client";
 const socket = io(window.location.origin, {
   withCredentials: true,
   // transports: ["websocket"]
+  //^^TECHNICALLY NEEDED - currently throwing errors. don't delete. yet.
 });
 
 socket.on("connect", () => {

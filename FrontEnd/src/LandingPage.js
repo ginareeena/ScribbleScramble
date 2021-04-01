@@ -14,32 +14,18 @@ import AvatarCarousel from "./AvatarCarousel";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("scribbling");
+  const [room, setRoom] = useState("");
 
   const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     socket.emit("add new player", { username });
-    socket.emit("create-room", "private");
-    socket.emit("join-room", { room: "private", id: socket.id });
-    console.log("landing page emit: add new player + private room");
+    socket.emit("create-room", room);
+    socket.emit("join-room", { room, id: socket.id });
+    console.log("joining room", room);
     history.push("/combined");
   };
-
-  // const createGame = () => {
-  //   socket.emit("create new game", socket.id);
-  //   setGameReady(true);
-  // };
-
-  // const joinGame = () => {
-  //   socket.emit("player two wants to join", socket.id);
-  //   setGameReady(false);
-  // };
-
-  // const handleClick = () => {
-  //   gameReady ? joinGame() : createGame();
-  // };
-
   return (
     <div>
       <LandingPage>
@@ -57,16 +43,28 @@ const LandingPageComp = () => {
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton type="submit">SCRIBBLE MY SCRAMBLES</LandingButton>
+              <LandingButton
+                type="submit"
+                name="private"
+                onClick={(evt) => setRoom(evt.target.name)}
+              >
+                SCRIBBLE MY Private SCRAMBLES
+              </LandingButton>
             </StartDrawBtn>
           </LandingBtns>
 
-          {/* <LandingBtns>
+          <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton type="submit">SCRAMBLE MY SCRIBBLES</LandingButton>
+              <LandingButton
+                type="submit"
+                name="public"
+                onClick={(evt) => setRoom(evt.target.name)}
+              >
+                SCRAMBLE MY Public SCRIBBLES
+              </LandingButton>
             </StartDrawBtn>
-          </LandingBtns> */}
+          </LandingBtns>
 
           {/* <LandingBtns>
             <StartDrawBtn>
