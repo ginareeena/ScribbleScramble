@@ -19,6 +19,7 @@ const Routes = () => {
         <Route path="/combined" component={CombinedCanvas} />
         {/* Route for testing Modal component */}
         <Route path="/testing" component={ModalComp} />
+        <Route path="/endgame" component={EndGame} />
       </Switch>
       f
     </Router>

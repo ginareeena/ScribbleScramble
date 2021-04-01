@@ -66,23 +66,6 @@ const LandingPageComp = () => {
               </LandingButton>
             </StartDrawBtn>
           </LandingBtns>
-
-          {/* <LandingBtns>
-            <StartDrawBtn>
-              <StartDrawImg />
-
-              <LandingButton type="submit" onClick={() => setRole("draw")}>
-                Start Drawing Collab
-              </LandingButton>
-            </StartDrawBtn>
-          </LandingBtns>
-
-          <LandingBtns>
-            <StartWriteBtn type="submit" onClick={() => setRole("write")}>
-              <StartWriteImg />
-              <LandingButton>Start Writing Collab</LandingButton>
-            </StartWriteBtn>
-          </LandingBtns> */}
         </form>
       </LandingPage>
       

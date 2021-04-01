@@ -17,7 +17,10 @@ import {
   ScrambleBtn,
   DrawBtn,
   WriteModeBtn,
+  EndGameBtn
 } from "./AppCSS";
+import { Link } from "react-router-dom";
+
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 
@@ -129,6 +132,20 @@ const CombinedCanvas = () => {
     socket.emit("send new lines", canvasJSON);
   };
 
+  let finalDrawing;
+
+  function handleEndGame() {
+    setCanvas(canvas);
+
+    finalDrawing = canvas.toDataURL();
+    // finalDrawing = canvas.discardActiveObject().renderAll().toDataURL("png");
+    // finalDrawing = canvas.toSVG();
+    //  finalDrawing = canvas.toJSON();
+    // finalDrawing = canvas.toJSON({format: 'png'});
+
+    socket.emit("send final image", finalDrawing);
+  }
+
   const changeFont = (evt) => {
     setFont(evt.target.value);
     canvas.getActiveObject().setSelectionStyles({
@@ -228,8 +245,12 @@ const CombinedCanvas = () => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
+        <EndGameBtn onClick={() => handleEndGame()}>
+          <Link to="/endgame" style={{ color: "white" }}>
+            I'm Done!
+          </Link>
+        </EndGameBtn>
       </Palette>
-      <div>test!</div>
     </div>
   );
 };

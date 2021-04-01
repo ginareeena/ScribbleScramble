@@ -62,7 +62,7 @@ export const FooterStyle = styled.footer`
   width: 80%
   justify-content: space-between;
   margin: auto;
-`
+`;
 
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
@@ -117,7 +117,8 @@ export const Title3 = styled.h3`
   font-size: 1em;
   text-align: center;
   color: black;
-`
+`;
+
 
 export const Paragraph = styled.p`
   align-self: center;
@@ -137,7 +138,8 @@ export const MasterScramblers = styled.div`
   margin: auto;
   margin-top: 10px;
   margin-bottom: 15px;
-`
+`;
+
 
 // Canvas Elements
 
@@ -406,4 +408,19 @@ export const DownloadBtn = styled.button`
   color: white;
   font-size: 1.2em;
   font-weight: bold;
+`;
+
+export const EndGameBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin: 0 1em;
+  margin-top: 5px;
+  height: 28px;
+  width: 80px;
+  background-color: #134d44;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
