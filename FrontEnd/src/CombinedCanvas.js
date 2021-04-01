@@ -14,9 +14,16 @@ import {
   BrushSizesContainer,
   SelectedColor,
   AddTxtBtn,
+  ScrambleBtn,
+  DrawBtn,
+  WriteModeBtn,
 } from "./AppCSS";
 import PaletteComp from "./Palette";
 import socket from "./Socket";
+
+// Canvas:
+// Writing Mode/ Scramble Mode
+// DrawingButton
 
 //storing color, brush size, font and canvas in state
 
@@ -32,7 +39,7 @@ const CombinedCanvas = () => {
   }, []);
 
   useEffect(() => {
-    if (canvas && canvas.isDrawingMode === true) {
+    if (canvas) {
       updateBrush();
 
       socket.on("load new lines", (value) => {
@@ -40,7 +47,7 @@ const CombinedCanvas = () => {
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
-    } else if (canvas && canvas.isDrawingMode === false) {
+    } else if (canvas) {
       socket.on("create new text box", (value) => {
         console.log("front end heard create new text box");
         canvas.loadFromJSON(value);
@@ -83,18 +90,27 @@ const CombinedCanvas = () => {
     }
   }
 
-  function toggleDrawingMode() {
-    canvas.isDrawingMode = !canvas.isDrawingMode;
+  // function toggleDrawingMode() {
+  //   canvas.isDrawingMode = !canvas.isDrawingMode;
+  // }
+
+  function startDrawMode() {
+    canvas.isDrawingMode = true;
+  }
+  function startWriteMode() {
+    canvas.isDrawingMode = false;
   }
 
   function handleDraworWrite() {
-    console.log("handleDraw triggered!");
+    console.log("handleDraworWrite triggered!");
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
     console.log("front end emiting combinedCanvas:", canvasJSON);
     // socket.emit("send new lines", drawingCanvasJSON);
     socket.emit("send new lines", canvasJSON);
   }
+
+  // write a randomizer that randomizers the text functionality
 
   // text logic
   const handleTextBtn = () => {
@@ -106,10 +122,11 @@ const CombinedCanvas = () => {
       isContentEditable: true,
       fontFamily: font,
     });
-
-    setCanvas(canvas.add(newText).renderAll());
+    canvas.add(newText).renderAll();
+    setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
-    socket.emit("add text box", canvasJSON);
+    console.log("emitting inside handleText");
+    socket.emit("send new lines", canvasJSON);
   };
 
   const changeFont = (evt) => {
@@ -134,19 +151,23 @@ const CombinedCanvas = () => {
       </PlayArea>
 
       <Palette>
-        <div id="drawing-mode-options">
+        <ScrambleBtn onClick={() => startWriteMode()}>Scramble</ScrambleBtn>
+        <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
+        <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
+
+        {/* <div id="drawing-mode-options">
           <label
             htmlFor="drawing-mode-selector"
             style={{ marginRight: "8px", fontWeight: "bold", fontSize: "14px" }}
           >
-            Brushes:
+            Drawing Modes:
           </label>
-          <select id="drawing-mode-selector" onChange={() => updateBrush()}>
-            <option value="Pencil">Pencil</option>
-            <option value="Circle">Circle</option>
-            <option value="Pattern">Pattern</option>
+          <select id="drawing-mode-selector">
+            <option value="Drawing">Draw Mode</option>
+            <option value="Writing">Write Mode</option>
+            <option value="Scramble">Scramble Mode</option>
           </select>
-        </div>
+        </div> */}
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
             {/* Brush Sizes: */}
@@ -194,8 +215,10 @@ const CombinedCanvas = () => {
         </PngButton>
       </Palette>
       <Palette>
+        {/* <WriteModeBtn onClick={() => startWriteMode()}>Write Mode</WriteModeBtn> */}
         <div id="text-options">
-          <span style={{ fontWeight: "bold" }}>Mess/Text Palette:{"  "}</span>
+          <span style={{ fontWeight: "bold" }}>Text Palette:{"  "}</span>
+
           <label htmlFor="font-family">Font:</label>
           <select id="font-family" value={font} onChange={changeFont}>
             <option value="Arial">Arial</option>
