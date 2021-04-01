@@ -1,4 +1,4 @@
-const { yellow, red, blueBright, magenta, cyan } = require("chalk");
+const { yellow, red, blueBright, magenta, cyan, green } = require("chalk");
 const Player = require("./player");
 
 const path = require("path");
@@ -48,13 +48,12 @@ const serverSocket = require("socket.io")(http, {
   //^^TECHNICALLY NEEDED - currently throwing errors. don't delete. yet.
 });
 
-let players = [];
+let players = {};
+let playerCount = 0;
 let gameRooms = [];
 const listPlayers = () => {
-  console.log(cyan("current players:"));
-  players.forEach((player) => {
-    console.log(cyan(JSON.stringify(player)));
-  });
+  console.log(cyan("current players:", JSON.stringify(players)));
+  console.log(green("player count:", playerCount));
 };
 
 //socket events
@@ -66,10 +65,21 @@ serverSocket.on("connection", (socket) => {
     console.log(magenta("on: add new player"));
     socket.username = username;
     let newPlayer = new Player(socket.id, username);
-    players.push(newPlayer);
+    players[username] = newPlayer;
+    ++playerCount;
     console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
-    socket.broadcast.emit("new player added", players);
     listPlayers();
+  });
+
+  socket.on("disconnect", (socket) => {
+    console.log(magenta("on: disconnect"));
+    delete players[socket.username];
+    console.log(
+      red(
+        `player ${socket.username} has left the building (clientID: ${socket.id})`
+      )
+    );
+    listPlayers()
   });
 
   serverSocket.of("/").adapter.on("create-room", (room) => {

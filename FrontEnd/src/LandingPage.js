@@ -21,7 +21,7 @@ const LandingPageComp = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    socket.emit("add new player", { username });
+    socket.emit("add new player", username);
     socket.emit("create-room", room);
     socket.emit("join-room", { room, id: socket.id });
     console.log("joining room", room);
@@ -68,7 +68,7 @@ const LandingPageComp = () => {
           </LandingBtns>
         </form>
       </LandingPage>
-      
+
     </div>
   );
 };
