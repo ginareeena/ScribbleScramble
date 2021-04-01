@@ -7,7 +7,7 @@ import EndGame from "./EndGame";
 import CombinedCanvas from "./CombinedCanvas";
 // Importing Modal for testing
 import ModalComp from "./Modal";
-import AvatarCarousel from "./Room";
+import AvatarCarousel from "./AvatarCarousel";
 
 const Routes = () => {
   return (
