@@ -1,7 +1,8 @@
 import socketIOClient from "socket.io-client";
 
 const socket = socketIOClient(window.location.origin, {
-  withCredentials: true
+  withCredentials: true,
+  // transports: ["websocket"]
 });
 
 socket.on("connect", () => {
