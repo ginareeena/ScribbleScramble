@@ -70,13 +70,15 @@ serverSocket.on("connection", (socket) => {
   let PUBLIC = "public";
 
   socket.on("joinPublicRoom", () => {
+    console.log(magenta("on: joinPublicRoom"));
     io.of("/").adapter.on("join-room", (PUBLIC, id) => {
       socket.join(PUBLIC);
-      console.log(`socket ${id} has joined room ${room}`);
+      console.log(blueBright(`socket ${id} has joined room ${room}`));
     });
   });
 
   socket.on("joinPrivateRoom", () => {
+    console.log(magenta("on: joinPrivateRoom"));
     io.of("/").adapter.on("join-room", (PRIVATE, id) => {
       socket.join(PRIVATE);
       console.log(`socket ${id} has joined room ${room}`);
