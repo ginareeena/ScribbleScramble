@@ -21,6 +21,7 @@ const Routes = () => {
         <Route path="/testing" component={ModalComp} />
         <Route path="/endgame" component={EndGame} />
       </Switch>
+      f
     </Router>
   );
 };

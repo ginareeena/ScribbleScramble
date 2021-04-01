@@ -119,6 +119,7 @@ export const Title3 = styled.h3`
   color: black;
 `;
 
+
 export const Paragraph = styled.p`
   align-self: center;
   position: absolute;
@@ -138,6 +139,7 @@ export const MasterScramblers = styled.div`
   margin-top: 10px;
   margin-bottom: 15px;
 `;
+
 
 // Canvas Elements
 
