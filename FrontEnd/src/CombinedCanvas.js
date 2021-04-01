@@ -91,14 +91,18 @@ const CombinedCanvas = () => {
   }
 
   let finalDrawing;
+  let blob;
 
   function handleEndGame() {
     setCanvas(canvas);
-    canvas.deactivateAll().renderAll().toDataURL("png");
+
+    finalDrawing = canvas.toDataURL();
+    blob = dataURLtoBlob(finalDrawing);
+    // finalDrawing = canvas.discardActiveObject().renderAll().toDataURL("png");
     // finalDrawing = canvas.toSVG();
-    console.log("finalDrawing inside handle End Game fun--->", finalDrawing);
+    console.log("blob--->", blob);
     // let finalDrawing = canvas.toJSON();
-    socket.emit("send final image", finalDrawing);
+    socket.emit("send final image", blob);
   }
 
   function handleDraworWrite() {
