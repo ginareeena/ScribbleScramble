@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Modal from "styled-react-modal";
+// import Modal from "styled-react-modal";
 import { BrowserRouter as Link } from "react-router-dom";
 
 /*
