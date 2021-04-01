@@ -27,7 +27,6 @@ const LandingPageComp = () => {
     }
   };
 
-
   // const createGame = () => {
   //   socket.emit("create new game", socket.id);
   //   setGameReady(true);
@@ -51,7 +50,6 @@ const LandingPageComp = () => {
   //   console.log("emitting: player chose to write");
   //   socket.emit("player chose to write", socket.username);
   // };
-
   return (
     <div>
       <LandingPage>
@@ -69,6 +67,13 @@ const LandingPageComp = () => {
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
+              <LandingButton type="submit">SCRIBBLE MY SCRAMBLES</LandingButton>
+            </StartDrawBtn>
+          </LandingBtns>
+
+          {/* <LandingBtns>
+            <StartDrawBtn>
+              <StartDrawImg />
 
               <LandingButton type="submit" onClick={() => setRole("draw")}>
                 Start Drawing Collab
@@ -81,7 +86,7 @@ const LandingPageComp = () => {
               <StartWriteImg />
               <LandingButton>Start Writing Collab</LandingButton>
             </StartWriteBtn>
-          </LandingBtns>
+          </LandingBtns> */}
         </form>
       </LandingPage>
     </div>
