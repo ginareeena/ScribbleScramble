@@ -326,6 +326,21 @@ export const AddTxtBtn = styled.button`
   align-items: center;
 `;
 
+export const EndGameBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin: 0 1em;
+  margin-top: 5px;
+  height: 28px;
+  width: 80px;
+  background-color: #134d44;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const DownloadBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;

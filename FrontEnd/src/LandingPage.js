@@ -24,7 +24,6 @@ const LandingPageComp = () => {
       socket.emit("add new player", { username, role });
       history.push("/combined");
     }
-
   };
 
   return (
@@ -43,6 +42,7 @@ const LandingPageComp = () => {
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
+              {/* <LandingButton>Play!</LandingButton> */}
 
               <LandingButton type="submit" onClick={() => setRole("draw")}>
                 Start Drawing Collab

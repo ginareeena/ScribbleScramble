@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
-const cors = require("cors")
+const cors = require("cors");
 
 const port = process.env.PORT || 4001;
 
@@ -41,7 +41,7 @@ const serverSocket = require("socket.io")(http, {
   cors: {
     origin: ["http://localhost:3000", "http://localhost:4001"],
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
   },
   // transports: ["websocket"]
 });
@@ -62,4 +62,3 @@ serverSocket.on("connection", (socket) => {
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
-

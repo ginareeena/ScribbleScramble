@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import { fabric } from "fabric";
 import {
   Title2,
@@ -14,6 +16,7 @@ import {
   BrushSizesContainer,
   SelectedColor,
   AddTxtBtn,
+  EndGameBtn,
 } from "./AppCSS";
 import PaletteComp from "./Palette";
 import socket from "./Socket";
@@ -32,7 +35,7 @@ const CombinedCanvas = () => {
   }, []);
 
   useEffect(() => {
-    if (canvas && canvas.isDrawingMode === true) {
+    if (canvas) {
       updateBrush();
 
       socket.on("load new lines", (value) => {
@@ -40,8 +43,8 @@ const CombinedCanvas = () => {
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
-    } else if (canvas && canvas.isDrawingMode === false) {
-      socket.on("create new text box", (value) => {
+    } else if (canvas) {
+      socket.on("load new lines", (value) => {
         console.log("front end heard create new text box");
         canvas.loadFromJSON(value);
         setCanvas(canvas);
@@ -87,6 +90,17 @@ const CombinedCanvas = () => {
     canvas.isDrawingMode = !canvas.isDrawingMode;
   }
 
+  let finalDrawing;
+
+  function handleEndGame() {
+    setCanvas(canvas);
+    canvas.deactivateAll().renderAll().toDataURL("png");
+    // finalDrawing = canvas.toSVG();
+    console.log("finalDrawing inside handle End Game fun--->", finalDrawing);
+    // let finalDrawing = canvas.toJSON();
+    socket.emit("send final image", finalDrawing);
+  }
+
   function handleDraworWrite() {
     console.log("handleDraw triggered!");
     setCanvas(canvas);
@@ -109,7 +123,7 @@ const CombinedCanvas = () => {
 
     setCanvas(canvas.add(newText).renderAll());
     let canvasJSON = canvas.toJSON();
-    socket.emit("add text box", canvasJSON);
+    socket.emit("send new lines", canvasJSON);
   };
 
   const changeFont = (evt) => {
@@ -205,6 +219,12 @@ const CombinedCanvas = () => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
+        <EndGameBtn onClick={() => handleEndGame()}>
+          <Link to="/endgame" style={{ color: "white" }}>
+            I'm Done!
+          </Link>
+          {/* End Game */}
+        </EndGameBtn>
       </Palette>
       <div>test!</div>
     </div>
