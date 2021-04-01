@@ -13,18 +13,17 @@ import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
 
 const LandingPageComp = () => {
-  const [username, setUsername] = useState("");
-  const [role, setRole] = useState("");
+  const [username, setUsername] = useState("scribbling");
+
   const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (!username) {
-      alert("please choose a valid username");
-    } else {
-      socket.emit("add new player", { username, role });
-      history.push("/combined");
-    }
+    socket.emit("add new player", { username });
+    socket.emit("create-room", "private");
+    socket.emit("join-room", { room: "private", id: socket.id });
+    console.log("landing page emit: add new player + private room");
+    history.push("/combined");
   };
 
   // const createGame = () => {
@@ -41,15 +40,6 @@ const LandingPageComp = () => {
   //   gameReady ? joinGame() : createGame();
   // };
 
-  // const chooseDraw = () => {
-  //   console.log("emitting: player chose to draw");
-  //   socket.emit("player chose to draw", socket.username);
-  // };
-
-  // const chooseWrite = () => {
-  //   console.log("emitting: player chose to write");
-  //   socket.emit("player chose to write", socket.username);
-  // };
   return (
     <div>
       <LandingPage>
@@ -70,6 +60,13 @@ const LandingPageComp = () => {
               <LandingButton type="submit">SCRIBBLE MY SCRAMBLES</LandingButton>
             </StartDrawBtn>
           </LandingBtns>
+
+          {/* <LandingBtns>
+            <StartDrawBtn>
+              <StartDrawImg />
+              <LandingButton type="submit">SCRAMBLE MY SCRIBBLES</LandingButton>
+            </StartDrawBtn>
+          </LandingBtns> */}
 
           {/* <LandingBtns>
             <StartDrawBtn>

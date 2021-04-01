@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 const cors = require("cors");
+const { isObject } = require("util");
 
 const port = process.env.PORT || 4001;
 
@@ -71,18 +72,25 @@ serverSocket.on("connection", (socket) => {
 
   socket.on("joinPublicRoom", () => {
     console.log(magenta("on: joinPublicRoom"));
-    io.of("/").adapter.on("join-room", (PUBLIC, id) => {
+    serverSocket.of("/").adapter.on("join-room", (PUBLIC, id) => {
       socket.join(PUBLIC);
       console.log(blueBright(`socket ${id} has joined room ${room}`));
     });
   });
 
-  socket.on("joinPrivateRoom", () => {
+  serverSocket.of("/").adapter.on("create-room", (room) => {
+    console.log(magenta("on: create-room"));
+    console.log(blueBright(`room ${room} was created`));
+  });
+
+  socket.on("join-room", ({ room, id }) => {
     console.log(magenta("on: joinPrivateRoom"));
-    io.of("/").adapter.on("join-room", (PRIVATE, id) => {
-      socket.join(PRIVATE);
-      console.log(`socket ${id} has joined room ${room}`);
-    });
+    socket.join(room);
+    console.log(blueBright(`socket ${id} has joined room ${room}`));
+
+    // serverSocket.of("/").adapter.on("join-room", (PRIVATE, id) => {
+
+    // });
   });
 
   console.log(`server new client connected on ${socket.id}`);
@@ -92,7 +100,6 @@ serverSocket.on("connection", (socket) => {
   });
   socket.on("send new lines", (value) => {
     console.log("server side heard drawing from front end!");
-    console.log("drawing value received in back: --->", value);
     socket.broadcast.emit("load new lines", value);
   });
 });
