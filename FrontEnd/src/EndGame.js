@@ -17,16 +17,8 @@ const EndGame = () => {
     console.log("finalImg---->", finalImg);
   });
 
-  //   function handleEndGame() {
-  //     setCanvas(canvas);
-  //     let finalDrawing = canvas.toJSON();
-  //     socket.emit("send final image", finalDrawing);
-  //   }
-
   const handleDownloadBtn = () => {
     console.log("clicked download");
-    //grab image json data from local storage
-    //send json data to dataURL method with type jpeg
   };
 
   return (
