@@ -49,6 +49,7 @@ const serverSocket = require("socket.io")(http, {
 });
 
 let players = [];
+let gameRooms = [];
 const listPlayers = () => {
   console.log(cyan("current players:"));
   players.forEach((player) => {
@@ -56,11 +57,14 @@ const listPlayers = () => {
   });
 };
 
+//socket events
 serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
+  //re: players
   socket.on("add new player", (username) => {
     console.log(magenta("on: add new player"));
+    socket.username = username;
     let newPlayer = new Player(socket.id, username);
     players.push(newPlayer);
     console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
@@ -79,7 +83,6 @@ serverSocket.on("connection", (socket) => {
     console.log(blueBright(`socket ${id} has joined room ${room}`));
   });
 
-  console.log(`server new client connected on ${socket.id}`);
   socket.on("add text box", (value, textCanvas) => {
     console.log("server side heard add text box!");
     socket.broadcast.emit("create new text box", value, textCanvas);
