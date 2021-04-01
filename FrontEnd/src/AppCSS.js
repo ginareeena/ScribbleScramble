@@ -29,14 +29,12 @@ export const Body = styled.div`
   }
   @media (max-width: 813px) {
     background-image: url(./images/background.jpg) repeat;
-
     width: 813px;
     margin-right: 5px;
   }
 `;
 
-// @media (max-width: 1280px);
-
+// media query stuff not currently used by might be later
 const size = {
   mobileS: "320px",
   mobileM: "375px",
@@ -57,9 +55,18 @@ export const Header = styled.header`
   no-repeat: true
 `;
 
+export const FooterStyle = styled.footer`
+  display: flex;
+  background-image: url(./images/background.jpg) repeat;
+  height: 150px;
+  width: 80%
+  justify-content: space-between;
+  margin: auto;
+`;
+
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
-  height: 600px;
+  height: 550px;
   display: flex;
   justify-content: center;
   width: 800px;
@@ -106,6 +113,12 @@ export const Title2 = styled.h2`
   color: white;
 `;
 
+export const Title3 = styled.h3`
+  font-size: 1em;
+  text-align: center;
+  color: black;
+`;
+
 export const Paragraph = styled.p`
   align-self: center;
   position: absolute;
@@ -113,6 +126,17 @@ export const Paragraph = styled.p`
   font-size: 1.2em;
   text-align: center;
   color: black;
+`;
+
+export const MasterScramblers = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  height: 30px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
 `;
 
 // Canvas Elements
@@ -134,7 +158,7 @@ export const CanvasBackground = styled.div`
   margin-bottom: 10px;
 `;
 
-// this styles all buttons in the "palette"-> brush type, color, size etc
+// container for all palette buttons
 export const Palette = styled.div`
   display: flex;
   justify-content: center;
@@ -153,7 +177,7 @@ export const Palette = styled.div`
   }
 `;
 
-//this is for just the color swatches in the palette
+//container for just the color swatches portion of the palette
 
 export const BrushSizesContainer = styled.div`
   display: flex;
@@ -162,6 +186,7 @@ export const BrushSizesContainer = styled.div`
   margin-left: 10px;
 `;
 
+//brush size buttons
 export const SmallBrushBtn = styled.button`
   height: 35px;
   width: 35px;
@@ -258,6 +283,51 @@ export const StartWriteBtn = styled.div`
   flex-direction: column;
 `;
 
+export const ScrambleBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin-left: 5px;
+  height: 30px;
+  width: 90px;
+  background-color: #134d44;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const WriteModeBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin-left: 5px;
+  height: 30px;
+  width: 79px;
+  background-color: #134d44;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DrawBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin-left: 5px;
+  height: 30px;
+  width: 80px;
+  background-color: #134d44;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const LandingBtns = styled.div`
   display: flex;
   justify-content: center;
@@ -309,24 +379,7 @@ export const PngButton = styled.button`
   justify-content: center;
 `;
 
-// export const brushBtn= style.button
-
 export const AddTxtBtn = styled.button`
-  border-radius: 6px;
-  border: 2px solid darkgrey;
-  align: center;
-  margin: 0 1em;
-  margin-top: 5px;
-  height: 28px;
-  width: 80px;
-  background-color: #134d44;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const EndGameBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
@@ -353,4 +406,19 @@ export const DownloadBtn = styled.button`
   color: white;
   font-size: 1.2em;
   font-weight: bold;
+`;
+
+export const EndGameBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin: 0 1em;
+  margin-top: 5px;
+  height: 28px;
+  width: 80px;
+  background-color: #134d44;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
