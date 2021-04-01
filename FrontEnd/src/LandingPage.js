@@ -10,6 +10,7 @@ import {
   StartWriteImg,
 } from "./AppCSS";
 import socket from "./Socket";
+import AvatarCarousel from "./AvatarCarousel";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("");
@@ -24,12 +25,12 @@ const LandingPageComp = () => {
       socket.emit("add new player", { username, role });
       history.push("/combined");
     }
-
   };
 
   return (
     <div>
       <LandingPage>
+        <AvatarCarousel />
         <form onSubmit={handleSubmit}>
           <LandingBtns>
             <h6>Please choose a username:</h6>

@@ -8,7 +8,6 @@ import CombinedCanvas from "./CombinedCanvas";
 // Importing Modal for testing
 import ModalComp from "./Modal";
 
-
 const Routes = () => {
   return (
     <Router>
