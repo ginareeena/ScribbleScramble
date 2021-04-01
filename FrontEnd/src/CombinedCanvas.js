@@ -17,7 +17,7 @@ import {
   ScrambleBtn,
   DrawBtn,
   WriteModeBtn,
-  EndGameBtn
+  EndGameBtn,
 } from "./AppCSS";
 import { Link } from "react-router-dom";
 

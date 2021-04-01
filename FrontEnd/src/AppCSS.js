@@ -20,7 +20,6 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 export const Body = styled.div`
   display: flex;
-
   @media (max-width: 2650px) {
     background-image: url(./images/background.jpg);
 
@@ -57,11 +56,10 @@ export const Header = styled.header`
 
 export const FooterStyle = styled.footer`
   display: flex;
-  background-image: url(./images/background.jpg) repeat;
-  height: 150px;
-  width: 80%
-  justify-content: space-between;
-  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecf6f0;
+  height: 215px;
 `;
 
 export const LandingPage = styled.div`
@@ -72,7 +70,7 @@ export const LandingPage = styled.div`
   width: 800px;
   margin: auto;
   margin-top: 25px;
-  margin-bottom: 250px;
+  margin-bottom: 80px;
 `;
 
 export const PlayArea = styled.div`
@@ -119,7 +117,6 @@ export const Title3 = styled.h3`
   color: black;
 `;
 
-
 export const Paragraph = styled.p`
   align-self: center;
   position: absolute;
@@ -133,13 +130,11 @@ export const MasterScramblers = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: space-between;
-  height: 30px;
+  align-items: center;
+  height: 200px;
   margin: auto;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin-top: 15px;
 `;
-
 
 // Canvas Elements
 
