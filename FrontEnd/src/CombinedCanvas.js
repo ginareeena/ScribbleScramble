@@ -43,13 +43,14 @@ const CombinedCanvas = () => {
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
-    } else if (canvas) {
-      socket.on("load new lines", (value) => {
-        console.log("front end heard create new text box");
-        canvas.loadFromJSON(value);
-        setCanvas(canvas);
-      });
     }
+    // else if (canvas) {
+    //   socket.on("load new lines", (value) => {
+    //     console.log("front end heard create new text box");
+    //     canvas.loadFromJSON(value);
+    //     setCanvas(canvas);
+    //   });
+    // }
   }, [canvas]);
 
   useEffect(() => {
@@ -97,7 +98,6 @@ const CombinedCanvas = () => {
     setCanvas(canvas);
 
     finalDrawing = canvas.toDataURL();
-    blob = dataURLtoBlob(finalDrawing);
     // finalDrawing = canvas.discardActiveObject().renderAll().toDataURL("png");
     // finalDrawing = canvas.toSVG();
     console.log("blob--->", blob);
