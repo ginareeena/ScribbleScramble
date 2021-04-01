@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Routes from "./Routes";
 import { Body, FooterStyle, Title3, MasterScramblers } from "./AppCSS";
-import { cotton, crab, whale, bird } from './Icons'
+import { cotton, crab, whale, firefly } from './Icons'
 
 function Footer() {
 
@@ -29,7 +29,7 @@ function Footer() {
             </MasterScramblers>
             <MasterScramblers>
             <a href="/">
-              <img src={bird} />
+              <img src={firefly} />
             </a>
             <Title3>Kelsey Greene</Title3>
             </MasterScramblers>
