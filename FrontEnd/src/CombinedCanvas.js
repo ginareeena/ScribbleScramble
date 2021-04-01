@@ -227,7 +227,6 @@ const CombinedCanvas = () => {
           <Link to="/endgame" style={{ color: "white" }}>
             I'm Done!
           </Link>
-          {/* End Game */}
         </EndGameBtn>
       </Palette>
       <div>test!</div>

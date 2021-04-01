@@ -9,20 +9,6 @@ import socket from "./Socket";
 const EndGame = () => {
   const [canvas, setCanvas] = useState("");
 
-  //   useEffect(() => {
-  //     setCanvas(initCanvas());
-  //   }, []);
-
-  //   const initCanvas = () =>
-  //     new fabric.Canvas("canvas", {
-  //       height: 600,
-  //       width: 800,
-  //       backgroundColor: "white",
-  //       isDrawingMode: true,
-  //     });
-
-  //   const [finalImage, setFinalImage] = useState("");
-
   //   socket.on("send final image");
   let finalImg;
 
