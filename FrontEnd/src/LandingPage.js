@@ -1,5 +1,4 @@
 import { useState } from "react";
-import socket from "./Socket";
 import { useHistory } from "react-router-dom";
 import {
   StartDrawBtn,
@@ -10,6 +9,8 @@ import {
   StartDrawImg,
   StartWriteImg,
 } from "./AppCSS";
+import socket from "./Socket";
+import AvatarCarousel from "./AvatarCarousel";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("");
@@ -56,6 +57,7 @@ const LandingPageComp = () => {
   return (
     <div>
       <LandingPage>
+        <AvatarCarousel />
         <form onSubmit={handleSubmit}>
           <LandingBtns>
             <h6>Please choose a username:</h6>
