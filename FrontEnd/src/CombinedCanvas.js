@@ -13,28 +13,30 @@ import {
   LargeBrushBtn,
   BrushSizesContainer,
   SelectedColor,
+  AddTxtBtn,
+  ScrambleBtn,
+  DrawBtn,
+  WriteModeBtn,
 } from "./AppCSS";
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 
-//storing color, brush size and canvas in state
+// Canvas:
+// Writing Mode/ Scramble Mode
+// DrawingButton
 
-const DrawingCanvas = () => {
+//storing color, brush size, font and canvas in state
+
+const CombinedCanvas = () => {
   const [canvas, setCanvas] = useState("");
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
+  const [font, setFont] = useState("arial");
 
   //creates initial canvas
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
-
-  // when canvas is first created we initialize the brush
-  // if canvas changes we convert it to JSON
-  //and send that over sockets
-  // however UseEffect does not know when we're drawing
-  // because we don't have need a change handler to draw so we don't set the canvas
-  // when we do, so the canvas in state doesn't update
 
   useEffect(() => {
     if (canvas) {
@@ -45,15 +47,12 @@ const DrawingCanvas = () => {
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
-    }
-  }, [canvas]);
-
-  useEffect(() => {
-    console.log("canvas is updating", canvas);
-    if (canvas) {
-      // let drawingCanvasJSON = canvas.toJSON();
-      // console.log("front end emiting drawingtoJSON:", drawingCanvasJSON);
-      // socket.emit("send new lines", drawingCanvasJSON);
+    } else if (canvas) {
+      socket.on("create new text box", (value) => {
+        console.log("front end heard create new text box");
+        canvas.loadFromJSON(value);
+        setCanvas(canvas);
+      });
     }
   }, [canvas]);
 
@@ -91,21 +90,59 @@ const DrawingCanvas = () => {
     }
   }
 
-  function handleDraw() {
-    console.log("handleDraw triggered!");
-    setCanvas(canvas);
-    let drawingCanvasJSON = canvas.toJSON();
-    console.log("front end emiting drawingtoJSON:", drawingCanvasJSON);
-    // socket.emit("send new lines", drawingCanvasJSON);
-    socket.emit("send new lines", drawingCanvasJSON);
+  // function toggleDrawingMode() {
+  //   canvas.isDrawingMode = !canvas.isDrawingMode;
+  // }
+
+  function startDrawMode() {
+    canvas.isDrawingMode = true;
   }
+  function startWriteMode() {
+    canvas.isDrawingMode = false;
+  }
+
+  function handleDraworWrite() {
+    console.log("handleDraworWrite triggered!");
+    setCanvas(canvas);
+    let canvasJSON = canvas.toJSON();
+    console.log("front end emiting combinedCanvas:", canvasJSON);
+    // socket.emit("send new lines", drawingCanvasJSON);
+    socket.emit("send new lines", canvasJSON);
+  }
+
+  // write a randomizer that randomizers the text functionality
+
+  // text logic
+  const handleTextBtn = () => {
+    //remove this when add logic to room/player
+    canvas.isDrawingMode = false;
+    const newText = new fabric.IText("Type here...", {
+      left: 150,
+      top: 100,
+      isContentEditable: true,
+      fontFamily: font,
+    });
+    canvas.add(newText).renderAll();
+    setCanvas(canvas);
+    let canvasJSON = canvas.toJSON();
+    console.log("emitting inside handleText");
+    socket.emit("send new lines", canvasJSON);
+  };
+
+  const changeFont = (evt) => {
+    setFont(evt.target.value);
+    canvas.getActiveObject().setSelectionStyles({
+      fontFamily: font,
+    });
+    canvas.renderAll();
+  };
 
   return (
     <div>
       <Title2></Title2>
       <PlayArea
         onClick={() => {
-          handleDraw();
+          handleDraworWrite();
         }}
       >
         <CanvasBackground>
@@ -114,19 +151,23 @@ const DrawingCanvas = () => {
       </PlayArea>
 
       <Palette>
-        <div id="drawing-mode-options">
+        <ScrambleBtn onClick={() => startWriteMode()}>Scramble</ScrambleBtn>
+        <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
+        <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
+
+        {/* <div id="drawing-mode-options">
           <label
             htmlFor="drawing-mode-selector"
             style={{ marginRight: "8px", fontWeight: "bold", fontSize: "14px" }}
           >
-            Brushes:
+            Drawing Modes:
           </label>
-          <select id="drawing-mode-selector" onChange={() => updateBrush()}>
-            <option value="Pencil">Pencil</option>
-            <option value="Circle">Circle</option>
-            <option value="Pattern">Pattern</option>
+          <select id="drawing-mode-selector">
+            <option value="Drawing">Draw Mode</option>
+            <option value="Writing">Write Mode</option>
+            <option value="Scramble">Scramble Mode</option>
           </select>
-        </div>
+        </div> */}
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
             {/* Brush Sizes: */}
@@ -158,32 +199,39 @@ const DrawingCanvas = () => {
             id="selectedColor"
             style={{
               backgroundColor: currColor,
-              height: "30px",
-              width: "30px",
+              height: "35px",
+              width: "35px",
             }}
           ></div>
         </SelectedColor>
         <PaletteColors>
           <PaletteComp currColor={currColor} setColor={setColor} />
         </PaletteColors>
-
         <PngButton onClick={() => canvas.clear()}>
-          <img
-            src="/images/trashBtn.png"
-            style={{ width: "100%", marginTop: "2px" }}
-          />
+          <img src="/images/trashBtn.png" style={{ width: "100%" }} />
         </PngButton>
         <PngButton onClick={() => setColor("white")}>
-          <img
-            src="/images/eraser3.png"
-            style={{ width: "100%", marginTop: "2px" }}
-          />
+          <img src="/images/eraser3.png" style={{ width: "100%" }} />
         </PngButton>
       </Palette>
+      <Palette>
+        {/* <WriteModeBtn onClick={() => startWriteMode()}>Write Mode</WriteModeBtn> */}
+        <div id="text-options">
+          <span style={{ fontWeight: "bold" }}>Text Palette:{"  "}</span>
 
+          <label htmlFor="font-family">Font:</label>
+          <select id="font-family" value={font} onChange={changeFont}>
+            <option value="Arial">Arial</option>
+            <option value="comic sans ms">Comic Sans MS</option>
+            <option value="impact">Impact</option>
+            <option value="monaco">Monaco</option>
+          </select>
+        </div>
+        <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
+      </Palette>
       <div>test!</div>
     </div>
   );
 };
 
-export default DrawingCanvas;
+export default CombinedCanvas;

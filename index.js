@@ -1,9 +1,6 @@
 const { yellow, red, blueBright, magenta, cyan } = require("chalk");
-//yellow: new client connected
-// red: client disconnected
-// magenta: event from front end
-// blueBright: server 'message'
-// cyan: current players
+const Player = require("./player");
+
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
@@ -16,6 +13,8 @@ const {
 
 const app = express();
 const http = require("http").createServer(app);
+const cors = require("cors")
+
 const port = process.env.PORT || 4001;
 
 //middleware
@@ -23,6 +22,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "FrontEnd/build")));
+app.use(cors());
 
 //api routes
 app.get("/", (req, res, next) => {
@@ -44,9 +44,11 @@ app.use((err, req, res, next) => {
 //sockets
 const serverSocket = require("socket.io")(http, {
   cors: {
-    origins: ["http://localhost:3000", "http://localhost:4001"],
+    origin: ["http://localhost:3000", "http://localhost:4001"],
     methods: ["GET", "POST"],
+    credentials: true
   },
+  // transports: ["websocket"]
 });
 
 const makeID = uniqueNamesGenerator({
@@ -117,7 +119,6 @@ serverSocket.on("connection", (socket) => {
   //drawing
   socket.on("add text box", (value, textCanvas) => {
     console.log("server side heard add text box!");
-    // console.log("server/add text box value", value);
     socket.broadcast.emit("create new text box", value, textCanvas);
   });
   socket.on("send new lines", (value) => {
@@ -130,3 +131,4 @@ serverSocket.on("connection", (socket) => {
 http.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
+

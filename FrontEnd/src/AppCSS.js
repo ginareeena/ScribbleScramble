@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Modal from 'styled-react-modal';
+import Modal from "styled-react-modal";
 import { BrowserRouter as Link } from "react-router-dom";
 
 /*
-SPACE IS INCLUDED FOR ADDITIONAL ELEMENTS TO BE ADDED IN 
+SPACE IS INCLUDED FOR ADDITIONAL ELEMENTS TO BE ADDED IN
 THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 *** Table of Contents ***
@@ -20,10 +20,30 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 export const Body = styled.div`
   display: flex;
-  flex-flow: column wrap;
-  width: 100%;
-  background-image: url(./images/background.jpg);
+
+  @media (max-width: 2650px) {
+    background-image: url(./images/background.jpg);
+
+    flex-flow: column wrap;
+    width: 100%;
+  }
+  @media (max-width: 813px) {
+    background-image: url(./images/background.jpg) repeat;
+    width: 813px;
+    margin-right: 5px;
+  }
 `;
+
+// media query stuff not currently used by might be later
+const size = {
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
+};
 
 export const Header = styled.header`
   background: #000000
@@ -59,14 +79,6 @@ export const StyledModal = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-
-
-
-
-
-
-
 
 // Basic Elements
 export const StyledLink = styled(Link)`
@@ -120,29 +132,35 @@ export const CanvasBackground = styled.div`
   margin-bottom: 10px;
 `;
 
-// this styles all buttons in the "palette"-> brush type, color, size etc
+// container for all palette buttons
 export const Palette = styled.div`
   display: flex;
   justify-content: center;
   background: #4c9c8a;
-  width: 800px;
-  height: 120px;
+  align-items: center;
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 125px;
-  border-radius: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  @media (max-width: 2650px) {
+    width: 800px;
+    height: 50px;
+  }
+  @media (max-width: 813px) {
+    width: 600px;
+  }
 `;
 
-
-//this is for just the color swatches in the palette
+//container for just the color swatches portion of the palette
 
 export const BrushSizesContainer = styled.div`
   display: flex;
-  height: 20px;
+  align-items: center;
+  height: 50px;
   margin-left: 10px;
-  margin-top: 10px;
 `;
 
+//brush size buttons
 export const SmallBrushBtn = styled.button`
   height: 35px;
   width: 35px;
@@ -184,7 +202,8 @@ export const SelectedSize = styled.div`
 
 export const SelectedColor = styled.div`
   display: flex;
-  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
   margin-right: 0px;
 `;
 
@@ -198,10 +217,7 @@ export const PaletteBtns = styled.div`
   margin-top: 10px;
 `;
 
-
-
 // Image Elements
-
 
 export const StartDrawImg = styled.div`
   display: flex;
@@ -241,6 +257,51 @@ export const StartWriteBtn = styled.div`
   flex-direction: column;
 `;
 
+export const ScrambleBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin-left: 5px;
+  height: 30px;
+  width: 90px;
+  background-color: #134d44;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const WriteModeBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin-left: 5px;
+  height: 30px;
+  width: 79px;
+  background-color: #134d44;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DrawBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  margin-left: 5px;
+  height: 30px;
+  width: 80px;
+  background-color: #134d44;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const LandingBtns = styled.div`
   display: flex;
   justify-content: center;
@@ -259,6 +320,11 @@ export const LandingButton = styled.button`
   color: white;
   font-size: 1.2em;
   font-weight: bold;
+  height: 45px;
+  width: 223px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ClearButton = styled.button`
@@ -277,16 +343,15 @@ export const PngButton = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  margin: 0 1em;
-  margin-top: 10px;
-  margin-right: 0px;
-  height: 28px;
-  width: 33px;
+  margin-left: 5px;
+  height: 36px;
+  width: 36px;
   background-color: #4c9c8a;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
-
-// export const brushBtn= style.button
 
 export const AddTxtBtn = styled.button`
   border-radius: 6px;
@@ -298,6 +363,9 @@ export const AddTxtBtn = styled.button`
   width: 80px;
   background-color: #134d44;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const DownloadBtn = styled.button`

@@ -14,8 +14,8 @@ const PaletteComp = ({ currColor, setColor }) => {
               }}
               style={{
                 backgroundColor: color,
-                height: "15px",
-                width: "5px",
+                height: "19px",
+                width: "19px",
               }}
             ></button>
           );
@@ -31,8 +31,8 @@ const PaletteComp = ({ currColor, setColor }) => {
               }}
               style={{
                 backgroundColor: color,
-                height: "15px",
-                width: "10px",
+                height: "19px",
+                width: "19px",
               }}
             ></button>
           );
