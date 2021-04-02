@@ -74,6 +74,12 @@ const listRooms = () => {
   });
   console.log(green("active rooms:", activeRooms));
 };
+const listRoomPlayers = (room) => {
+  for (let each in players) {
+    console.log(cyan("players in room:"));
+    console.log(red(JSON.stringify(each)));
+  }
+};
 
 //socket events
 serverSocket.on("connection", (socket) => {
@@ -114,8 +120,10 @@ serverSocket.on("connection", (socket) => {
   socket.on("join room", ({ username, room }) => {
     console.log(magenta("on: join room"));
     socket.join(room);
+    // players[username].setRoom(room);
     console.log(blueBright(`${username} has joined room: ${room}`));
     listRooms();
+    listRoomPlayers(room);
   });
 
   // re: canvas
