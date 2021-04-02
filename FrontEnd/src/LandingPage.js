@@ -44,46 +44,46 @@ const LandingPageComp = () => {
   return (
     <div>
       <LandingPage>
-      <form>
-        <LandingBtns>
-          <input
-            style={{ marginTop: "10px", marginBottom: "10px" }}
-            type="text"
-            name="username"
-            defaultValue="Enter Name"
-            onChange={(evt) => setUsername(evt.target.value.trim())}
-          />
-          <AvatarCarousel />
-        </LandingBtns>
-        {/* <AvatarCarouselStyle> */}
-        {/* </AvatarCarouselStyle> */}
+        <form>
+          <LandingBtns>
+            <input
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              type="text"
+              name="username"
+              defaultValue="Enter Name"
+              onChange={(evt) => setUsername(evt.target.value.trim())}
+            />
+            <AvatarCarousel />
+          </LandingBtns>
+          {/* <AvatarCarouselStyle> */}
+          {/* </AvatarCarouselStyle> */}
 
-        <LandingBtns>
-          <StartDrawBtn>
-            <ChooseRoomButton
-              type="button"
-              name="create"
-              onClick={handleCreate}
-            >
-              {/* create new room */}
-              Play!
-            </ChooseRoomButton>
-          </StartDrawBtn>
-        </LandingBtns>
+          <LandingBtns>
+            <StartDrawBtn>
+              <ChooseRoomButton
+                type="button"
+                name="create"
+                onClick={handleCreate}
+              >
+                {/* create new room */}
+                Play!
+              </ChooseRoomButton>
+            </StartDrawBtn>
+          </LandingBtns>
 
-        <LandingBtns>
-          <input
-            style={{ marginTop: "10px", marginBottom: "10px" }}
-            type="text"
-            name="join-room-name"
-            onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
-          />
-          <StartDrawBtn>
-            <CreateRoomButton type="button" name="join" onClick={handleJoin}>
-              Go to Private Room
-            </CreateRoomButton>
-          </StartDrawBtn>
-        </LandingBtns>
+          <LandingBtns>
+            <input
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              type="text"
+              name="join-room-name"
+              onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
+            />
+            <StartDrawBtn>
+              <CreateRoomButton type="button" name="join" onClick={handleJoin}>
+                Go to Private Room
+              </CreateRoomButton>
+            </StartDrawBtn>
+          </LandingBtns>
         </form>
       </LandingPage>
       <HowToPlay>
