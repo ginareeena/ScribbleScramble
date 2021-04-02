@@ -19,6 +19,7 @@ import {
   DrawBtn,
   WriteModeBtn,
   EndGameBtn,
+  RoomHeader,
 } from "./AppCSS";
 import { Link } from "react-router-dom";
 import LinkButton from './LinkButton'
@@ -118,10 +119,11 @@ const CombinedCanvas = (props) => {
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
     console.log("front end emiting combinedCanvas:", room, canvasJSON);
-    if(!canvas.isDrawingMode) {socket.emit("add new text box", {room, canvasJSON})} else {
+    if (!canvas.isDrawingMode) {
+      socket.emit("add new text box", { room, canvasJSON });
+    } else {
       socket.emit("send new lines", { room, canvasJSON });
     }
-
   }
 
   // write a randomizer that randomizers the text functionality
@@ -164,7 +166,17 @@ const CombinedCanvas = (props) => {
 
   return (
     <div>
-      <Title2>ROOM: {params.room}</Title2>
+      <RoomHeader>
+        <span
+          style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
+        >
+          {" "}
+          Room:{" "}
+        </span>
+
+        <span style={{ color: "white" }}> {params.room} </span>
+        {/* <div>{room}</div> */}
+      </RoomHeader>
       <PlayArea
         onClick={() => {
           handleDraworWrite();

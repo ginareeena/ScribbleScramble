@@ -6,6 +6,8 @@ import {
   PlayAgainBtn,
   Paragraph,
   DownloadBtn,
+  EndGameElement,
+  EndGameH1,
 } from "./AppCSS";
 import { fabric } from "fabric";
 
@@ -34,19 +36,28 @@ console.log('scribs in endgame', props)
 
   return (
     <EndGamePage>
-      <div>
-        <h1>Thanks For Playing!</h1>
-        <Paragraph>Save your Scribb Scrabb?</Paragraph>
+      <EndGameContainer>
+        <EndGameH1>
+          <h1>Thanks For Playing!</h1>
+        </EndGameH1>
+        <EndGameElement>Save your Scribb Scrabb?</EndGameElement>
+        <EndGameElement>
+          <img
+            src="/images/batty.png"
+            style={{ width: "300px", margin: "10px" }}
+          />
+        </EndGameElement>
+
         <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn>
-        {/* <div>{finalImg}</div> */}
-        <Link to="/">Play Again?</Link> {/* </div> */}
-      </div>
+
+        <div>{finalImg}</div>
+        <EndGameElement>
+          <Link to="/" style={{ color: "black", margin: "15px" }}>
+            Play Again?
+          </Link>{" "}
+        </EndGameElement>
+      </EndGameContainer>
       <SaveScribs scribs={scribs}/>
-      {/* <PlayAgainBtn>
-        {" "}
-        <Link to="/">Play Again?</Link>
-      </PlayAgainBtn> */}
-      
     </EndGamePage>
   );
 };
