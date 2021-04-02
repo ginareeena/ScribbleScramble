@@ -4,7 +4,7 @@ import {
   StartDrawBtn,
   LandingBtns,
   LandingPage,
-  ChooseRoomButton,
+  PublicRoomButton,
   CreateRoomButton,
   HowToPlay,
 } from "./AppCSS";
@@ -60,14 +60,14 @@ const LandingPageComp = () => {
 
           <LandingBtns>
             <StartDrawBtn>
-              <ChooseRoomButton
+              <PublicRoomButton
                 type="button"
                 name="create"
                 onClick={handleCreate}
               >
                 {/* create new room */}
                 Play!
-              </ChooseRoomButton>
+              </PublicRoomButton>
             </StartDrawBtn>
           </LandingBtns>
 
@@ -80,7 +80,7 @@ const LandingPageComp = () => {
             />
             <StartDrawBtn>
               <CreateRoomButton type="button" name="join" onClick={handleJoin}>
-                Go to Private Room
+                Create Room
               </CreateRoomButton>
             </StartDrawBtn>
           </LandingBtns>

@@ -74,6 +74,21 @@ export const LandingPage = styled.div`
   margin-bottom: 40px;
 `;
 
+export const RoomHeader = styled.div`
+  background-color: #ecf6f0;
+  border-radius: 6px;
+  height: 100px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 10px;
+  font-size: 20px;
+`;
+
 export const HowToPlay = styled.div`
   background-color: #ecf6f0;
   height: 320px;
@@ -383,7 +398,7 @@ export const LandingButton = styled.button`
   align-items: center;
 `;
 
-export const ChooseRoomButton = styled.button`
+export const PublicRoomButton = styled.button`
   border-radius: 2px;
   border: 2px solid darkgrey;
   align: center;
