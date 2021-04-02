@@ -33,6 +33,7 @@ import {
   cat,
   coffee,
   creature,
+  flower,
   horse,
   link,
   wasp,
@@ -50,7 +51,7 @@ const AvatarCarousel = () => {
     <CarouselProvider
       naturalSlideWidth={1}
       naturalSlideHeight={1}
-      totalSlides={24}
+      totalSlides={26}
       infinite={true}
     >
       {" "}
@@ -138,7 +139,13 @@ const AvatarCarousel = () => {
             <Image src={wasp} alt="wasp" />
           </Slide>
           <Slide index={23}>
+            <Image src={flower} alt="ski" />
+          </Slide>
+          <Slide index={24}>
             <Image src={ski} alt="ski" />
+          </Slide>
+          <Slide index={25}>
+            <Image src={creature} alt="ski" />
           </Slide>
         </Slider>
 
