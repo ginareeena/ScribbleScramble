@@ -471,7 +471,7 @@ export const AddTxtBtn = styled.button`
   align-items: center;
 `;
 
-export const DownloadBtn = styled.button`
+export const DownloadAhref = styled.a`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
