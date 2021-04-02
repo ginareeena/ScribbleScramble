@@ -20,10 +20,17 @@ import {
   EndGameBtn,
   RoomHeader,
 } from "./AppCSS";
-import { useHistory } from "react-router-dom";
+
+import { Link, useHistory } from "react-router-dom";
+// import LinkButton from "./LinkButton";
 
 import PaletteComp from "./Palette";
 import socket from "./Socket";
+import { fish } from "./Icons";
+
+import EndGame from "./EndGame";
+import SaveScribs from "./SaveScribs";
+
 
 // Canvas:
 // Writing Mode/ Scramble Mode
@@ -145,6 +152,7 @@ const CombinedCanvas = () => {
     socket.emit("send final image", finalDrawing);
     console.log("scribs in combined canvas", scribs);
     // needed to send finalDrawing because react doesn't set scribs right away so wasn't sending image
+    // passing scribs down as props via history here instead of link!
     history.push("/endgame", { scribs: finalDrawing });
   }
 

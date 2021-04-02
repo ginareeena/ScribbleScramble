@@ -44,6 +44,8 @@ export const link = process.env.PUBLIC_URL + "/images/avatars/link.png";
 export const wasp = process.env.PUBLIC_URL + "/images/avatars/wasp.png";
 export const ski = process.env.PUBLIC_URL + "/images/avatars/ski.png";
 
+export const flower = process.env.PUBLIC_URL + "/images/avatars/flower.png";
+
 //   cake: <img src="../public/avatars/images/cake.jpg" />,
 //   catzoom: <img src="../public/avatars/images/catzoom.jpg" />,
 //   cotton: <img src="../public/avatars/images/cotton.jpg" />,
