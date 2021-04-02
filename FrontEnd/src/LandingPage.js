@@ -8,10 +8,10 @@ import {
   LandingPage,
   StartDrawImg,
   StartWriteImg,
+  ChooseRoomButton,
 } from "./AppCSS";
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
-
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("scribbling");
@@ -30,45 +30,47 @@ const LandingPageComp = () => {
   return (
     <div>
       <LandingPage>
-        <AvatarCarousel />
         <form onSubmit={handleSubmit}>
           <LandingBtns>
-            <h6>Please choose a username:</h6>
             <input
+              style={{ marginTop: "10px", marginBottom: "10px" }}
               type="text"
               name="username"
+              defaultValue="Enter Name"
               onChange={(evt) => setUsername(evt.target.value.trim())}
             />
+            <AvatarCarousel />
           </LandingBtns>
+          {/* <AvatarCarouselStyle> */}
+          {/* </AvatarCarouselStyle> */}
 
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton
+              <ChooseRoomButton
                 type="submit"
                 name="private"
                 onClick={(evt) => setRoom(evt.target.name)}
               >
-                SCRIBBLE MY Private SCRAMBLES
-              </LandingButton>
+                Go to Private Room
+              </ChooseRoomButton>
             </StartDrawBtn>
           </LandingBtns>
 
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton
+              <ChooseRoomButton
                 type="submit"
                 name="public"
                 onClick={(evt) => setRoom(evt.target.name)}
               >
-                SCRAMBLE MY Public SCRIBBLES
-              </LandingButton>
+                Go to Public Room
+              </ChooseRoomButton>
             </StartDrawBtn>
           </LandingBtns>
         </form>
       </LandingPage>
-      
     </div>
   );
 };

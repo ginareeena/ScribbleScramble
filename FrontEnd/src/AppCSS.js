@@ -62,14 +62,21 @@ export const FooterStyle = styled.footer`
   height: 215px;
 `;
 
-export const LandingPage = styled.div`
-  background-color: #ecf6f0;
-  height: 550px;
+export const AvatarCarouselStyle = styled.div`
+  height: 20px;
   display: flex;
   justify-content: center;
-  width: 800px;
+  align-items: center;
+`;
+
+export const LandingPage = styled.div`
+  background-color: #ecf6f0;
+  height: 335px;
+  display: flex;
+  justify-content: center;
+  width: 400px;
   margin: auto;
-  margin-top: 25px;
+  margin-top: 35px;
   margin-bottom: 80px;
 `;
 
@@ -325,26 +332,45 @@ export const DrawBtn = styled.button`
   justify-content: center;
 `;
 
+export const AvatarSelector = styled.div`
+  position: relative;
+`;
+
 export const LandingBtns = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: 10px;
   margin-top: 5px;
+  width: 120px;
 `;
 
 export const LandingButton = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  margin: 0 1em;
-  padding: 15px;
+  margin-top: 20px;
   background-color: #134d44;
   color: white;
   font-size: 1.2em;
   font-weight: bold;
   height: 45px;
   width: 223px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ChooseRoomButton = styled.button`
+  border-radius: 2px;
+  border: 2px solid darkgrey;
+  align: center;
+  background-color: #134d44;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  height: 35px;
+  width: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
