@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   StartDrawBtn,
   StartWriteBtn,
@@ -12,9 +12,10 @@ import {
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
 
-const LandingPageComp = ({ match }) => {
+const LandingPageComp = () => {
   const [username, setUsername] = useState("scribbling");
   const history = useHistory();
+
   useEffect(() => {
     socket.on("new room created", (name) => {
       console.log("FE on: new room created:", name);
@@ -45,9 +46,7 @@ const LandingPageComp = ({ match }) => {
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton type="submit" name="private">
-                SCRIBBLE MY Private SCRAMBLES
-              </LandingButton>
+              <LandingButton type="submit">SCRIBBLE MY SCRAMBLES</LandingButton>
             </StartDrawBtn>
           </LandingBtns>
 
@@ -55,7 +54,7 @@ const LandingPageComp = ({ match }) => {
             <StartDrawBtn>
               <StartDrawImg />
               <LandingButton type="submit">
-                SCRAMBLE MY Public SCRIBBLES
+                MY SCRAMBLES ARE SCRIBBLED
               </LandingButton>
             </StartDrawBtn>
           </LandingBtns>
