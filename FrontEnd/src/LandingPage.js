@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   StartDrawBtn,
-  StartWriteBtn,
-  LandingButton,
   LandingBtns,
   LandingPage,
-  StartDrawImg,
-  StartWriteImg,
+  ChooseRoomButton,
+  CreateRoomButton,
+  HowToPlay,
 } from "./AppCSS";
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
@@ -45,41 +44,72 @@ const LandingPageComp = () => {
   return (
     <div>
       <LandingPage>
-        <AvatarCarousel />
-        <LandingBtns>
-          <h6>Please choose a username:</h6>
-          <input
-            type="text"
-            name="username"
-            onChange={(evt) => setUsername(evt.target.value.trim())}
-          />
-        </LandingBtns>
+        <form>
+          <LandingBtns>
+            <input
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              type="text"
+              name="username"
+              defaultValue="Enter Name"
+              onChange={(evt) => setUsername(evt.target.value.trim())}
+            />
+            <AvatarCarousel />
+          </LandingBtns>
+          {/* <AvatarCarouselStyle> */}
+          {/* </AvatarCarouselStyle> */}
 
-        <LandingBtns>
-          <h6>create a room</h6>
-          <StartDrawBtn>
-            <StartDrawImg />
-            <LandingButton type="button" onClick={handleCreate}>
-              SCRIBBLE MY SCRAMBLES
-            </LandingButton>
-          </StartDrawBtn>
-        </LandingBtns>
+          <LandingBtns>
+            <StartDrawBtn>
+              <ChooseRoomButton
+                type="button"
+                name="create"
+                onClick={handleCreate}
+              >
+                {/* create new room */}
+                Play!
+              </ChooseRoomButton>
+            </StartDrawBtn>
+          </LandingBtns>
 
-        <LandingBtns>
-          <h6>have a room name?</h6>
-          <input
-            type="text"
-            name="join-a-room"
-            onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
-          />
-          <StartDrawBtn>
-            <StartDrawImg />
-            <LandingButton type="button" onClick={handleJoin}>
-              MY SCRAMBLES ARE SCRIBBLED
-            </LandingButton>
-          </StartDrawBtn>
-        </LandingBtns>
+          <LandingBtns>
+            <input
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              type="text"
+              name="join-room-name"
+              onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
+            />
+            <StartDrawBtn>
+              <CreateRoomButton type="button" name="join" onClick={handleJoin}>
+                Go to Private Room
+              </CreateRoomButton>
+            </StartDrawBtn>
+          </LandingBtns>
+        </form>
       </LandingPage>
+      <HowToPlay>
+        <HowToPlay>
+          <div>
+            <h3>FAQ:</h3>
+            <h4>What's a Scribb Scrab?</h4>
+            <div style={{ width: "345px", marginRight: "0px" }}>
+              A combination of words and drawings such as:
+            </div>
+            <div style={{ width: "345px", marginRight: "0px" }}>
+              Illustrated poems, concrete poetry etc
+            </div>
+
+            <h4>How do I play?</h4>
+            <div>1. Click Play to Join a Public Room</div>
+            <div>2. Click Draw Mode to Draw, and Write Mode to Write</div>
+            <div>3. Scramble "Mode" lets you Scramble/Move Text/Drawings! </div>
+          </div>
+        </HowToPlay>
+        <img
+          src={process.env.PUBLIC_URL + "/images/batty.png"}
+          style={{ width: "36%", marginRight: "20px", marginLeft: "0px" }}
+          alt="how to play"
+        />
+      </HowToPlay>
     </div>
   );
 };
