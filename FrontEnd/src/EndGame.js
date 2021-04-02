@@ -5,7 +5,7 @@ import {
   EndGameContainer,
   PlayAgainBtn,
   Paragraph,
-  DownloadBtn,
+  DownloadAhref,
   EndGameElement,
   EndGameH1,
 } from "./AppCSS";
@@ -18,8 +18,6 @@ import SaveScribs from "./SaveScribs";
 const EndGame = (props) => {
   const [canvas, setCanvas] = useState("");
   const [scribs, setScribs] = useState("");
-  console.log("props in endgame", props.location.state);
-  // console.log("history", props.history);
   //   socket.on("send final image");
 
   let finalImg = props.location.state.scribs;
@@ -45,8 +43,12 @@ const EndGame = (props) => {
         <EndGameElement>
           <img src={finalScribs} style={{ width: "300px", margin: "10px" }} />
         </EndGameElement>
-
-        <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn>
+        <DownloadAhref
+          href={finalScribs}
+          download="ScribScrab.png"
+        >
+          Download
+        </DownloadAhref>
 
         <EndGameElement>
           <Link to="/" style={{ color: "black", margin: "15px" }}>

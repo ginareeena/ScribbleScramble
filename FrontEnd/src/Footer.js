@@ -15,7 +15,7 @@ function Footer() {
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/studiosok/">
-            <img src={cotton} style={{ width: "120px" }} />
+            <img src={creature} style={{ width: "120px" }} />
           </a>
           <Title3>Kristen Studioso</Title3>
         </MasterScramblers>
