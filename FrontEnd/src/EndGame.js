@@ -34,8 +34,6 @@ const EndGame = () => {
         <Paragraph>Save your Scribb Scrabb?</Paragraph>
         <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn>
         <div>{finalImg}</div>
-        {/* <div>
-          {" "} */}
         <Link to="/">Play Again?</Link> {/* </div> */}
       </div>
 
