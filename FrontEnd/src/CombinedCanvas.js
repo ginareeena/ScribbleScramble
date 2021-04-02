@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { fabric } from "fabric";
 import {
   Title2,
@@ -35,7 +36,7 @@ const CombinedCanvas = () => {
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
-
+  const params = useParams();
   //creates initial canvas
   useEffect(() => {
     setCanvas(initCanvas());
@@ -156,7 +157,7 @@ const CombinedCanvas = () => {
 
   return (
     <div>
-      <Title2></Title2>
+      <Title2>ROOM: {params.room}</Title2>
       <PlayArea
         onClick={() => {
           handleDraworWrite();
