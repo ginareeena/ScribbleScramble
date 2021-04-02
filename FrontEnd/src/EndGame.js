@@ -16,7 +16,7 @@ import SaveScribs from './SaveScribs'
 const EndGame = (props) => {
   const [canvas, setCanvas] = useState("");
   // const [scribs, setScribs] = useState("")
-console.log('scribs in endgame', props.scribs)
+console.log('scribs in endgame', props)
   //   socket.on("send final image");
 
   let finalImg = props.scribs

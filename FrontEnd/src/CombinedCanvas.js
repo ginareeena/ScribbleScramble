@@ -240,12 +240,12 @@ const CombinedCanvas = (props) => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
-        <LinkButton scribs={scribs} onClick={() => handleEndGame()}>
+        <EndGameBtn scribs={scribs} onClick={() => handleEndGame()}>
           <LinkButton to="/endgame" style={{ color: "white" }} scribs={scribs}>
             I'm Done!
           </LinkButton>
-          {/* <EndGame scribs={scribs}/> */}
-        </LinkButton>
+          <EndGame scribs={scribs}/>
+        </EndGameBtn>
       </Palette>
     </div>
   );
