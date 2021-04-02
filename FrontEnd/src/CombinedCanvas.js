@@ -21,14 +21,14 @@ import {
   EndGameBtn,
   RoomHeader,
 } from "./AppCSS";
-import { Link } from "react-router-dom";
-import LinkButton from './LinkButton'
+import { Link, useHistory } from "react-router-dom";
+import LinkButton from "./LinkButton";
 
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 import { fish } from "./Icons";
-import EndGame from "./EndGame"
-import SaveScribs from "./SaveScribs"
+import EndGame from "./EndGame";
+import SaveScribs from "./SaveScribs";
 
 // Canvas:
 // Writing Mode/ Scramble Mode
@@ -41,10 +41,11 @@ const CombinedCanvas = (props) => {
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
-  const [scribs, setScribs] = useState("")
+  const [scribs, setScribs] = useState("");
   const params = useParams();
   const room = useParams().room;
-  const { finalScribs } = props
+  // const { finalScribs } = props;
+  const history = useHistory();
 
   //creates initial canvas
   useEffect(() => {
@@ -145,15 +146,16 @@ const CombinedCanvas = (props) => {
     socket.emit("send new lines", { room, canvasJSON });
   };
 
-  let finalDrawing
+  let finalDrawing;
 
   function handleEndGame() {
     setCanvas(canvas);
-    finalDrawing = canvas.toDataURL("image/png")
-    setScribs(finalDrawing)
-    socket.emit("send final image", finalDrawing); 
-    console.log('scribs in combined canvas', scribs)
-
+    finalDrawing = canvas.toDataURL("image/png");
+    setScribs(finalDrawing);
+    socket.emit("send final image", finalDrawing);
+    console.log("scribs in combined canvas", scribs);
+    // needed to send finalDrawing because react doesn't set scribs right away so wasn't sending image
+    history.push("/endgame", { scribs: finalDrawing });
   }
 
   const changeFont = (evt) => {
@@ -163,7 +165,6 @@ const CombinedCanvas = (props) => {
     });
     canvas.renderAll();
   };
-  
 
   return (
     <div>
@@ -253,12 +254,16 @@ const CombinedCanvas = (props) => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
-        <EndGameBtn  onClick={() => handleEndGame()}>
-          <Link to={{
-            pathname:"/endgame",
-            state: {scribs: scribs}}} style={{ color: "white" }}>
-                I'm Done!
-          </Link>
+        <EndGameBtn onClick={() => handleEndGame()}>
+          {/* <Link
+            to={{
+              pathname: "/endgame",
+              state: { scribs: scribs },
+            }}
+            style={{ color: "white" }}
+          >
+          </Link> */}
+          I'm Done!
         </EndGameBtn>
       </Palette>
     </div>
@@ -266,7 +271,6 @@ const CombinedCanvas = (props) => {
 };
 
 export default CombinedCanvas;
-
 
 // const Button = ({ scribs }) => (
 //   <button onClick={handleEndGame} type="button">
