@@ -65,13 +65,31 @@ export const AvatarCarouselStyle = styled.div`
 
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
-  height: 300px;
+  height: 320px;
+  width: 348px;
   display: flex;
   justify-content: center;
-  width: 345px;
   margin: auto;
   margin-top: 35px;
   margin-bottom: 40px;
+`;
+
+//#4c9c8a
+//#ecf6f0;
+
+export const RoomHeader = styled.div`
+  background-color: #4c9c8a;
+  border-radius: 6px;
+  height: 100px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-size: 20px;
 `;
 
 export const HowToPlay = styled.div`
@@ -147,7 +165,7 @@ export const MasterScramblers = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 200px;
+  height: 90px;
   margin: auto;
 `;
 
@@ -362,9 +380,8 @@ export const LandingBtns = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 10px;
-  margin-top: 5px;
   width: 130px;
+  margin-top: 10px;
 `;
 
 export const LandingButton = styled.button`
@@ -383,7 +400,7 @@ export const LandingButton = styled.button`
   align-items: center;
 `;
 
-export const ChooseRoomButton = styled.button`
+export const PublicRoomButton = styled.button`
   border-radius: 2px;
   border: 2px solid darkgrey;
   align: center;
@@ -458,23 +475,24 @@ export const DownloadBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  position: absolute;
-  top: 50%;
   height: 35px;
-  width: 115px;
+  width: 105px;
   background-color: #134d44;
   color: white;
   font-size: 16px;
   font-weight: bold;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PlayAgainBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  position: absolute;
-  top: 50%;
-  height: 35px;
+  height: 15px;
   width: 115px;
   background-color: #134d44;
   color: white;
@@ -497,10 +515,22 @@ export const EndGameBtn = styled.button`
   align-items: center;
 `;
 
+export const EndGameElement = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const EndGameH1 = styled.h1`
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+`;
+
 export const EndGamePage = styled.div`
   background-color: #ecf6f0;
   height: 600px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 800px;
@@ -510,5 +540,9 @@ export const EndGamePage = styled.div`
 `;
 
 export const EndGameContainer = styled.div`
+  height: 200px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
