@@ -54,24 +54,17 @@ const LandingPageComp = () => {
               onChange={(evt) => setUsername(evt.target.value.trim())}
             />
             <AvatarCarousel />
-          </LandingBtns>
-          {/* <AvatarCarouselStyle> */}
-          {/* </AvatarCarouselStyle> */}
 
-          <LandingBtns>
             <StartDrawBtn>
               <PublicRoomButton
                 type="button"
                 name="create"
                 onClick={handleCreate}
               >
-                {/* create new room */}
                 Play!
               </PublicRoomButton>
             </StartDrawBtn>
-          </LandingBtns>
 
-          <LandingBtns>
             <input
               style={{ marginTop: "10px", marginBottom: "10px" }}
               type="text"

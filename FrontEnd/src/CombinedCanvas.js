@@ -165,8 +165,15 @@ const CombinedCanvas = () => {
   return (
     <div>
       <RoomHeader>
-        <div> ROOM: {params.room}</div>
-        <div>{room}</div>
+        <span
+          style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
+        >
+          {" "}
+          Room:{" "}
+        </span>
+
+        <span style={{ color: "white" }}> {params.room} </span>
+        {/* <div>{room}</div> */}
       </RoomHeader>
       <PlayArea
         onClick={() => {

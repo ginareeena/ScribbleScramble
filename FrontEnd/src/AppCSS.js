@@ -65,17 +65,20 @@ export const AvatarCarouselStyle = styled.div`
 
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
-  height: 300px;
+  height: 320px;
+  width: 348px;
   display: flex;
   justify-content: center;
-  width: 345px;
   margin: auto;
   margin-top: 35px;
   margin-bottom: 40px;
 `;
 
+//#4c9c8a
+//#ecf6f0;
+
 export const RoomHeader = styled.div`
-  background-color: #ecf6f0;
+  background-color: #4c9c8a;
   border-radius: 6px;
   height: 100px;
   width: 800px;
@@ -84,7 +87,7 @@ export const RoomHeader = styled.div`
   align-items: center;
   justify-content: center;
   margin: auto;
-  margin-top: 35px;
+  margin-top: 22px;
   margin-bottom: 10px;
   font-size: 20px;
 `;
@@ -162,7 +165,7 @@ export const MasterScramblers = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 200px;
+  height: 90px;
   margin: auto;
 `;
 
@@ -377,9 +380,8 @@ export const LandingBtns = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 10px;
-  margin-top: 5px;
   width: 130px;
+  margin-top: 10px;
 `;
 
 export const LandingButton = styled.button`
