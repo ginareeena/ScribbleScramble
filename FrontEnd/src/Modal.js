@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from "react"
-import Modal from "styled-react-modal"
-import { StyledModal } from "./AppCSS"
+import React, { useState, useEffect } from "react";
+// import Modal from "styled-react-modal"
+import { StyledModal } from "./AppCSS";
 
 const ModalComp = () => {
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
-    const toggleModal = () => {
-        setIsOpen(!isOpen)
-    }
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
-    const timer = () => {
-        setTimeout(toggleModal, 10000)
-        console.log('timer has run')
-    }
+  const timer = () => {
+    setTimeout(toggleModal, 10000);
+    console.log("timer has run");
+  };
 
-    useEffect(() => {
-        toggleModal()
-    }, [])
+  useEffect(() => {
+    toggleModal();
+  }, []);
 
-    return (
-        <div>
+  return (
+    <div>
+      <StyledModal isOpen={isOpen} onLoad={timer()}>
+        Game starts in 10 seconds!
+      </StyledModal>
+    </div>
+  );
+};
 
-            <StyledModal
-                isOpen={isOpen}
-                onLoad={timer()}
-            >Game starts in 10 seconds!</StyledModal>
-        </div>
-    )
-}
-
-export default ModalComp
+export default ModalComp;
