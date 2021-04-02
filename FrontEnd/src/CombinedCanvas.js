@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 
 import PaletteComp from "./Palette";
 import socket from "./Socket";
+import { fish } from "./Icons";
 
 // Canvas:
 // Writing Mode/ Scramble Mode
@@ -112,7 +113,10 @@ const CombinedCanvas = () => {
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
     console.log("front end emiting combinedCanvas:", room, canvasJSON);
-    socket.emit("send new lines", { room, canvasJSON });
+    if(!canvas.isDrawingMode) {socket.emit("add new text box", {room, canvasJSON})} else {
+      socket.emit("send new lines", { room, canvasJSON });
+    }
+
   }
 
   // write a randomizer that randomizers the text functionality
