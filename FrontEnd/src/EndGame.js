@@ -5,10 +5,12 @@ import { fabric } from "fabric";
 
 import { Link } from "react-router-dom";
 import socket from "./Socket";
+import SaveScribs from './SaveScribs'
 
-const EndGame = () => {
+const EndGame = (props) => {
   const [canvas, setCanvas] = useState("");
-
+  // const [scribs, setScribs] = useState("")
+console.log('scribs in endgame', props)
   //   socket.on("send final image");
   let finalImg;
 
@@ -28,6 +30,7 @@ const EndGame = () => {
       <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn>
       <Link to="/">Play Again?</Link>
       <div>{finalImg}</div>
+      {/* <SaveScribs scribs={finalImg}/> */}
     </LandingPage>
   );
 };

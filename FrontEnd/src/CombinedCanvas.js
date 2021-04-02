@@ -32,13 +32,15 @@ import { fish } from "./Icons";
 
 //storing color, brush size, font and canvas in state
 
-const CombinedCanvas = () => {
+const CombinedCanvas = (props) => {
   const [canvas, setCanvas] = useState("");
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
+  const [scribs, setScribs] = useState("")
   const params = useParams();
   const room = useParams().room;
+  const { finalScribs } = props
 
   //creates initial canvas
   useEffect(() => {
@@ -138,18 +140,14 @@ const CombinedCanvas = () => {
     socket.emit("send new lines", { room, canvasJSON });
   };
 
-  let finalDrawing;
+  let finalDrawing
 
   function handleEndGame() {
     setCanvas(canvas);
-
-    finalDrawing = canvas.toDataURL();
-    // finalDrawing = canvas.discardActiveObject().renderAll().toDataURL("png");
-    // finalDrawing = canvas.toSVG();
-    //  finalDrawing = canvas.toJSON();
-    // finalDrawing = canvas.toJSON({format: 'png'});
-
-    socket.emit("send final image", finalDrawing);
+    finalDrawing = canvas.toDataURL()
+    setScribs(finalDrawing)
+    socket.emit("send final image", finalDrawing); 
+    console.log('scribs in combined canvas', scribs)
   }
 
   const changeFont = (evt) => {
@@ -163,7 +161,6 @@ const CombinedCanvas = () => {
   return (
     <div>
       <Title2>ROOM: {params.room}</Title2>
-      <Title2>{room}</Title2>
       <PlayArea
         onClick={() => {
           handleDraworWrite();
@@ -179,19 +176,6 @@ const CombinedCanvas = () => {
         <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
         <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
 
-        {/* <div id="drawing-mode-options">
-          <label
-            htmlFor="drawing-mode-selector"
-            style={{ marginRight: "8px", fontWeight: "bold", fontSize: "14px" }}
-          >
-            Drawing Modes:
-          </label>
-          <select id="drawing-mode-selector">
-            <option value="Drawing">Draw Mode</option>
-            <option value="Writing">Write Mode</option>
-            <option value="Scramble">Scramble Mode</option>
-          </select>
-        </div> */}
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
             {/* Brush Sizes: */}
@@ -239,7 +223,6 @@ const CombinedCanvas = () => {
         </PngButton>
       </Palette>
       <Palette>
-        {/* <WriteModeBtn onClick={() => startWriteMode()}>Write Mode</WriteModeBtn> */}
         <div id="text-options">
           <span style={{ fontWeight: "bold" }}>Text Palette:{"  "}</span>
 

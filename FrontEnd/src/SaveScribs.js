@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { fabric } from "fabric";
 
 const SaveScribs = () => {
-    const [scribs, setScribs] = useState([])
+    const [scribs, setScribs] = useState("")
 
     
         // finalImg = value;
@@ -15,18 +15,14 @@ const SaveScribs = () => {
         // finalImag.src = value
     
     const fetchScribs = () => {
-      fetch(window.location.origin, {
-        method: 'GET',
-        headers: {
-          'Content-Type' : 'application/json'
-        }
-      })
-      .then((res) => console.log(res))
+      // fetch(window.location.origin)
+      // .then((res) => setScribs(res.data))
+
     }
 
     useEffect(() => {
-        fetchScribs()
         setScribs()
+        console.log('scribs', scribs)
     }, [])
 
     return (
