@@ -168,7 +168,8 @@ const CombinedCanvas = () => {
       </PlayArea>
 
       <Palette>
-        <ScrambleBtn onClick={() => startWriteMode()}>Scramble</ScrambleBtn>
+        <div style={{ fontWeight: "bold" }}> Modes:</div>
+        <ScrambleBtn onClick={() => startWriteMode()}>Scramble!</ScrambleBtn>
         <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
         <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
 

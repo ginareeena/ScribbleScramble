@@ -1,5 +1,6 @@
 import styled from "styled-components";
 // import Modal from "styled-react-modal";
+
 import { BrowserRouter as Link } from "react-router-dom";
 
 /*
@@ -54,23 +55,37 @@ export const Header = styled.header`
   no-repeat: true
 `;
 
-export const FooterStyle = styled.footer`
+export const AvatarCarouselStyle = styled.div`
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ecf6f0;
-  height: 215px;
 `;
 
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
-  height: 550px;
+  height: 300px;
   display: flex;
   justify-content: center;
-  width: 800px;
+  width: 345px;
   margin: auto;
-  margin-top: 25px;
-  margin-bottom: 80px;
+  margin-top: 35px;
+  margin-bottom: 40px;
+`;
+
+export const HowToPlay = styled.div`
+  background-color: #ecf6f0;
+  height: 320px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 90px;
+`;
+
+export const ScribbScrabb = styled.div`
+  background-image: url(./images/batty.png);
 `;
 
 export const PlayArea = styled.div`
@@ -129,11 +144,18 @@ export const Paragraph = styled.p`
 export const MasterScramblers = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 200px;
   margin: auto;
-  margin-top: 15px;
+`;
+
+export const FooterStyle = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecf6f0;
+  height: 270px;
 `;
 
 // Canvas Elements
@@ -280,19 +302,25 @@ export const StartWriteBtn = styled.div`
   flex-direction: column;
 `;
 
+//#7744ff; //purples
+//#DB730E
+//#502e5e;
+//#3C2646
+
 export const ScrambleBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
   margin-left: 5px;
   height: 30px;
-  width: 90px;
-  background-color: #134d44;
+  width: 85px;
+  background-color: #38273f;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 `;
 
 export const WriteModeBtn = styled.button`
@@ -301,10 +329,10 @@ export const WriteModeBtn = styled.button`
   align: center;
   margin-left: 5px;
   height: 30px;
-  width: 79px;
+  width: 60px;
   background-color: #134d44;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -316,13 +344,17 @@ export const DrawBtn = styled.button`
   align: center;
   margin-left: 5px;
   height: 30px;
-  width: 80px;
+  width: 60px;
   background-color: #134d44;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const AvatarSelector = styled.div`
+  position: relative;
 `;
 
 export const LandingBtns = styled.div`
@@ -331,20 +363,50 @@ export const LandingBtns = styled.div`
   flex-direction: column;
   margin: 10px;
   margin-top: 5px;
+  width: 130px;
 `;
 
 export const LandingButton = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  margin: 0 1em;
-  padding: 15px;
+  margin-top: 20px;
   background-color: #134d44;
   color: white;
   font-size: 1.2em;
   font-weight: bold;
   height: 45px;
   width: 223px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ChooseRoomButton = styled.button`
+  border-radius: 2px;
+  border: 2px solid darkgrey;
+  align: center;
+  background-color: #134d44;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  height: 35px;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CreateRoomButton = styled.button`
+  border-radius: 2px;
+  border: 2px solid darkgrey;
+  align: center;
+  background-color: #134d44;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  height: 35px;
+  width: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -397,11 +459,25 @@ export const DownloadBtn = styled.button`
   align: center;
   position: absolute;
   top: 50%;
-  height: 10%;
-  width: 15%;
+  height: 35px;
+  width: 115px;
   background-color: #134d44;
   color: white;
-  font-size: 1.2em;
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+export const PlayAgainBtn = styled.button`
+  border-radius: 6px;
+  border: 2px solid darkgrey;
+  align: center;
+  position: absolute;
+  top: 50%;
+  height: 35px;
+  width: 115px;
+  background-color: #134d44;
+  color: white;
+  font-size: 16px;
   font-weight: bold;
 `;
 
@@ -418,4 +494,20 @@ export const EndGameBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const EndGamePage = styled.div`
+  background-color: #ecf6f0;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 40px;
+`;
+
+export const EndGameContainer = styled.div`
+  display: flex;
 `;
