@@ -475,23 +475,24 @@ export const DownloadBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  position: absolute;
-  top: 50%;
   height: 35px;
-  width: 115px;
+  width: 105px;
   background-color: #134d44;
   color: white;
   font-size: 16px;
   font-weight: bold;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PlayAgainBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  position: absolute;
-  top: 50%;
-  height: 35px;
+  height: 15px;
   width: 115px;
   background-color: #134d44;
   color: white;
@@ -514,10 +515,22 @@ export const EndGameBtn = styled.button`
   align-items: center;
 `;
 
+export const EndGameElement = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const EndGameH1 = styled.h1`
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+`;
+
 export const EndGamePage = styled.div`
   background-color: #ecf6f0;
   height: 600px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 800px;
@@ -527,5 +540,9 @@ export const EndGamePage = styled.div`
 `;
 
 export const EndGameContainer = styled.div`
+  height: 200px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
