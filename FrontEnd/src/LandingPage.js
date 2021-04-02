@@ -44,6 +44,7 @@ const LandingPageComp = () => {
   return (
     <div>
       <LandingPage>
+      <form>
         <LandingBtns>
           <input
             style={{ marginTop: "10px", marginBottom: "10px" }}
@@ -83,6 +84,7 @@ const LandingPageComp = () => {
             </CreateRoomButton>
           </StartDrawBtn>
         </LandingBtns>
+        </form>
       </LandingPage>
       <HowToPlay>
         <HowToPlay>
