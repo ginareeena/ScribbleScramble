@@ -163,6 +163,7 @@ const CombinedCanvas = (props) => {
     });
     canvas.renderAll();
   };
+  
 
   return (
     <div>
@@ -252,11 +253,12 @@ const CombinedCanvas = (props) => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
-        <EndGameBtn scribs={scribs} onClick={() => handleEndGame()}>
-          <LinkButton to="/endgame" style={{ color: "white" }} scribs={scribs}>
-            I'm Done!
-          </LinkButton>
-          <EndGame scribs={scribs}/>
+        <EndGameBtn  onClick={() => handleEndGame()}>
+          <Link to={{
+            pathname:"/endgame",
+            state: {scribs: scribs}}} style={{ color: "white" }}>
+                I'm Done!
+          </Link>
         </EndGameBtn>
       </Palette>
     </div>
@@ -264,3 +266,12 @@ const CombinedCanvas = (props) => {
 };
 
 export default CombinedCanvas;
+
+
+// const Button = ({ scribs }) => (
+//   <button onClick={handleEndGame} type="button">
+//     {scribs}
+//     <Link to="/endgame" style={{ color: "white" }}>
+//           I'm Done!
+//         </Link>
+//   </button>
