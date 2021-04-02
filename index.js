@@ -114,7 +114,9 @@ serverSocket.on("connection", (socket) => {
   socket.on("join room", ({ username, room }) => {
     console.log(magenta("on: join room"));
     socket.join(room);
+    players[username].setRoom(room);
     console.log(blueBright(`${username} has joined room: ${room}`));
+    console.log(yellow(players[username].getRoom()));
     listRooms();
   });
 
