@@ -32,10 +32,18 @@ console.log('finalImg in endgame', finalImg)
     console.log("finalImg---->", finalImg);
   });
 
+
   const handleDownloadBtn = () => {
     console.log("clicked download");
+  <a href={finalScribs} class='button' id='btn-download' download='my-scrib.png'></a>
+    // const fullImage = (<img
+    //   src={finalScribs}
+    //   style={{ width: "300px", margin: "10px" }}
+    // />)
 
   };
+
+  
 
   return (
     <EndGamePage>
@@ -51,7 +59,8 @@ console.log('finalImg in endgame', finalImg)
           />
         </EndGameElement>
 
-        <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn>
+        {/* <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn> */}
+        <a href={finalScribs} className='button' id='btn-download' download='my-scrib.png'>Download</a>
 
         <EndGameElement>
           <Link to="/" style={{ color: "black", margin: "15px" }}>

@@ -22,13 +22,10 @@ import {
   RoomHeader,
 } from "./AppCSS";
 import { Link } from "react-router-dom";
-import LinkButton from './LinkButton'
 
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 import { fish } from "./Icons";
-import EndGame from "./EndGame"
-import SaveScribs from "./SaveScribs"
 
 // Canvas:
 // Writing Mode/ Scramble Mode
@@ -102,10 +99,6 @@ const CombinedCanvas = (props) => {
       setCanvas(canvas);
     }
   }
-
-  // function toggleDrawingMode() {
-  //   canvas.isDrawingMode = !canvas.isDrawingMode;
-  // }
 
   function startDrawMode() {
     canvas.isDrawingMode = true;
@@ -266,12 +259,3 @@ const CombinedCanvas = (props) => {
 };
 
 export default CombinedCanvas;
-
-
-// const Button = ({ scribs }) => (
-//   <button onClick={handleEndGame} type="button">
-//     {scribs}
-//     <Link to="/endgame" style={{ color: "white" }}>
-//           I'm Done!
-//         </Link>
-//   </button>
