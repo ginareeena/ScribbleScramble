@@ -27,7 +27,8 @@ export const Body = styled.div`
     width: 100%;
   }
   @media (max-width: 813px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg) repeat;
+    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg)
+      repeat;
     width: 813px;
     margin-right: 5px;
   }
