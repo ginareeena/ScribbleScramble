@@ -2,20 +2,25 @@ module.exports = class Player {
   constructor(socketID, username) {
     this.socketID = socketID;
     this.username = username;
-    this.avatar = "";
-    this.isDrawing = false;
-    this.isWriting = false;
-    this.currentTurn = false;
+    this.room = "";
+    // this.avatar = "";
+    // this.currentTurn = false;
   }
-  setUsername(name) {
-    this.username = name;
+  setRoom(room) {
+    this.room = room;
   }
-  setAvatar() {}
-  setIsDraw() {
-    this.isDrawing = true;
+  getRoom() {
+    return this.room;
   }
-  setIsWrite() {
-    this.isWriting = true;
-  }
-  setCurrentTurn() {}
+  // setUsername(name) {
+  //   this.username = name;
+  // }
+  // setAvatar() {}
+  // setIsDraw() {
+  //   this.isDrawing = true;
+  // }
+  // setIsWrite() {
+  //   this.isWriting = true;
+  // }
+  // setCurrentTurn() {}
 };

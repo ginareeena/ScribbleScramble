@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { fabric } from "fabric";
 import {
   Title2,
@@ -23,6 +24,7 @@ import { Link } from "react-router-dom";
 
 import PaletteComp from "./Palette";
 import socket from "./Socket";
+import { fish } from "./Icons";
 
 // Canvas:
 // Writing Mode/ Scramble Mode
@@ -35,6 +37,8 @@ const CombinedCanvas = () => {
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
+  const params = useParams();
+  const room = useParams().room;
 
   //creates initial canvas
   useEffect(() => {
@@ -108,9 +112,11 @@ const CombinedCanvas = () => {
     console.log("handleDraworWrite triggered!");
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
-    console.log("front end emiting combinedCanvas:", canvasJSON);
-    // socket.emit("send new lines", drawingCanvasJSON);
-    socket.emit("send new lines", canvasJSON);
+    console.log("front end emiting combinedCanvas:", room, canvasJSON);
+    if(!canvas.isDrawingMode) {socket.emit("add new text box", {room, canvasJSON})} else {
+      socket.emit("send new lines", { room, canvasJSON });
+    }
+
   }
 
   // write a randomizer that randomizers the text functionality
@@ -129,7 +135,7 @@ const CombinedCanvas = () => {
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
     console.log("emitting inside handleText");
-    socket.emit("send new lines", canvasJSON);
+    socket.emit("send new lines", { room, canvasJSON });
   };
 
   let finalDrawing;
@@ -156,7 +162,8 @@ const CombinedCanvas = () => {
 
   return (
     <div>
-      <Title2></Title2>
+      <Title2>ROOM: {params.room}</Title2>
+      <Title2>{room}</Title2>
       <PlayArea
         onClick={() => {
           handleDraworWrite();

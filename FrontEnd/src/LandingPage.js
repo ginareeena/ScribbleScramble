@@ -1,13 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   StartDrawBtn,
-  StartWriteBtn,
-  LandingButton,
   LandingBtns,
   LandingPage,
-  StartDrawImg,
-  StartWriteImg,
   ChooseRoomButton,
   CreateRoomButton,
   HowToPlay,
@@ -17,22 +13,38 @@ import AvatarCarousel from "./AvatarCarousel";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("scribbling");
-  const [room, setRoom] = useState("");
-
+  const [roomToJoin, setRoomToJoin] = useState("");
   const history = useHistory();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    socket.emit("add new player", { username });
-    socket.emit("create-room", room);
-    socket.emit("join-room", { room, id: socket.id });
-    console.log("joining room", room);
-    history.push("/combined");
+  useEffect(() => {
+    socket.on("new room created", (name) => {
+      console.log("FE on: new room created:", name);
+      socket.emit("join room", { username, room: name });
+      history.push(`/scramble/${name}`);
+    });
+  });
+
+  const handleCreate = () => {
+    socket.emit("add new player", username);
+    console.log("FE: emit create new room");
+    socket.emit("create new room", username);
   };
+
+  const handleJoin = () => {
+    socket.emit("add new player", username);
+    console.log("FE emit add new player");
+    if (roomToJoin) {
+      socket.emit("join room", { username, room: roomToJoin });
+      history.push(`scramble/${roomToJoin}`);
+    } else {
+      alert("please enter a room name");
+    }
+  };
+
   return (
     <div>
       <LandingPage>
-        <form onSubmit={handleSubmit}>
+        <form>
           <LandingBtns>
             <input
               style={{ marginTop: "10px", marginBottom: "10px" }}
@@ -49,21 +61,25 @@ const LandingPageComp = () => {
           <LandingBtns>
             <StartDrawBtn>
               <ChooseRoomButton
-                type="submit"
-                name="public"
-                onClick={(evt) => setRoom(evt.target.name)}
+                type="button"
+                name="create"
+                onClick={handleCreate}
               >
+                {/* create new room */}
                 Play!
               </ChooseRoomButton>
             </StartDrawBtn>
           </LandingBtns>
+
           <LandingBtns>
+            <input
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              type="text"
+              name="join-room-name"
+              onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
+            />
             <StartDrawBtn>
-              <CreateRoomButton
-                type="submit"
-                name="private"
-                onClick={(evt) => setRoom(evt.target.name)}
-              >
+              <CreateRoomButton type="button" name="join" onClick={handleJoin}>
                 Go to Private Room
               </CreateRoomButton>
             </StartDrawBtn>
@@ -89,8 +105,9 @@ const LandingPageComp = () => {
           </div>
         </HowToPlay>
         <img
-          src="/images/batty.png"
+          src={process.env.PUBLIC_URL + "/images/batty.png"}
           style={{ width: "36%", marginRight: "20px", marginLeft: "0px" }}
+          alt="how to play"
         />
       </HowToPlay>
     </div>
