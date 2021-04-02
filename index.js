@@ -1,4 +1,11 @@
-const { yellow, red, blueBright, magenta, cyan } = require("chalk");
+const { yellow, red, blueBright, magenta, cyan, green } = require("chalk");
+const {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals,
+} = require("unique-names-generator");
+
 const Player = require("./player");
 
 const path = require("path");
@@ -48,45 +55,86 @@ const serverSocket = require("socket.io")(http, {
   //^^TECHNICALLY NEEDED - currently throwing errors. don't delete. yet.
 });
 
-let players = [];
-const listPlayers = () => {
-  console.log(cyan("current players:"));
-  players.forEach((player) => {
-    console.log(cyan(JSON.stringify(player)));
+let players = {};
+let playerCount = 0;
+let gameRooms = [];
+let activeRooms = 0;
+const nameIt = () => {
+  return uniqueNamesGenerator({
+    dictionaries: [adjectives, colors, animals],
   });
 };
+const listPlayers = () => {
+  console.log(cyan("current players:", JSON.stringify(players)));
+  console.log(green("player count:", playerCount));
+};
+const listRooms = () => {
+  gameRooms.forEach((room) => {
+    console.log(cyan("rooms:", JSON.stringify(room)));
+  });
+  console.log(green("active rooms:", activeRooms));
+};
+const listRoomPlayers = (room) => {
+  for (let each in players) {
+    console.log(cyan("players in room:"));
+    console.log(red(JSON.stringify(each)));
+  }
+};
 
+//socket events
 serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
+  //re: players
   socket.on("add new player", (username) => {
     console.log(magenta("on: add new player"));
+    socket.username = username;
     let newPlayer = new Player(socket.id, username);
-    players.push(newPlayer);
+    players[username] = newPlayer;
+    ++playerCount;
     console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
-    socket.broadcast.emit("new player added", players);
     listPlayers();
   });
 
-  serverSocket.of("/").adapter.on("create-room", (room) => {
-    console.log(magenta("on: create-room"));
-    console.log(blueBright(`room ${room} was created`));
+  socket.on("disconnect", (socket) => {
+    console.log(magenta("on: disconnect"));
+    delete players[socket.username];
+    // --playerCount;
+    console.log(
+      red(
+        `player ${socket.username} has left the building (clientID: ${socket.id})`
+      )
+    );
+    listPlayers();
   });
 
-  socket.on("join-room", ({ room, id }) => {
-    console.log(magenta("on: join-room"));
+  socket.on("create new room", (username) => {
+    console.log(magenta("on: create new room"));
+    const room = nameIt();
+    gameRooms.push(room);
+    ++activeRooms;
+    socket.emit("new room created", room);
+    console.log(blueBright(`${username} has created room: ${room}`));
+  });
+
+  socket.on("join room", ({ username, room }) => {
+    console.log(magenta("on: join room"));
     socket.join(room);
-    console.log(blueBright(`socket ${id} has joined room ${room}`));
+    // players[username].setRoom(room);
+    console.log(blueBright(`${username} has joined room: ${room}`));
+    listRooms();
+    listRoomPlayers(room);
   });
 
-  console.log(`server new client connected on ${socket.id}`);
-  socket.on("add text box", (value, textCanvas) => {
+  // re: canvas
+  socket.on("add text box", ({ room, canvasJSON }) => {
     console.log("server side heard add text box!");
-    socket.broadcast.emit("create new text box", value, textCanvas);
+    socket.in(room).emit("create new text box", canvasJSON);
   });
+
   socket.on("send new lines", (value) => {
-    console.log("server side heard drawing from front end!");
-    socket.broadcast.emit("load new lines", value);
+    console.log("server side heard drawing from front end!", value);
+    socket.in(value.room).emit("load new lines", value.canvasJSON);
   });
 });
 

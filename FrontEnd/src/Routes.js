@@ -16,7 +16,7 @@ const Routes = () => {
         <Route path="/write" component={WritingCanvas} />
         <Route path="/draw" component={DrawingCanvas} />
         <Route path="/end" component={EndGame} />
-        <Route path="/combined" component={CombinedCanvas} />
+        <Route path="/scramble/:room" component={CombinedCanvas} />
         {/* Route for testing Modal component */}
         <Route path="/testing" component={ModalComp} />
         <Route path="/endgame" component={EndGame} />
