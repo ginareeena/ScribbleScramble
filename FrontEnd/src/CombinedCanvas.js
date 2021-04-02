@@ -37,6 +37,8 @@ const CombinedCanvas = () => {
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
   const params = useParams();
+  const room = useParams().room;
+
   //creates initial canvas
   useEffect(() => {
     setCanvas(initCanvas());
@@ -109,9 +111,8 @@ const CombinedCanvas = () => {
     console.log("handleDraworWrite triggered!");
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
-    console.log("front end emiting combinedCanvas:", canvasJSON);
-    // socket.emit("send new lines", drawingCanvasJSON);
-    socket.emit("send new lines", canvasJSON);
+    console.log("front end emiting combinedCanvas:", room, canvasJSON);
+    socket.emit("send new lines", { room, canvasJSON });
   }
 
   // write a randomizer that randomizers the text functionality
@@ -130,7 +131,7 @@ const CombinedCanvas = () => {
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
     console.log("emitting inside handleText");
-    socket.emit("send new lines", canvasJSON);
+    socket.emit("send new lines", { room, canvasJSON });
   };
 
   let finalDrawing;
@@ -158,6 +159,7 @@ const CombinedCanvas = () => {
   return (
     <div>
       <Title2>ROOM: {params.room}</Title2>
+      <Title2>{room}</Title2>
       <PlayArea
         onClick={() => {
           handleDraworWrite();

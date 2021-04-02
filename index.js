@@ -114,7 +114,6 @@ serverSocket.on("connection", (socket) => {
   socket.on("join room", ({ username, room }) => {
     console.log(magenta("on: join room"));
     socket.join(room);
-    players[username].setRoom(room);
     console.log(blueBright(`${username} has joined room: ${room}`));
     console.log(yellow(players[username].getRoom()));
     listRooms();
@@ -125,9 +124,10 @@ serverSocket.on("connection", (socket) => {
     console.log("server side heard add text box!");
     socket.broadcast.emit("create new text box", value, textCanvas);
   });
+
   socket.on("send new lines", (value) => {
-    console.log("server side heard drawing from front end!");
-    socket.broadcast.emit("load new lines", value);
+    console.log("server side heard drawing from front end!", value);
+    socket.in(value.room).emit("load new lines", value.canvasJSON);
   });
 });
 
