@@ -73,7 +73,7 @@ const LandingPageComp = () => {
             />
             <StartDrawBtn>
               <CreateRoomButton type="button" name="join" onClick={handleJoin}>
-                Create Room
+                Create/Join Room
               </CreateRoomButton>
             </StartDrawBtn>
           </LandingBtns>
