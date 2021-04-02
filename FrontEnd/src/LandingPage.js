@@ -4,7 +4,7 @@ import {
   StartDrawBtn,
   LandingBtns,
   LandingPage,
-  ChooseRoomButton,
+  PublicRoomButton,
   CreateRoomButton,
   HowToPlay,
 } from "./AppCSS";
@@ -54,24 +54,17 @@ const LandingPageComp = () => {
               onChange={(evt) => setUsername(evt.target.value.trim())}
             />
             <AvatarCarousel />
-          </LandingBtns>
-          {/* <AvatarCarouselStyle> */}
-          {/* </AvatarCarouselStyle> */}
 
-          <LandingBtns>
             <StartDrawBtn>
-              <ChooseRoomButton
+              <PublicRoomButton
                 type="button"
                 name="create"
                 onClick={handleCreate}
               >
-                {/* create new room */}
                 Play!
-              </ChooseRoomButton>
+              </PublicRoomButton>
             </StartDrawBtn>
-          </LandingBtns>
 
-          <LandingBtns>
             <input
               style={{ marginTop: "10px", marginBottom: "10px" }}
               type="text"
@@ -80,7 +73,7 @@ const LandingPageComp = () => {
             />
             <StartDrawBtn>
               <CreateRoomButton type="button" name="join" onClick={handleJoin}>
-                Go to Private Room
+                Create Room
               </CreateRoomButton>
             </StartDrawBtn>
           </LandingBtns>
