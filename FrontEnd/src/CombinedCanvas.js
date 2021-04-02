@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fabric } from "fabric";
 import {
-  Title2,
   StyledCanvas,
   PlayArea,
   CanvasBackground,
@@ -21,6 +20,7 @@ import {
   EndGameBtn,
   RoomHeader,
 } from "./AppCSS";
+
 import { Link, useHistory } from "react-router-dom";
 // import LinkButton from "./LinkButton";
 
@@ -31,13 +31,14 @@ import { fish } from "./Icons";
 import EndGame from "./EndGame";
 import SaveScribs from "./SaveScribs";
 
+
 // Canvas:
 // Writing Mode/ Scramble Mode
 // DrawingButton
 
 //storing color, brush size, font and canvas in state
 
-const CombinedCanvas = (props) => {
+const CombinedCanvas = () => {
   const [canvas, setCanvas] = useState("");
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
@@ -45,7 +46,6 @@ const CombinedCanvas = (props) => {
   const [scribs, setScribs] = useState("");
   const params = useParams();
   const room = useParams().room;
-  // const { finalScribs } = props;
   const history = useHistory();
 
   //creates initial canvas
@@ -175,7 +175,6 @@ const CombinedCanvas = (props) => {
         </span>
 
         <span style={{ color: "white" }}> {params.room} </span>
-        {/* <div>{room}</div> */}
       </RoomHeader>
       <PlayArea
         onClick={() => {
@@ -252,17 +251,7 @@ const CombinedCanvas = (props) => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
-        <EndGameBtn onClick={() => handleEndGame()}>
-          {/* <Link
-            to={{
-              pathname: "/endgame",
-              state: { scribs: scribs },
-            }}
-            style={{ color: "white" }}
-          >
-          </Link> */}
-          I'm Done!
-        </EndGameBtn>
+        <EndGameBtn onClick={() => handleEndGame()}>I'm Done!</EndGameBtn>
       </Palette>
     </div>
   );

@@ -1,28 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import Routes from "./Routes";
 import { Body, Header, Title } from "./AppCSS";
-import Footer from "./Footer"
-
+import Footer from "./Footer";
 
 function App() {
-  const [loadClient, setLoadClient] = useState(true);
-
   return (
     <div>
-    <Body className="App">
-      <Header className="App-header">
-        <Title>
-          <a href="/">
-            <img src="/images/logoSm.png" />
-          </a>
-        </Title>
-      </Header>
-      <div>
-        <Routes />
-      </div>
-      <Footer />
-    </Body>
-
+      <Body className="App">
+        <Header className="App-header">
+          <Title>
+            <a href="/">
+              <img src="/images/logoSm.png" />
+            </a>
+          </Title>
+        </Header>
+        <div>
+          <Routes />
+        </div>
+        <Footer />
+      </Body>
     </div>
   );
 }
