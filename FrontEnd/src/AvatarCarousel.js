@@ -29,6 +29,14 @@ import {
   tomato,
   violin,
   whale,
+  beet,
+  cat,
+  coffee,
+  creature,
+  horse,
+  link,
+  wasp,
+  ski,
 } from "./Icons";
 import { LandingPage } from "./AppCSS";
 
@@ -42,7 +50,7 @@ const AvatarCarousel = () => {
     <CarouselProvider
       naturalSlideWidth={1}
       naturalSlideHeight={1}
-      totalSlides={17}
+      totalSlides={24}
       infinite={true}
     >
       {" "}
@@ -59,7 +67,6 @@ const AvatarCarousel = () => {
         >
           <img src="/images/leftArrow.png" style={{ width: "22px" }} />
         </ButtonBack>
-
         <Slider>
           <Slide index={0}>
             <Image src={bird} alt="bird" />
@@ -112,8 +119,30 @@ const AvatarCarousel = () => {
           <Slide index={16}>
             <Image src={whale} alt="whale" />
           </Slide>
+          <Slide index={17}>
+            <Image src={beet} alt="beet" />
+          </Slide>
+          <Slide index={18}>
+            <Image src={cat} alt="cat" />
+          </Slide>
+          <Slide index={19}>
+            <Image src={coffee} alt="coffee" />
+          </Slide>
+          <Slide index={20}>
+            <Image src={horse} alt="horse" />
+          </Slide>
+          <Slide index={21}>
+            <Image src={link} alt="link" />
+          </Slide>
+          <Slide index={22}>
+            <Image src={wasp} alt="wasp" />
+          </Slide>
+          <Slide index={23}>
+            <Image src={ski} alt="ski" />
+          </Slide>
         </Slider>
 
+        {/* beet, cat, coffee, creature, horse, link, wasp, ski, */}
         <ButtonNext
           style={{
             position: "absolute",
