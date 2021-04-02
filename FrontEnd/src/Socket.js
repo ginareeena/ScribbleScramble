@@ -10,9 +10,4 @@ socket.on("connect", () => {
   console.log("FE: socket 'on connect' ->  connected to server!");
 });
 
-socket.on("private room", () => {
-  console.log("front end: joining private room!");
-  io.emit("joinPrivateRoom");
-});
-
 export default socket;

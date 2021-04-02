@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import {
   StartDrawBtn,
   StartWriteBtn,
@@ -12,20 +12,21 @@ import {
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
 
-
-const LandingPageComp = () => {
+const LandingPageComp = ({ match }) => {
   const [username, setUsername] = useState("scribbling");
-  const [room, setRoom] = useState("");
-
   const history = useHistory();
+  useEffect(() => {
+    socket.on("new room created", (name) => {
+      console.log("FE on: new room created:", name);
+      socket.emit("join room", { username, room: name });
+      history.push(`/scramble/${name}`);
+    });
+  });
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     socket.emit("add new player", username);
-    socket.emit("create-room", room);
-    socket.emit("join-room", { room, id: socket.id });
-    console.log("joining room", room);
-    history.push("/combined");
+    socket.emit("create new room", username);
   };
   return (
     <div>
@@ -44,11 +45,7 @@ const LandingPageComp = () => {
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton
-                type="submit"
-                name="private"
-                onClick={(evt) => setRoom(evt.target.name)}
-              >
+              <LandingButton type="submit" name="private">
                 SCRIBBLE MY Private SCRAMBLES
               </LandingButton>
             </StartDrawBtn>
@@ -57,18 +54,13 @@ const LandingPageComp = () => {
           <LandingBtns>
             <StartDrawBtn>
               <StartDrawImg />
-              <LandingButton
-                type="submit"
-                name="public"
-                onClick={(evt) => setRoom(evt.target.name)}
-              >
+              <LandingButton type="submit">
                 SCRAMBLE MY Public SCRIBBLES
               </LandingButton>
             </StartDrawBtn>
           </LandingBtns>
         </form>
       </LandingPage>
-
     </div>
   );
 };
