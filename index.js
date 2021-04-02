@@ -127,7 +127,7 @@ serverSocket.on("connection", (socket) => {
 
   socket.on("send new lines", (value) => {
     console.log("server side heard drawing from front end!", value);
-    socket.in(value.room).emit("load new lines", value.canvasJSON);
+    socket.in(value.room).emit("lgioad new lines", value.canvasJSON);
   });
 });
 
