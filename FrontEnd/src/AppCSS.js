@@ -472,20 +472,18 @@ export const AddTxtBtn = styled.button`
 `;
 
 export const DownloadAhref = styled.a`
-  border-radius: 6px;
+  border-radius: 7px;
   border: 2px solid darkgrey;
-  align: center;
-  height: 35px;
-  width: 105px;
+  padding: 3px 10px;
   background-color: #134d44;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  margin: auto;
   margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 `;
 
 export const PlayAgainBtn = styled.button`
@@ -496,7 +494,7 @@ export const PlayAgainBtn = styled.button`
   width: 115px;
   background-color: #134d44;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 `;
 
@@ -523,7 +521,7 @@ export const EndGameElement = styled.div`
 export const EndGameH1 = styled.h1`
   display: flex;
   justify-content: center;
-  font-size: 15px;
+  font-size: 20px;
 `;
 
 export const EndGamePage = styled.div`

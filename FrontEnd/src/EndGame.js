@@ -27,9 +27,9 @@ const EndGame = (props) => {
     <EndGamePage>
       <EndGameContainer>
         <EndGameH1>Thanks For Playing!</EndGameH1>
-        <EndGameElement>Save your Scribb Scrabb?</EndGameElement>
+        <EndGameElement>What a Beautiful Scribb Scrabb!</EndGameElement>
         <EndGameElement>
-          <img src={finalScribs} style={{ width: "300px", margin: "10px" }} />
+          <img src={finalScribs} style={{ width: "450px", margin: "10px" }} />
         </EndGameElement>
         <DownloadAhref href={finalScribs} download="ScribScrab.png">
           Download
