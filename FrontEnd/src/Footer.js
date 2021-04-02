@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import Routes from "./Routes";
-import { Body, FooterStyle, Title3, MasterScramblers } from "./AppCSS";
+import React from "react";
+import { FooterStyle, Title3, MasterScramblers } from "./AppCSS";
 import { cotton, crab, whale, firefly, cat, creature } from "./Icons";
 
 function Footer() {
