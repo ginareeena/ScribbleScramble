@@ -16,9 +16,11 @@ import SaveScribs from './SaveScribs'
 const EndGame = (props) => {
   const [canvas, setCanvas] = useState("");
   // const [scribs, setScribs] = useState("")
-console.log('scribs in endgame', props)
+console.log('scribs in endgame', props.scribs)
   //   socket.on("send final image");
-  let finalImg;
+
+  let finalImg = props.scribs
+  let scribs = props.scribs
 
   socket.on("broadcasting final image", (value) => {
     finalImg = value;
@@ -27,6 +29,7 @@ console.log('scribs in endgame', props)
 
   const handleDownloadBtn = () => {
     console.log("clicked download");
+
   };
 
   return (
@@ -35,15 +38,15 @@ console.log('scribs in endgame', props)
         <h1>Thanks For Playing!</h1>
         <Paragraph>Save your Scribb Scrabb?</Paragraph>
         <DownloadBtn onClick={() => handleDownloadBtn()}>Download</DownloadBtn>
-        <div>{finalImg}</div>
+        {/* <div>{finalImg}</div> */}
         <Link to="/">Play Again?</Link> {/* </div> */}
       </div>
-
+      <SaveScribs scribs={scribs}/>
       {/* <PlayAgainBtn>
         {" "}
         <Link to="/">Play Again?</Link>
       </PlayAgainBtn> */}
-      {/* <SaveScribs scribs={finalImg}/> */}
+      
     </EndGamePage>
   );
 };

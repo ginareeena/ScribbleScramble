@@ -21,10 +21,13 @@ import {
   EndGameBtn,
 } from "./AppCSS";
 import { Link } from "react-router-dom";
+import LinkButton from './LinkButton'
 
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 import { fish } from "./Icons";
+import EndGame from "./EndGame"
+import SaveScribs from "./SaveScribs"
 
 // Canvas:
 // Writing Mode/ Scramble Mode
@@ -144,10 +147,11 @@ const CombinedCanvas = (props) => {
 
   function handleEndGame() {
     setCanvas(canvas);
-    finalDrawing = canvas.toDataURL()
+    finalDrawing = canvas.toDataURL("image/png")
     setScribs(finalDrawing)
     socket.emit("send final image", finalDrawing); 
     console.log('scribs in combined canvas', scribs)
+
   }
 
   const changeFont = (evt) => {
@@ -236,11 +240,12 @@ const CombinedCanvas = (props) => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
-        <EndGameBtn onClick={() => handleEndGame()}>
-          <Link to="/endgame" style={{ color: "white" }}>
+        <LinkButton scribs={scribs} onClick={() => handleEndGame()}>
+          <LinkButton to="/endgame" style={{ color: "white" }} scribs={scribs}>
             I'm Done!
-          </Link>
-        </EndGameBtn>
+          </LinkButton>
+          {/* <EndGame scribs={scribs}/> */}
+        </LinkButton>
       </Palette>
     </div>
   );
