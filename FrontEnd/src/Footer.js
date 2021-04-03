@@ -49,7 +49,7 @@ function Footer() {
           <a href="https://www.linkedin.com/in/meghan-mcfarland/">
             <img
               src={scramblize(mIcons)}
-              style={{ width: "120px" }}
+              style={{ width: "120px", borderRadius: "50%" }}
               alt="developer icon: meghan mcfarland"
             />
           </a>
@@ -59,7 +59,7 @@ function Footer() {
           <a href="https://www.linkedin.com/in/studiosok/">
             <img
               src={scramblize(krIcons)}
-              style={{ width: "120px" }}
+              style={{ width: "120px", borderRadius: "50%" }}
               alt="developer icon: Kristen Studioso"
             />
           </a>
@@ -69,7 +69,7 @@ function Footer() {
           <a href="https://www.linkedin.com/in/ginamoffit/">
             <img
               src={scramblize(gIcons)}
-              style={{ width: "120px" }}
+              style={{ width: "120px", borderRadius: "50%" }}
               alt="developer icon: Gina Moffitt"
             />
           </a>
@@ -79,7 +79,7 @@ function Footer() {
           <a href="https://www.linkedin.com/in/kelseygreene17/">
             <img
               src={scramblize(keIcons)}
-              style={{ width: "120px" }}
+              style={{ width: "120px", borderRadius: "50%" }}
               alt="developer icon: Kelsey Greene"
             />
           </a>
