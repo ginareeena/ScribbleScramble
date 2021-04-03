@@ -47,7 +47,7 @@ const LandingPageComp = () => {
     <div>
       <LandingPageHeader>
         <LandingPage>
-          <form>
+          <div>
             <LandingBtns>
               <input
                 style={{ marginTop: "10px", marginBottom: "10px" }}
@@ -84,7 +84,7 @@ const LandingPageComp = () => {
                 </CreateRoomButton>
               </StartDrawBtn>
             </LandingBtns>
-          </form>
+          </div>
         </LandingPage>{" "}
         <img
           src={"/images/howPlay.png"}
