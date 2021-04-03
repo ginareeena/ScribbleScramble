@@ -47,31 +47,51 @@ function Footer() {
       <FooterStyle>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/meghan-mcfarland/">
-            <img src={scramblize(mIcons)} style={{ width: "120px" }} />
+            <img
+              src={scramblize(mIcons)}
+              style={{ width: "120px" }}
+              alt="developer icon: meghan mcfarland"
+            />
           </a>
           <Title3>Meghan McFarland</Title3>
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/studiosok/">
-            <img src={scramblize(krIcons)} style={{ width: "120px" }} />
+            <img
+              src={scramblize(krIcons)}
+              style={{ width: "120px" }}
+              alt="developer icon: Kristen Studioso"
+            />
           </a>
           <Title3>Kristen Studioso</Title3>
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/ginamoffit/">
-            <img src={scramblize(gIcons)} style={{ width: "120px" }} />
+            <img
+              src={scramblize(gIcons)}
+              style={{ width: "120px" }}
+              alt="developer icon: Gina Moffitt"
+            />
           </a>
           <Title3>Gina Moffit</Title3>
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/kelseygreene17/">
-            <img src={scramblize(keIcons)} style={{ width: "120px" }} />
+            <img
+              src={scramblize(keIcons)}
+              style={{ width: "120px" }}
+              alt="developer icon: Kelsey Greene"
+            />
           </a>
           <Title3>Kelsey Greene</Title3>
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://github.com/AthenaCapstone/ScribbleScramble">
-            <img src="/images/github.png" style={{ width: "120px" }} />
+            <img
+              src="/images/github.png"
+              style={{ width: "120px" }}
+              alt="github repository"
+            />
           </a>
           <Title3>Scribble Scramble © 2021</Title3>
         </MasterScramblers>

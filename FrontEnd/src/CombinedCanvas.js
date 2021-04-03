@@ -206,21 +206,21 @@ const CombinedCanvas = () => {
               setBrushSize(5);
             }}
           >
-            <img src="/images/point.png" style={{ width: "30%" }} />
+            <img src="/images/point.png" style={{ width: "30%" }} alt="choose small paint brush"/>
           </SmallBrushBtn>
           <MedBrushBtn
             onClick={() => {
               setBrushSize(15);
             }}
           >
-            <img src="/images/point.png" style={{ width: "90%" }} />
+            <img src="/images/point.png" style={{ width: "90%" }} alt="choose medium paint brush" />
           </MedBrushBtn>
           <LargeBrushBtn
             onClick={() => {
               setBrushSize(35);
             }}
           >
-            <img src="/images/point.png" style={{ height: "90%" }} />
+            <img src="/images/point.png" style={{ height: "90%" }}alt="choose large paint brush" />
           </LargeBrushBtn>
         </BrushSizesContainer>
         <SelectedColor>
@@ -237,10 +237,10 @@ const CombinedCanvas = () => {
           <PaletteComp currColor={currColor} setColor={setColor} />
         </PaletteColors>
         <PngButton onClick={() => canvas.clear()}>
-          <img src="/images/trashBtn.png" style={{ width: "100%" }} />
+          <img src="/images/trashBtn.png" style={{ width: "100%" }} alt="clear canvas" />
         </PngButton>
         <PngButton onClick={() => setColor("white")}>
-          <img src="/images/eraser3.png" style={{ width: "100%" }} />
+          <img src="/images/eraser3.png" style={{ width: "100%" }} alt="eraser" />
         </PngButton>
       </Palette>
       <Palette>

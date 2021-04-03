@@ -10,7 +10,7 @@ function App() {
         <Header className="App-header">
           <Title>
             <a href="/">
-              <img src="/images/logoSm.png" />
+              <img src="/images/logoSm.png" alt="scribble scramble logo" />
             </a>
           </Title>
         </Header>

@@ -103,7 +103,11 @@ const AvatarCarousel = () => {
             ...buttonStyle,
           }}
         >
-          <img src="/images/leftArrow.png" style={{ width: "22px" }} />
+          <img
+            src="/images/leftArrow.png"
+            style={{ width: "22px" }}
+            alt="icon carousel left arrow"
+          />
         </ButtonBack>
         <Slider>
           {iconSet.map((icon) => {
@@ -125,7 +129,11 @@ const AvatarCarousel = () => {
             ...buttonStyle,
           }}
         >
-          <img src="/images/rightArrow.png" style={{ width: "22px" }} />
+          <img
+            src="/images/rightArrow.png"
+            style={{ width: "22px" }}
+            alt="icon carousel right arrow"
+          />
         </ButtonNext>
       </AvatarSelector>
     </CarouselProvider>
