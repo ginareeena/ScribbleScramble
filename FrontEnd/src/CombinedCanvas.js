@@ -165,7 +165,7 @@ const CombinedCanvas = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: "100px" }}>
       <RoomHeader>
         <span
           style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
@@ -188,10 +188,15 @@ const CombinedCanvas = () => {
 
       <Palette>
         <div style={{ fontWeight: "bold" }}> Modes:</div>
-        <ScrambleBtn onClick={() => startWriteMode()}>Scramble!</ScrambleBtn>
+        <ScrambleBtn
+          title="Click me to move drawings!"
+          onClick={() => startWriteMode()}
+        >
+          Scramble!
+        </ScrambleBtn>
         <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
         <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
-
+        {/* <DrawerComp> */}
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
             {/* Brush Sizes: */}
