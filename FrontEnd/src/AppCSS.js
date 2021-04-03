@@ -65,13 +65,20 @@ export const AvatarCarouselStyle = styled.div`
 
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
+  border-radius: 6px;
   height: 320px;
   width: 348px;
   display: flex;
   justify-content: center;
-  margin: auto;
   margin-top: 35px;
   margin-bottom: 40px;
+  margin-left: 140px;
+`;
+
+export const LandingPageHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 //#4c9c8a
@@ -94,13 +101,15 @@ export const RoomHeader = styled.div`
 
 export const HowToPlay = styled.div`
   background-color: #ecf6f0;
-  height: 320px;
-  width: 800px;
+  border-radius: 9px;
+  height: 520px;
+  width: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-bottom: 90px;
+  margin-bottom: 120px;
+  margin-top: 0px;
 `;
 
 export const ScribbScrabb = styled.div`

@@ -165,7 +165,7 @@ const CombinedCanvas = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: "100px" }}>
       <RoomHeader>
         <span
           style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
