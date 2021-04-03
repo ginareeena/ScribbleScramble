@@ -102,7 +102,6 @@ export const RoomHeader = styled.div`
 export const HowToPlay = styled.div`
   background-color: #ecf6f0;
   border-radius: 9px;
-  height: 520px;
   width: 700px;
   display: flex;
   justify-content: center;

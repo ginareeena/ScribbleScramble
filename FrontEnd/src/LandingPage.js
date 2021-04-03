@@ -11,6 +11,7 @@ import {
 } from "./AppCSS";
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
+import Drawer from "./Drawer";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("scribbling");
@@ -91,13 +92,15 @@ const LandingPageComp = () => {
             width: "115px", //246 //124
             // marginRight: "20px",
             marginTop: "200px",
-            marginLeft: "35px",
+            marginLeft: "25px",
           }}
           alt="how"
         />
       </LandingPageHeader>
 
       <HowToPlay>
+        <Drawer />
+        <Drawer />
         <div>
           <img
             src={process.env.PUBLIC_URL + "/images/batty.png"}
@@ -120,28 +123,54 @@ const LandingPageComp = () => {
           </div>
 
           <div>
-            <h4>How Do I Play?</h4>
-            <ol>
-              <li>Click "Play" to Create A Room</li>
-              <li>
-                Enter A Name and Click "Join Room" to Join A Friend's Room
-              </li>
-              <li>Give Your Room Name To Friends You Want To Join</li>
-              <li>
-                Select Your Mode:{" "}
-                <span style={{ fontWeight: "bold" }}>Draw</span>,{" "}
-                <span style={{ fontWeight: "bold" }}>Write</span>, or{" "}
-                <span style={{ fontWeight: "bold" }}>Scramble</span>
-              </li>
-              <li>Draw, Add Text, and Scramble Your Own and Others' Images.</li>
-              <li> When You're Done Click "I'm Done"</li>
-              <li>Download Your Scribb Scrabb to Share with friends!</li>
-            </ol>
+            {/* DRAWER 1 Start */}
+            <Drawer title={<h4>How Do I Play?</h4>}>
+              <ol>
+                <li>Click "Play" to Create A Room</li>
+                <li>
+                  Enter A Name and Click "Join Room" to Join A Friend's Room
+                </li>
+                <li>Give Your Room Name To Friends You Want To Join</li>
+                <li>
+                  Select Your Mode:{" "}
+                  <span style={{ fontWeight: "bold" }}>Draw</span>,{" "}
+                  <span style={{ fontWeight: "bold" }}>Write</span>, or{" "}
+                  <span style={{ fontWeight: "bold" }}>Scramble</span>
+                </li>
+                <li>
+                  Draw, Add Text, and Scramble Your Own and Others' Images.
+                </li>
+                <li> When You're Done Click "I'm Done"</li>
+                <li>Download Your Scribb Scrabb to Share with friends!</li>
+              </ol>
+            </Drawer>
           </div>
 
-          <h4>What Is Scramble Mode?</h4>
+          <Drawer title={<h4>What Is Scramble Mode?</h4>}>
+            <div>
+              Scribble Scramble Has Three Modes:{" "}
+              <span style={{ fontWeight: "bold" }}>Draw,</span>{" "}
+              <span style={{ fontWeight: "bold" }}>Write</span> or{" "}
+              <span style={{ fontWeight: "bold" }}>Scramble!</span>
+            </div>
 
-          <div>
+            <ul>
+              <li>
+                {" "}
+                <span style={{ fontWeight: "bold" }}>Draw Mode</span> lets you
+                draw
+              </li>
+              <li>
+                <span style={{ fontWeight: "bold" }}> Write Mode</span> lets you
+                write + edit text
+              </li>
+              <li>
+                <span style={{ fontWeight: "bold" }}>Scramble Mode</span> lets
+                you scramble/move drawings or text!
+              </li>
+            </ul>
+          </Drawer>
+          {/* <div>
             Scribble Scramble Has Three Modes:{" "}
             <span style={{ fontWeight: "bold" }}>Draw,</span>{" "}
             <span style={{ fontWeight: "bold" }}>Write</span> or{" "}
@@ -162,7 +191,8 @@ const LandingPageComp = () => {
               <span style={{ fontWeight: "bold" }}>Scramble Mode</span> lets you
               scramble/move drawings or text!
             </li>
-          </ul>
+          </ul> */}
+          {/* DRAWER 2 end */}
         </div>
       </HowToPlay>
     </div>
