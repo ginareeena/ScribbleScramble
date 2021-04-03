@@ -1,32 +1,48 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { FooterStyle, Title3, MasterScramblers } from "./AppCSS";
-import { cotton, crab, whale, firefly, cat, creature } from "./Icons";
+import { cotton, crab, whale, firefly, cat, creature, cake, storm, beet, horse, wasp, flower } from "./Icons";
 
 function Footer() {
+  const krIcons = [cotton, creature, cake, storm, beet]
+  const mIcons = [crab, horse]
+  const gIcons = [cat, whale]
+  const keIcons = [firefly, flower, wasp]
+  const generalIcons = [cotton, crab, whale, firefly, cat, creature, cake, storm, beet]
+  
+  const scramblize = (iconSet) => {
+    const max = iconSet.length
+    let randomIconIdx = Math.floor(Math.random() * max)
+    return iconSet[randomIconIdx]
+  }
+
+  useEffect((iconSet) => {
+    scramblize(iconSet = generalIcons)
+  }, [])
+
   return (
     <div>
       <FooterStyle>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/meghan-mcfarland/">
-            <img src={crab} style={{ width: "120px" }} />
+            <img src={scramblize(mIcons)} style={{ width: "120px" }} />
           </a>
           <Title3>Meghan McFarland</Title3>
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/studiosok/">
-            <img src={creature} style={{ width: "120px" }} />
+            <img src={scramblize(krIcons)} style={{ width: "120px" }} />
           </a>
           <Title3>Kristen Studioso</Title3>
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/ginamoffit/">
-            <img src={cat} style={{ width: "120px" }} />
+            <img src={scramblize(gIcons)} style={{ width: "120px" }} />
           </a>
           <Title3>Gina Moffit</Title3>
         </MasterScramblers>
         <MasterScramblers>
           <a href="https://www.linkedin.com/in/kelseygreene17/">
-            <img src={firefly} style={{ width: "120px" }} />
+            <img src={scramblize(keIcons)} style={{ width: "120px" }} />
           </a>
           <Title3>Kelsey Greene</Title3>
         </MasterScramblers>
