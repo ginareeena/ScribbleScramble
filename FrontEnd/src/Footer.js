@@ -1,23 +1,46 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { FooterStyle, Title3, MasterScramblers } from "./AppCSS";
-import { cotton, crab, whale, firefly, cat, creature, cake, storm, beet, horse, wasp, flower } from "./Icons";
+import {
+  cotton,
+  crab,
+  whale,
+  firefly,
+  cat,
+  creature,
+  cake,
+  storm,
+  beet,
+  horse,
+  wasp,
+  flower,
+} from "./Icons";
 
 function Footer() {
-  const krIcons = [cotton, creature, cake, storm, beet]
-  const mIcons = [crab, horse]
-  const gIcons = [cat, whale]
-  const keIcons = [firefly, flower, wasp]
-  const generalIcons = [cotton, crab, whale, firefly, cat, creature, cake, storm, beet]
-  
+  const krIcons = [cotton, creature, cake, storm, beet];
+  const mIcons = [crab, horse];
+  const gIcons = [cat, whale];
+  const keIcons = [firefly, flower, wasp];
+  const generalIcons = [
+    cotton,
+    crab,
+    whale,
+    firefly,
+    cat,
+    creature,
+    cake,
+    storm,
+    beet,
+  ];
+
   const scramblize = (iconSet) => {
-    const max = iconSet.length
-    let randomIconIdx = Math.floor(Math.random() * max)
-    return iconSet[randomIconIdx]
-  }
+    const max = iconSet.length;
+    let randomIconIdx = Math.floor(Math.random() * max);
+    return iconSet[randomIconIdx];
+  };
 
   useEffect((iconSet) => {
-    scramblize(iconSet = generalIcons)
-  }, [])
+    scramblize((iconSet = generalIcons));
+  }, []);
 
   return (
     <div>
