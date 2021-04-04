@@ -83,7 +83,7 @@ serverSocket.on("connection", (socket) => {
     socket.username = username;
     //ROOM STUFF
     if (room && !rooms.includes(room)) {
-      socket.emit("invalid room name");
+      socket.emit("invalid room");
     } else {
       if (!room) {
         room = nameIt();
