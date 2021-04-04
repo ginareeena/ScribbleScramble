@@ -18,42 +18,23 @@ const LandingPageComp = () => {
   const [roomToJoin, setRoomToJoin] = useState("");
   const history = useHistory();
 
-  const invalidRoomAlert = () => {
-    alert("please enter a valid room name");
-  };
-
-  useEffect(() => {
-    socket.on("not a valid room", invalidRoomAlert());
-  });
-
   useEffect(() => {
     socket.on("scramble time", (name) => {
+      console.log("front end heard: scramble time");
       history.push(`scramble/${name}`);
+      return () => socket.off("scramble time");
     });
-  });
+  }, [history]);
 
-  const handleSubmit = () => {
-    socket.emit("scribble time", { username, room: roomToJoin });
-    console.log(
-      `client: emit scribble time -> user: ${username}, room: ${roomToJoin}`
-    );
-  };
-
-  // const handleCreate = () => {
-  //   socket.emit("add new player", username);
-  //   console.log("FE: emit create new room");
-  //   socket.emit("create room", username);
-  // };
-
-  const handleJoin = () => {
-    // socket.emit("add new player", username);
-    // console.log("FE emit add new player");
-    if (roomToJoin) {
-      socket.emit("join room", { username, room: roomToJoin });
-      history.push(`scramble/${roomToJoin}`);
-    } else {
-      alert("please enter a room name");
-    }
+  const startScribbling = (evt) => {
+    evt.preventDefault();
+    console.log("it's scribble time!");
+    console.log(evt.target.name)
+    socket.emit("scribble time", {
+      username,
+      room: roomToJoin,
+      action: evt.target.name,
+    });
   };
 
   return (
@@ -69,8 +50,11 @@ const LandingPageComp = () => {
                 placeholder="Enter a username"
                 minLength={1}
                 maxLength={30}
-                autocomplete={false}
-                onChange={(evt) => setUsername(evt.target.value.trim())}
+                autoComplete="false"
+                onChange={(evt) => {
+                  setUsername(evt.target.value.trim());
+                  console.log(username);
+                }}
               />
 
               <AvatarCarousel />
@@ -78,8 +62,8 @@ const LandingPageComp = () => {
               <StartDrawBtn>
                 <PublicRoomButton
                   type="button"
-                  name="create room"
-                  onClick={handleSubmit}
+                  name="create"
+                  onClick={(evt) => startScribbling(evt)}
                 >
                   Play!
                 </PublicRoomButton>
@@ -88,21 +72,24 @@ const LandingPageComp = () => {
               <input
                 style={{ marginTop: "10px", marginBottom: "10px" }}
                 type="text"
-                name="join room"
-                onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
+                onChange={(evt) => {
+                  let room = evt.target.value;
+                  setRoomToJoin(room);
+                  console.log(roomToJoin);
+                }}
               />
               <StartDrawBtn>
                 <CreateRoomButton
                   type="button"
                   name="join"
-                  onClick={handleJoin}
+                  onClick={(evt) => startScribbling(evt)}
                 >
                   Join Room
                 </CreateRoomButton>
               </StartDrawBtn>
             </LandingBtns>
           </div>
-        </LandingPage>{" "}
+        </LandingPage>
         <img
           src={"/images/howPlay.png"}
           style={{
@@ -158,22 +145,21 @@ const LandingPageComp = () => {
                   Draw, Add Text, and Scramble Your Own and Others' Images.
                 </li>
                 <li> When You're Done Click "I'm Done"</li>
-                <li>Download Your Scribb Scrabb to Share with friends!</li>
+                <li>Download Your Scribb Scrab to Share with friends!</li>
               </ol>
             </Drawer>
           </div>
 
           <Drawer title={<h4>What Is Scramble Mode?</h4>}>
             <div>
-              Scribble Scramble Has Three Modes:{" "}
-              <span style={{ fontWeight: "bold" }}>Draw,</span>{" "}
-              <span style={{ fontWeight: "bold" }}>Write</span> or{" "}
+              Scribble Scramble Has Three Modes:
+              <span style={{ fontWeight: "bold" }}>Draw,</span>
+              <span style={{ fontWeight: "bold" }}>Write</span> or
               <span style={{ fontWeight: "bold" }}>Scramble!</span>
             </div>
 
             <ul>
               <li>
-                {" "}
                 <span style={{ fontWeight: "bold" }}>Draw Mode</span> lets you
                 draw
               </li>

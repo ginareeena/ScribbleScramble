@@ -99,30 +99,46 @@ serverSocket.on("connection", (socket) => {
     listPlayers();
   });
 
-  socket.on("scribble time", ({ username, room }) => {
+  socket.on("scribble time", ({ username, room, action }) => {
     console.log(magenta("on: scribble time"));
+    console.log(
+      magenta(`username: ${username}, room: ${room}, action: ${action}`)
+    );
+    console.log(magenta(rooms));
+
     //save username on socket
     if (username === "random") username = moniker.choose();
     socket.username = username;
+
     //create new player + store in player object
     let newPlayer = new Player(socket);
     players[socket.username] = newPlayer;
-    //create room if no room name provided
-    if (!room) room = nameIt();
-    //join room (unless room provided does not exist)
-    rooms.push(room);
-    if (!rooms.includes(room)) {
-      socket.emit("not a valid room");
-    } else {
-      socket.room = room;
-      socket.join(room);
-      socket.emit("scramble time", room);
-    }
 
-    console.log(blueBright(`${socket.username} added to ${socket.room}`));
-    listPlayers();
-    listRooms();
-    listRoomPlayers();
+    if (action === "join") {
+      if (rooms.includes(room)) {
+        socket.join(room);
+        socket.emit("scramble time", room);
+        console.log(blueBright("emitted scramble time"));
+        console.log(blueBright(`${socket.username} added to ${socket.room}`));
+        listPlayers();
+        listRooms();
+        listRoomPlayers();
+      } else {
+        socket.emit("invalid room");
+        console.log(blueBright("emitted invalid room name"));
+      }
+    } else {
+      if (!room) room = nameIt();
+      socket.room = room;
+      rooms.push(room);
+      socket.join(room);
+      console.log(blueBright(`${socket.username} added to ${socket.room}`));
+      listPlayers();
+      listRooms();
+      listRoomPlayers();
+      socket.emit("scramble time", room);
+      console.log(blueBright("emitted scramble time"));
+    }
   });
 
   // socket.on("", (username) => {
