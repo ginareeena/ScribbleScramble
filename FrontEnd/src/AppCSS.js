@@ -374,14 +374,13 @@ export const WriteModeBtn = styled.button`
   border: 2px solid darkgrey;
   align: center;
   margin-left: 5px;
-  height: 30px;
-  width: 60px;
   background-color: #134d44;
   color: white;
   font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 5px 10px;
 `;
 
 export const DrawBtn = styled.button`

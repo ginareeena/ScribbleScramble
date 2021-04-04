@@ -203,8 +203,7 @@ const CombinedCanvas = (props) => {
           Scramble!
         </ScrambleBtn>
         {/* <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn> */}
-        {/* <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn> */}
-        {/* <DrawerComp> */}
+        <WriteModeBtn onClick={() => startWriteMode()}>Edit Text</WriteModeBtn>
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
             {/* Brush Sizes: */}
