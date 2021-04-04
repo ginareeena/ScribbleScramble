@@ -68,7 +68,7 @@ serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
   socket.on("disconnect", () => {
-    delete players[socket.username];
+    delete players[socket.id];
     console.log(
       red(
         `player ${socket.username} has left the building (clientID: ${socket.id})`
@@ -99,16 +99,17 @@ serverSocket.on("connection", (socket) => {
     console.log(cyan(JSON.stringify(players)));
   });
 
-  // socket.on("get room players", (roomName) => {
-  //   let roomPlayers = [];
-  //   let currentRoom = rooms.find((room) => room.name === roomName);
-  //   console.log("curent room:", currentRoom);
-  //   console.log("current room players:", currentRoom["players"]);
-  //   roomPlayers = currentRoom.players;
-
-  //   socket.emit("all players", roomPlayers);
-  //   console.log("emit all players", roomPlayers);
-  // });
+  socket.on("get room players", (room) => {
+    console.log(magenta("getting room players"));
+    let playersInRoom = [];
+    for (let username in players) {
+      if (players[username] === room) {
+        playersInRoom.push(username);
+      }
+    }
+    socket.emit("all players", playersInRoom);
+    console.log("emitting all players", playersInRoom);
+  });
 
   // re: canvas
   socket.on("add text box", ({ room, canvasJSON }) => {
