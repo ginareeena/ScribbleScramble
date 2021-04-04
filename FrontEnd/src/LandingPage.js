@@ -14,7 +14,7 @@ import AvatarCarousel from "./AvatarCarousel";
 import Drawer from "./Drawer";
 
 const LandingPageComp = () => {
-  const [username, setUsername] = useState("scribbling");
+  const [username, setUsername] = useState("random");
   const [roomToJoin, setRoomToJoin] = useState("");
   const history = useHistory();
 
@@ -53,7 +53,10 @@ const LandingPageComp = () => {
                 style={{ marginTop: "10px", marginBottom: "10px" }}
                 type="text"
                 name="username"
-                defaultValue="Enter Name"
+                placeholder="Enter a username"
+                minLength={1}
+                maxLength={30}
+                autocomplete={false}
                 onChange={(evt) => setUsername(evt.target.value.trim())}
               />
               <AvatarCarousel />

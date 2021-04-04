@@ -5,7 +5,7 @@ const {
   colors,
   animals,
 } = require("unique-names-generator");
-
+const moniker = require("moniker");
 const Player = require("./player");
 
 const path = require("path");
@@ -64,6 +64,7 @@ const nameIt = () => {
     dictionaries: [adjectives, colors, animals],
   });
 };
+const randomUsername = () => rug.generate();
 const listPlayers = () => {
   console.log(cyan("current players:", JSON.stringify(players)));
   console.log(green("player count:", playerCount));
@@ -88,6 +89,9 @@ serverSocket.on("connection", (socket) => {
   //re: players
   socket.on("add new player", (username) => {
     console.log(magenta("on: add new player"));
+    if (username === "random") {
+      username = moniker.choose();
+    }
     socket.username = username;
     let newPlayer = new Player(socket.id, username);
     players[username] = newPlayer;
