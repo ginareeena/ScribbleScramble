@@ -67,6 +67,7 @@ const LandingPageComp = () => {
               <input
                 style={{ marginTop: "10px", marginBottom: "10px" }}
                 type="text"
+                placeholder="Know your room?"
                 onChange={(evt) => setRoomToJoin(evt.target.value)}
               />
               <StartDrawBtn>
