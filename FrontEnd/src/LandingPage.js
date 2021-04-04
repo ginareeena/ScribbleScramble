@@ -9,6 +9,7 @@ import {
   HowToPlay,
   LandingPageHeader,
   DrawerTitle,
+  FAQdiv,
 } from "./AppCSS";
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
@@ -162,16 +163,86 @@ const LandingPageComp = () => {
 
           <Drawer title={"What Is Scramble Mode?"}>
             <div style={{ marginTop: "5px" }}>
+              <span>Clicking </span>
               <span
                 style={{
                   fontWeight: "bold",
                 }}
               >
-                Scramble Mode
+                Scramble
               </span>{" "}
               <span>
-                allows you to scramble/move drawings and text around the canvas.
+                allows you to grab and move drawings and text around the canvas.
               </span>
+              <div>
+                <img
+                  style={{ width: "400px", marginTop: "15px" }}
+                  src="/images/scramblePic.png"
+                />
+              </div>
+              <FAQdiv>
+                First draw your drawing then click{" "}
+                <span
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Scramble
+                </span>{" "}
+                to enable scrambling
+              </FAQdiv>
+              <div>
+                {" "}
+                <img
+                  style={{ width: "400px", marginTop: "15px" }}
+                  src="/images/demo1.png"
+                />
+              </div>
+              <FAQdiv>
+                Click on the line you want to move or drag to select multiple
+                lines to move at once{" "}
+              </FAQdiv>
+              <div>
+                {" "}
+                <img
+                  style={{ width: "400px", marginTop: "15px" }}
+                  src="/images/demo2.png"
+                />
+              </div>
+              {/* <div>First draw your drawing </div> */}
+              <div>
+                {" "}
+                <img
+                  style={{ width: "400px", marginTop: "15px" }}
+                  src="/images/demo3.png"
+                />
+              </div>
+              <FAQdiv>You can also move rotate/edit/scale text</FAQdiv>
+              <div>
+                {" "}
+                <img
+                  style={{ width: "400px", marginTop: "15px" }}
+                  src="/images/demo9.png"
+                />
+              </div>
+              <div>
+                {" "}
+                <img
+                  style={{ width: "400px", marginTop: "15px" }}
+                  src="/images/demo9b.png"
+                />
+              </div>
+              <FAQdiv>
+                When you're ready to draw again click anywhere on the brush
+                tools to renable drawing.
+              </FAQdiv>
+              {/* <div>
+                {" "}
+                <img
+                  style={{ width: "400px", marginTop: "15px" }}
+                  src="/images/demo9c.png"
+                />
+              </div> */}
             </div>
           </Drawer>
         </div>

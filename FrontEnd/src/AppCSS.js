@@ -572,3 +572,7 @@ export const EndGameContainer = styled.div`
   align-items: center;
   margin-top: 15px;
 `;
+
+export const FAQdiv = styled.div`
+  margin-top: 7px;
+`;
