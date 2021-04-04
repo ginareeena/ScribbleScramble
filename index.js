@@ -56,28 +56,24 @@ const serverSocket = require("socket.io")(http, {
 });
 
 let players = {};
-let playerCount = 0;
-let gameRooms = [];
-let activeRooms = 0;
+let rooms = [];
 const nameIt = () => {
   return uniqueNamesGenerator({
     dictionaries: [adjectives, colors, animals],
   });
 };
-const randomUsername = () => rug.generate();
 const listPlayers = () => {
   console.log(cyan("current players:", JSON.stringify(players)));
-  console.log(green("player count:", playerCount));
 };
 const listRooms = () => {
-  gameRooms.forEach((room) => {
-    console.log(cyan("rooms:", JSON.stringify(room)));
+  console.log(green("rooms"));
+  rooms.forEach((room) => {
+    console.log(green(JSON.stringify(room)));
   });
-  console.log(green("active rooms:", activeRooms));
 };
 const listRoomPlayers = (room) => {
   for (let each in players) {
-    console.log(cyan("players in room:"));
+    console.log(red("players in room:"));
     console.log(red(JSON.stringify(each)));
   }
 };
@@ -87,23 +83,14 @@ serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
   //re: players
-  socket.on("add new player", (username) => {
-    console.log(magenta("on: add new player"));
-    if (username === "random") {
-      username = moniker.choose();
-    }
-    socket.username = username;
-    let newPlayer = new Player(socket);
-    players[socket.username] = newPlayer;
-    ++playerCount;
-    console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
-    listPlayers();
-  });
+  // socket.on("add new player", (username) => {
+  //   console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
+  //   listPlayers();
+  // });
 
   socket.on("disconnect", () => {
     console.log(magenta("on: disconnect"));
-    // delete players[socket.username];
-    // --playerCount;
+    delete players[socket.username];
     console.log(
       red(
         `player ${socket.username} has left the building (clientID: ${socket.id})`
@@ -112,23 +99,49 @@ serverSocket.on("connection", (socket) => {
     listPlayers();
   });
 
-  socket.on("create room", (username) => {
-    console.log(magenta("on: create new room"));
-    const room = nameIt();
-    gameRooms.push(room);
-    ++activeRooms;
-    socket.emit("new room created", room);
-    console.log(blueBright(`${username} has created room: ${room}`));
+  socket.on("scribble time", ({ username, room }) => {
+    console.log(magenta("on: scribble time"));
+    //save username on socket
+    if (username === "random") username = moniker.choose();
+    socket.username = username;
+    //create new player + store in player object
+    let newPlayer = new Player(socket);
+    players[socket.username] = newPlayer;
+    //create room if no room name provided
+    if (!room) room = nameIt();
+    //join room (unless room provided does not exist)
+    rooms.push(room);
+    if (!rooms.includes(room)) {
+      socket.emit("not a valid room");
+    } else {
+      socket.room = room;
+      socket.join(room);
+      socket.emit("scramble time");
+    }
+
+    console.log(blueBright(`${socket.username} added to ${socket.room}`));
+    listPlayers();
+    listRooms();
+    listRoomPlayers();
   });
 
-  socket.on("join room", ({ username, room }) => {
-    console.log(magenta("on: join room"));
-    socket.join(room);
-    // players[username].setRoom(room);
-    console.log(blueBright(`${username} has joined room: ${room}`));
-    listRooms();
-    listRoomPlayers(room);
-  });
+  // socket.on("", (username) => {
+  //   console.log(magenta("on: create new room"));
+  //   const room = nameIt();
+  //   rooms.push(room);
+  //   ++activeRooms;
+  //   socket.emit("new room created", room);
+  //   console.log(blueBright(`${username} has created room: ${room}`));
+  // });
+
+  // socket.on("join room", ({ username, room }) => {
+  //   console.log(magenta("on: join room"));
+  //   socket.join(room);
+  //   // players[username].setRoom(room);
+  //   console.log(blueBright(`${username} has joined room: ${room}`));
+  //   listRooms();
+  //   listRoomPlayers(room);
+  // });
 
   // re: canvas
   socket.on("add text box", ({ room, canvasJSON }) => {
