@@ -8,10 +8,10 @@ export const lightColors = {
   blue: "#1ec8d5",
   // blue: "#049ce6",
   purple: "#a37dcc",
-  // pink: "#d06f9f",
+  // pink: " #d06f9f",
   // brown: "#98472b",
   // brown: "#b05637",
-  // lightgrey: "#b9b9b9",
+  lightgrey: "#b9b9b9",
   white: "white",
 };
 
@@ -29,6 +29,6 @@ export const darkColors = {
   // dkbrown: "#592a13",
   // dkbrown: "#4a2515",
 
-  // dkgrey: "#434343",
+  dkgrey: "#434343",
   black: "black",
 };

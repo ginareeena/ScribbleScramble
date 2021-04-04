@@ -13,12 +13,16 @@ import {
   horse,
   wasp,
   flower,
+  unicorn,
+  watermelon,
+  coffee,
+  egg,
 } from "./Icons";
 
 function Footer() {
   const krIcons = [cotton, creature, cake, storm, beet];
   const mIcons = [crab, horse];
-  const gIcons = [cat, whale, creature];
+  const gIcons = [cat, whale, watermelon, egg, unicorn];
   const keIcons = [firefly, flower, wasp];
   const generalIcons = [
     cotton,
