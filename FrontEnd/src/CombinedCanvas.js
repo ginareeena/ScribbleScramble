@@ -19,6 +19,7 @@ import {
   WriteModeBtn,
   EndGameBtn,
   RoomHeader,
+  PaletteColorBtn,
 } from "./AppCSS";
 
 import { Link, useHistory } from "react-router-dom";
@@ -85,12 +86,18 @@ const CombinedCanvas = () => {
   useEffect(() => {
     if (currColor) {
       updateBrush();
+      if (canvas) {
+        startDrawMode();
+      }
     }
   }, [currColor]);
 
   useEffect(() => {
     if (brushSize && canvas.freeDrawingBrush) {
       updateBrush();
+    }
+    if (canvas) {
+      startDrawMode();
     }
   }, [brushSize]);
 
@@ -203,16 +210,15 @@ const CombinedCanvas = () => {
       </PlayArea>
 
       <Palette>
-        <div style={{ fontWeight: "bold" }}> Modes:</div>
+        {/* <div style={{ fontWeight: "bold" }}> Modes:</div> */}
         <ScrambleBtn
           title="Click me to move drawings!"
           onClick={() => startWriteMode()}
         >
           Scramble!
         </ScrambleBtn>
-        <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
-        <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
-        {/* <DrawerComp> */}
+        {/* <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn> */}
+        <WriteModeBtn onClick={() => startWriteMode()}>Edit Text</WriteModeBtn>
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
             {/* Brush Sizes: */}
