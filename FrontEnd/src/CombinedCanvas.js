@@ -85,6 +85,9 @@ const CombinedCanvas = (props) => {
     if (brushSize && canvas.freeDrawingBrush) {
       updateBrush();
     }
+    if (canvas) {
+      startDrawMode();
+    }
   }, [brushSize]);
 
   let drawingModeEl = document.getElementById("drawing-mode-selector");
