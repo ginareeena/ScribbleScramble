@@ -6,8 +6,7 @@ const {
   animals,
 } = require("unique-names-generator");
 const moniker = require("moniker");
-const Player = require("./player");
-const Room = require("./room");
+
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
@@ -17,8 +16,6 @@ const http = require("http").createServer(app);
 const cors = require("cors");
 
 const { isObject } = require("util");
-const { emit } = require("process");
-const { SSL_OP_NO_TICKET } = require("constants");
 
 const port = process.env.PORT || 4001;
 
@@ -59,65 +56,48 @@ const serverSocket = require("socket.io")(http, {
 
 let players = {};
 let rooms = [];
-// let roomNames = []
+
 const nameIt = () => {
   return uniqueNamesGenerator({
     dictionaries: [adjectives, colors, animals],
+    separator: "-",
   });
 };
-// const listPlayers = () => {
-//   console.log(cyan("current players:", JSON.stringify(players)));
-// };
-// const listRooms = () => {
-//   console.log(green("rooms"));
-//   rooms.forEach((room) => {
-//     console.log(green(JSON.stringify(room)));
-//   });
-// };
 
 //socket events
 serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
-  socket.on("disconnect", () => {
-    delete players[socket.username];
-    socket.disconnect();
-    console.log(
-      red(
-        `player ${socket.username} has left the building (clientID: ${socket.id})`
-      )
-    );
-  });
+  // socket.on("disconnect", () => {
+  //   delete players[socket.username];
+  //   socket.disconnect();
+  //   console.log(
+  //     red(
+  //       `player ${socket.username} has left the building (clientID: ${socket.id})`
+  //     )
+  //   );
+  // });
 
   socket.on("scribble time", ({ username, room }) => {
-    console.log(magenta("room name from FE", room));
-
     //PLAYER STUFF
     if (username === "random") username = moniker.choose();
     socket.username = username;
-    players[socket.id] = socket.username;
-    //CONFIRM: PLAYER WAS ADDED
-    console.log(green("player added: ", socket.username));
-
     //ROOM STUFF
     if (room && !rooms.includes(room)) {
-      console.log(red("rooms does not include room"));
       socket.emit("invalid room name");
     } else {
       if (!room) {
-        console.log(blueBright("room is null, see?", room));
         room = nameIt();
         rooms.push(room);
-        console.log("room has named", room);
       }
-
-      console.log(magenta("there should be a decent room name now?", room));
-
       socket.room = room;
       socket.join(room);
+      players[socket.username] = socket.room;
       socket.emit("scramble time", room);
-      console.log(cyan("scramble time"));
     }
+    //just to check :)
+    console.log(green(rooms));
+    console.log(cyan(JSON.stringify(players)));
   });
 
   // socket.on("get room players", (roomName) => {
