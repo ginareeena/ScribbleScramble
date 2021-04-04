@@ -93,8 +93,8 @@ serverSocket.on("connection", (socket) => {
       username = moniker.choose();
     }
     socket.username = username;
-    let newPlayer = new Player(socket.id, username);
-    players[username] = newPlayer;
+    let newPlayer = new Player(socket);
+    players[socket.username] = newPlayer;
     ++playerCount;
     console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
     listPlayers();
@@ -102,7 +102,7 @@ serverSocket.on("connection", (socket) => {
 
   socket.on("disconnect", (socket) => {
     console.log(magenta("on: disconnect"));
-    delete players[socket.username];
+    // delete players[socket.username];
     // --playerCount;
     console.log(
       red(
@@ -112,7 +112,7 @@ serverSocket.on("connection", (socket) => {
     listPlayers();
   });
 
-  socket.on("create new room", (username) => {
+  socket.on("create room", (username) => {
     console.log(magenta("on: create new room"));
     const room = nameIt();
     gameRooms.push(room);
