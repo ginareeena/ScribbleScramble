@@ -64,6 +64,8 @@ export const monster = process.env.PUBLIC_URL + "/images/avatars/monster.png";
 
 export const exercise = process.env.PUBLIC_URL + "/images/avatars/exercise.png";
 
+export const watermelon =
+  process.env.PUBLIC_URL + "/images/avatars/watermelon.png";
 //   cake: <img src="../public/avatars/images/cake.jpg" />,
 //   catzoom: <img src="../public/avatars/images/catzoom.jpg" />,
 //   cotton: <img src="../public/avatars/images/cotton.jpg" />,

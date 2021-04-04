@@ -70,7 +70,7 @@ const LandingPageComp = () => {
               </StartDrawBtn>
 
               <input
-                style={{ marginTop: "10px", marginBottom: "10px" }}
+                style={{ marginTop: "5px", marginBottom: "5px" }}
                 type="text"
                 name="join-room-name"
                 onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
