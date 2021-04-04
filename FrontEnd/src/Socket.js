@@ -10,7 +10,7 @@ socket.on("connect", () => {
 });
 
 socket.on("invalid room", () => {
-  alert("please enter a valid room name");
+  alert("please enter valid room name");
 });
 
 export default socket;

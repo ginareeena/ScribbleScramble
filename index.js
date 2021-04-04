@@ -7,7 +7,7 @@ const {
 } = require("unique-names-generator");
 const moniker = require("moniker");
 const Player = require("./player");
-
+const Room = require("./room");
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
@@ -17,6 +17,8 @@ const http = require("http").createServer(app);
 const cors = require("cors");
 
 const { isObject } = require("util");
+const { emit } = require("process");
+const { SSL_OP_NO_TICKET } = require("constants");
 
 const port = process.env.PORT || 4001;
 
@@ -57,6 +59,7 @@ const serverSocket = require("socket.io")(http, {
 
 let players = {};
 let rooms = [];
+// let roomNames = []
 const nameIt = () => {
   return uniqueNamesGenerator({
     dictionaries: [adjectives, colors, animals],
@@ -86,35 +89,47 @@ serverSocket.on("connection", (socket) => {
     );
   });
 
-  socket.on("scribble time", ({ username, room, action }) => {
-    //save username on socket
+  socket.on("scribble time", ({ username, room }) => {
+    console.log(magenta("room name from FE", room));
+
+    //PLAYER STUFF
     if (username === "random") username = moniker.choose();
     socket.username = username;
+    players[socket.id] = socket.username;
+    //CONFIRM: PLAYER WAS ADDED
+    console.log(green("player added: ", socket.username));
 
-    //create new player + store in player object
-    let newPlayer = new Player(socket);
-    players[socket.username] = newPlayer;
-
-    //if join button:
-    if (action === "join") {
-      if (rooms.includes(room)) {
-        socket.join(room);
-        newPlayer.setRoom(room);
-        socket.emit("scramble time", room);
-      } else {
-        socket.emit("invalid room");
+    //ROOM STUFF
+    if (room && !rooms.includes(room)) {
+      console.log(red("rooms does not include room"));
+      socket.emit("invalid room name");
+    } else {
+      if (!room) {
+        console.log(blueBright("room is null, see?", room));
+        room = nameIt();
+        rooms.push(room);
+        console.log("room has named", room);
       }
 
-      //if create button:
-    } else {
-      room = nameIt();
+      console.log(magenta("there should be a decent room name now?", room));
+
       socket.room = room;
-      rooms.push(room);
       socket.join(room);
-      newPlayer.setRoom(room);
       socket.emit("scramble time", room);
+      console.log(cyan("scramble time"));
     }
   });
+
+  // socket.on("get room players", (roomName) => {
+  //   let roomPlayers = [];
+  //   let currentRoom = rooms.find((room) => room.name === roomName);
+  //   console.log("curent room:", currentRoom);
+  //   console.log("current room players:", currentRoom["players"]);
+  //   roomPlayers = currentRoom.players;
+
+  //   socket.emit("all players", roomPlayers);
+  //   console.log("emit all players", roomPlayers);
+  // });
 
   // re: canvas
   socket.on("add text box", ({ room, canvasJSON }) => {

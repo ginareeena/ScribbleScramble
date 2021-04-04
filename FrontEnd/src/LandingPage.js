@@ -30,7 +30,6 @@ const LandingPageComp = () => {
     socket.emit("scribble time", {
       username,
       room: roomToJoin,
-      action: evt.target.name,
     });
   };
 
