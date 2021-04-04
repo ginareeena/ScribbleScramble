@@ -46,6 +46,24 @@ export const ski = process.env.PUBLIC_URL + "/images/avatars/ski.png";
 
 export const flower = process.env.PUBLIC_URL + "/images/avatars/flower.png";
 
+// more new ones!
+
+export const alien = process.env.PUBLIC_URL + "/images/avatars/alien.png";
+
+export const unicorn = process.env.PUBLIC_URL + "/images/avatars/unicorn.png";
+
+export const fly = process.env.PUBLIC_URL + "/images/avatars/fly.png";
+
+export const egg = process.env.PUBLIC_URL + "/images/avatars/egg.png";
+
+export const pika = process.env.PUBLIC_URL + "/images/avatars/pika.png";
+
+export const pretzel = process.env.PUBLIC_URL + "/images/avatars/pretzel.png";
+
+export const monster = process.env.PUBLIC_URL + "/images/avatars/monster.png";
+
+export const exercise = process.env.PUBLIC_URL + "/images/avatars/exercise.png";
+
 //   cake: <img src="../public/avatars/images/cake.jpg" />,
 //   catzoom: <img src="../public/avatars/images/catzoom.jpg" />,
 //   cotton: <img src="../public/avatars/images/cotton.jpg" />,

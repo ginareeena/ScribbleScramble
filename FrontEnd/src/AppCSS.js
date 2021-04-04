@@ -107,8 +107,22 @@ export const HowToPlay = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-bottom: 120px;
+  margin-bottom: 125px;
   margin-top: 0px;
+  padding: 25px;
+  padding-bottom: 27px;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 2px;
+`;
+
+export const DrawerTitle = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const DrawerH4 = styled.h4`
+  margin: 10px 0px;
 `;
 
 export const ScribbScrabb = styled.div`
@@ -204,15 +218,15 @@ export const CanvasBackground = styled.div`
   margin-bottom: 10px;
 `;
 
-// container for all palette buttons
+// container for all buttons-> writing/ drawing, etc
 export const Palette = styled.div`
   display: flex;
   justify-content: center;
   background: #4c9c8a;
   align-items: center;
   margin: auto;
-  margin-top: 10px;
   margin-bottom: 15px;
+  padding: 0 0 0 0;
   border-radius: 8px;
   @media (max-width: 2650px) {
     width: 800px;
@@ -224,6 +238,11 @@ export const Palette = styled.div`
 `;
 
 //container for just the color swatches portion of the palette
+
+export const PaletteColorBtn = styled.button`
+  border: none;
+  margin-bottom: 0px;
+`;
 
 export const BrushSizesContainer = styled.div`
   display: flex;
@@ -280,16 +299,16 @@ export const SelectedColor = styled.div`
 `;
 
 export const PaletteColors = styled.div`
-  margin: 5px;
+  display: flex;
   margin-left: 8px;
   margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 `;
 
-export const PaletteBtns = styled.div`
-  margin-top: 10px;
-`;
+// export const PaletteBtns = styled.div``;
 
-// Image Elements
+// Image Elementspalet
 
 export const StartDrawImg = styled.div`
   display: flex;
@@ -355,14 +374,13 @@ export const WriteModeBtn = styled.button`
   border: 2px solid darkgrey;
   align: center;
   margin-left: 5px;
-  height: 30px;
-  width: 60px;
   background-color: #134d44;
   color: white;
   font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 5px 10px;
 `;
 
 export const DrawBtn = styled.button`
@@ -469,8 +487,8 @@ export const AddTxtBtn = styled.button`
   border: 2px solid darkgrey;
   align: center;
   margin: 0 1em;
-  margin-top: 5px;
-  height: 28px;
+  margin-right: 3px;
+  padding: 5px;
   width: 80px;
   background-color: #134d44;
   color: white;
@@ -511,8 +529,8 @@ export const EndGameBtn = styled.button`
   border: 2px solid darkgrey;
   align: center;
   margin: 0 1em;
-  margin-top: 5px;
-  height: 28px;
+  margin-left: 5px;
+  padding: 5px;
   width: 80px;
   background-color: #134d44;
   color: white;

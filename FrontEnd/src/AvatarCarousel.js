@@ -38,6 +38,14 @@ import {
   link,
   wasp,
   ski,
+  alien,
+  unicorn,
+  fly,
+  egg,
+  pika,
+  pretzel,
+  monster,
+  exercise,
 } from "./Icons";
 
 const buttonStyle = {
@@ -64,15 +72,24 @@ const AvatarCarousel = () => {
     tomato,
     violin,
     whale,
-    beet,
-    cat,
-    coffee,
-    creature,
-    flower,
+
     horse,
     link,
     wasp,
     ski,
+    flower,
+    alien,
+    beet,
+    cat,
+    coffee,
+    creature,
+    unicorn,
+    fly,
+    egg,
+    pika,
+    pretzel,
+    monster,
+    exercise,
   ];
   const scramblize = (iconSet) => {
     const max = iconSet.length;
@@ -96,7 +113,7 @@ console.log('max', max)
     <CarouselProvider
       naturalSlideWidth={1}
       naturalSlideHeight={1}
-      totalSlides={26}
+      totalSlides={35}
       infinite={true}
     >
       {" "}
