@@ -72,8 +72,8 @@ const listRooms = () => {
   });
 };
 const listRoomPlayers = (room) => {
+  console.log("players in room:");
   for (let each in players) {
-    console.log(red("players in room:"));
     console.log(red(JSON.stringify(each)));
   }
 };
@@ -117,6 +117,7 @@ serverSocket.on("connection", (socket) => {
     if (action === "join") {
       if (rooms.includes(room)) {
         socket.join(room);
+        newPlayer.setRoom(room);
         socket.emit("scramble time", room);
         console.log(blueBright("emitted scramble time"));
         console.log(blueBright(`${socket.username} added to ${socket.room}`));
@@ -128,14 +129,15 @@ serverSocket.on("connection", (socket) => {
         console.log(blueBright("emitted invalid room name"));
       }
     } else {
-      if (!room) room = nameIt();
+      room = nameIt();
       socket.room = room;
       rooms.push(room);
       socket.join(room);
+      newPlayer.setRoom(room);
       console.log(blueBright(`${socket.username} added to ${socket.room}`));
       listPlayers();
       listRooms();
-      listRoomPlayers();
+      listRoomPlayers(room);
       socket.emit("scramble time", room);
       console.log(blueBright("emitted scramble time"));
     }
