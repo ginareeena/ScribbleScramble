@@ -21,14 +21,15 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 export const Body = styled.div`
   display: flex;
+  background-size: 90%;
   @media (max-width: 2650px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg);
+    background-image: url(${process.env.PUBLIC_URL}/images/background.png);
 
     flex-flow: column wrap;
     width: 100%;
   }
   @media (max-width: 813px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg)
+    background-image: url(${process.env.PUBLIC_URL}/images/background.png)
       repeat;
     width: 813px;
     margin-right: 5px;

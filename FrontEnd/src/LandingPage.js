@@ -157,7 +157,7 @@ const LandingPageComp = () => {
           </div>
 
           <Drawer title={"What Is Scramble Mode?"}>
-            <div style={{ marginTop: "5px" }}>
+            <div style={{ marginTop: "6px" }}>
               <span>Clicking </span>
               <span
                 style={{
