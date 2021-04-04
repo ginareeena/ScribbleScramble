@@ -29,7 +29,7 @@ const LandingPageComp = () => {
   const handleCreate = () => {
     socket.emit("add new player", username);
     console.log("FE: emit create new room");
-    socket.emit("create new room", username);
+    socket.emit("create room", username);
   };
 
   const handleJoin = () => {
@@ -64,7 +64,7 @@ const LandingPageComp = () => {
               <StartDrawBtn>
                 <PublicRoomButton
                   type="button"
-                  name="create"
+                  name="create room"
                   onClick={handleCreate}
                 >
                   Play!
@@ -74,7 +74,7 @@ const LandingPageComp = () => {
               <input
                 style={{ marginTop: "10px", marginBottom: "10px" }}
                 type="text"
-                name="join-room-name"
+                name="join room"
                 onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
               />
               <StartDrawBtn>

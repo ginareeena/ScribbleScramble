@@ -100,7 +100,7 @@ serverSocket.on("connection", (socket) => {
     listPlayers();
   });
 
-  socket.on("disconnect", (socket) => {
+  socket.on("disconnect", () => {
     console.log(magenta("on: disconnect"));
     // delete players[socket.username];
     // --playerCount;
