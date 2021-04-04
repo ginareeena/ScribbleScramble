@@ -141,20 +141,21 @@ const LandingPageComp = () => {
               <ol style={{ marginTop: "2px", marginBottom: "5px" }}>
                 <li>Click "Play" to Create A Room</li>
                 <li>
-                  Enter A Name and Click "Join Room" to Join A Friend's Room
+                  Enter A Name and Click "Join Room" to Join A Friend's Room.
                 </li>
-                <li>Give Your Room Name To Friends You Want To Join</li>
-                <li>
+                <li>Give Your Room Name To Friends You Want To Join.</li>
+                {/* <li>
                   Select Your Mode:{" "}
                   <span style={{ fontWeight: "bold" }}>Draw</span>,{" "}
                   <span style={{ fontWeight: "bold" }}>Write</span>, or{" "}
                   <span style={{ fontWeight: "bold" }}>Scramble</span>
-                </li>
+                </li> */}
+                <li>Draw Or Write Whatever You Want!</li>
                 <li>
-                  Draw, Add Text, and Scramble Your Own and Others' Images.
+                  Click The Scramble Button to Grab and Move Drawings or Text.
                 </li>
                 <li> When You're Done Click "I'm Done"</li>
-                <li>Download Your Scribb Scrabb to Share with friends!</li>
+                <li>Download Your Scribb Scrabb to Share With Friends!</li>
               </ol>
             </Drawer>
           </div>
@@ -169,7 +170,7 @@ const LandingPageComp = () => {
                 Scramble Mode
               </span>{" "}
               <span>
-                allows you to scramble/move drawings and text around the canvas!
+                allows you to scramble/move drawings and text around the canvas.
               </span>
             </div>
           </Drawer>
