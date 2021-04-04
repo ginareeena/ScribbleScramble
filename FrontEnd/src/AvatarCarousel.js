@@ -80,8 +80,16 @@ const AvatarCarousel = () => {
     return iconSet[randomIconIdx];
   };
 
+  const max = iconSet.length;
+  
+console.log('max', max)
   const scrambleIdx = (idx = 0) => {
-    return idx++;
+    if(idx < max) {
+      return idx++;
+    } else {
+      idx = 1
+      return idx
+    } 
   };
 
   return (
@@ -108,10 +116,10 @@ const AvatarCarousel = () => {
         <Slider>
           {iconSet.map((icon) => {
             icon = scramblize(iconSet);
-            let idx = scrambleIdx(iconSet);
+            let idx = 0
             return (
-              <Slide index={idx}>
-                <Image src={icon} alt="bird" />
+              <Slide key={idx++}>
+                <Image src={icon} alt={icon} />
               </Slide>
             );
           })}

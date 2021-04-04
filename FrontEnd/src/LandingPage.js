@@ -12,6 +12,7 @@ import {
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
 import Drawer from "./Drawer";
+import Gallery from "./Gallery"
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("scribbling");
@@ -102,17 +103,7 @@ const LandingPageComp = () => {
         <Drawer />
         <Drawer />
         <div>
-          <img
-            src={process.env.PUBLIC_URL + "/images/batty.png"}
-            style={{
-              width: "36%",
-              marginRight: "20px",
-              marginLeft: "0px",
-              marginTop: "24px",
-              float: "right",
-            }}
-            alt="batty"
-          />
+          <Gallery />
           <h3>FAQ:</h3>
           <h4>What's a Scribb Scrab?</h4>
           <div style={{ width: "345px", marginRight: "0px" }}>
