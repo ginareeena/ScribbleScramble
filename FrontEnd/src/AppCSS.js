@@ -434,8 +434,7 @@ export const PublicRoomButton = styled.button`
   color: white;
   font-size: 14px;
   font-weight: bold;
-  height: 35px;
-  width: 130px;
+  padding: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -505,7 +504,6 @@ export const DownloadAhref = styled.a`
   color: white;
   font-size: 14px;
   font-weight: bold;
-  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -542,6 +540,7 @@ export const EndGameBtn = styled.button`
 export const EndGameElement = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 `;
 
 export const EndGameH1 = styled.h1`
@@ -569,4 +568,5 @@ export const EndGameContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 `;

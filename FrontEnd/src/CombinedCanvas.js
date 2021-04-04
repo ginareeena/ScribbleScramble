@@ -123,6 +123,13 @@ const CombinedCanvas = () => {
     }
   }
 
+  function clearCanvas() {
+    if (canvas) {
+      canvas.clear();
+      canvas.backgroundColor = "white";
+    }
+  }
+
   function startDrawMode() {
     canvas.isDrawingMode = true;
   }
@@ -270,12 +277,8 @@ const CombinedCanvas = () => {
         <PaletteColors>
           <PaletteComp currColor={currColor} setColor={setColor} />
         </PaletteColors>
-        <PngButton onClick={() => canvas.clear()}>
-          <img
-            src="/images/trashBtn.png"
-            style={{ width: "100%" }}
-            alt="clear canvas"
-          />
+        <PngButton onClick={() => clearCanvas()}>
+          <img src="/images/trashBtn.png" style={{ width: "100%" }} />
         </PngButton>
         <PngButton onClick={() => setColor("white")}>
           <img
@@ -290,7 +293,12 @@ const CombinedCanvas = () => {
           <span style={{ fontWeight: "bold" }}>Text Palette:{"  "}</span>
 
           <label htmlFor="font-family">Font:</label>
-          <select id="font-family" value={font} onChange={changeFont}>
+          <select
+            id="font-family"
+            value={font}
+            onChange={changeFont}
+            style={{ width: "90px", marginLeft: "5px" }}
+          >
             <option value="Arial">Arial</option>
             <option value="comic sans ms">Comic Sans MS</option>
             <option value="impact">Impact</option>
