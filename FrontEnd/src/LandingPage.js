@@ -20,7 +20,6 @@ const LandingPageComp = () => {
 
   useEffect(() => {
     socket.on("scramble time", (name) => {
-      console.log("front end heard: scramble time");
       history.push(`scramble/${name}`);
       return () => socket.off("scramble time");
     });
@@ -28,7 +27,6 @@ const LandingPageComp = () => {
 
   const startScribbling = (evt) => {
     evt.preventDefault();
-    console.log("it's scribble time!");
     socket.emit("scribble time", {
       username,
       room: roomToJoin,

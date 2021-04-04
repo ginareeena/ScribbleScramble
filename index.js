@@ -62,22 +62,21 @@ const nameIt = () => {
     dictionaries: [adjectives, colors, animals],
   });
 };
-const listPlayers = () => {
-  console.log(cyan("current players:", JSON.stringify(players)));
-};
-const listRooms = () => {
-  console.log(green("rooms"));
-  rooms.forEach((room) => {
-    console.log(green(JSON.stringify(room)));
-  });
-};
+// const listPlayers = () => {
+//   console.log(cyan("current players:", JSON.stringify(players)));
+// };
+// const listRooms = () => {
+//   console.log(green("rooms"));
+//   rooms.forEach((room) => {
+//     console.log(green(JSON.stringify(room)));
+//   });
+// };
 
 //socket events
 serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
   socket.on("disconnect", () => {
-    console.log(magenta("on: disconnect"));
     delete players[socket.username];
     socket.disconnect();
     console.log(
@@ -89,12 +88,6 @@ serverSocket.on("connection", (socket) => {
   });
 
   socket.on("scribble time", ({ username, room, action }) => {
-    console.log(magenta("on: scribble time"));
-    console.log(
-      magenta(`username: ${username}, room: ${room}, action: ${action}`)
-    );
-    console.log(magenta(rooms));
-
     //save username on socket
     if (username === "random") username = moniker.choose();
     socket.username = username;
@@ -109,13 +102,8 @@ serverSocket.on("connection", (socket) => {
         socket.join(room);
         newPlayer.setRoom(room);
         socket.emit("scramble time", room);
-        console.log(blueBright("emitted scramble time"));
-        console.log(blueBright(`${socket.username} added to ${socket.room}`));
-        listPlayers();
-        listRooms();
       } else {
         socket.emit("invalid room");
-        console.log(blueBright("emitted invalid room name"));
       }
 
       //if create button:
@@ -125,23 +113,16 @@ serverSocket.on("connection", (socket) => {
       rooms.push(room);
       socket.join(room);
       newPlayer.setRoom(room);
-      console.log(blueBright(`${socket.username} added to ${socket.room}`));
-      listPlayers();
-      listRooms();
       socket.emit("scramble time", room);
-      console.log(blueBright("emitted scramble time"));
     }
   });
 
-
   // re: canvas
   socket.on("add text box", ({ room, canvasJSON }) => {
-    console.log("server side heard add text box!");
     socket.in(room).emit("create new text box", canvasJSON);
   });
 
   socket.on("send new lines", (value) => {
-    console.log("server side heard drawing from front end!", value);
     socket.in(value.room).emit("load new lines", value.canvasJSON);
   });
 });
