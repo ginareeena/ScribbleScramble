@@ -145,12 +145,7 @@ const LandingPageComp = () => {
                   Enter A Name and Click "Join Room" to Join A Friend's Room.
                 </li>
                 <li>Give Your Room Name To Friends You Want To Join.</li>
-                {/* <li>
-                  Select Your Mode:{" "}
-                  <span style={{ fontWeight: "bold" }}>Draw</span>,{" "}
-                  <span style={{ fontWeight: "bold" }}>Write</span>, or{" "}
-                  <span style={{ fontWeight: "bold" }}>Scramble</span>
-                </li> */}
+
                 <li>Draw Or Write Whatever You Want!</li>
                 <li>
                   Click The Scramble Button to Grab and Move Drawings or Text.
@@ -225,6 +220,10 @@ const LandingPageComp = () => {
                   src="/images/demo9.png"
                 />
               </div>
+              <FAQdiv>
+                When you're ready to draw again click anywhere on the brush
+                tools to renable drawing.
+              </FAQdiv>
               <div>
                 {" "}
                 <img
@@ -233,16 +232,24 @@ const LandingPageComp = () => {
                 />
               </div>
               <FAQdiv>
-                When you're ready to draw again click anywhere on the brush
-                tools to renable drawing.
+                You can also edit text that's already been placed by clicking{" "}
+                <span
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Scramble
+                </span>{" "}
+                or Edit Text
+                <div>and then clicking inside the text you want to edit.</div>
               </FAQdiv>
-              {/* <div>
+              <div>
                 {" "}
                 <img
                   style={{ width: "400px", marginTop: "15px" }}
-                  src="/images/demo9c.png"
+                  src="/images/demo9e.png"
                 />
-              </div> */}
+              </div>
             </div>
           </Drawer>
         </div>
