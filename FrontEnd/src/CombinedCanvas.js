@@ -184,6 +184,12 @@ const CombinedCanvas = () => {
           Room:
         </span>
         <span style={{ color: "white" }}> {room} </span>
+        <span
+          style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
+        >
+          Players:
+        </span>
+        <span style={{ color: "white" }}>{players.join(", ")}</span>
       </RoomHeader>
 
       <PlayArea
