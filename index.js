@@ -56,7 +56,6 @@ const serverSocket = require("socket.io")(http, {
 
 let players = {};
 let rooms = [];
-
 const nameIt = () => {
   return uniqueNamesGenerator({
     dictionaries: [adjectives, colors, animals],
@@ -68,15 +67,15 @@ const nameIt = () => {
 serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
-  // socket.on("disconnect", () => {
-  //   delete players[socket.username];
-  //   socket.disconnect();
-  //   console.log(
-  //     red(
-  //       `player ${socket.username} has left the building (clientID: ${socket.id})`
-  //     )
-  //   );
-  // });
+  socket.on("disconnect", () => {
+    delete players[socket.username];
+    console.log(
+      red(
+        `player ${socket.username} has left the building (clientID: ${socket.id})`
+      )
+    );
+    socket.disconnect();
+  });
 
   socket.on("scribble time", ({ username, room }) => {
     //PLAYER STUFF
