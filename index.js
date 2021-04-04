@@ -133,23 +133,6 @@ serverSocket.on("connection", (socket) => {
     }
   });
 
-  // socket.on("", (username) => {
-  //   console.log(magenta("on: create new room"));
-  //   const room = nameIt();
-  //   rooms.push(room);
-  //   ++activeRooms;
-  //   socket.emit("new room created", room);
-  //   console.log(blueBright(`${username} has created room: ${room}`));
-  // });
-
-  // socket.on("join room", ({ username, room }) => {
-  //   console.log(magenta("on: join room"));
-  //   socket.join(room);
-  //   // players[username].setRoom(room);
-  //   console.log(blueBright(`${username} has joined room: ${room}`));
-  //   listRooms();
-  //   listRoomPlayers(room);
-  // });
 
   // re: canvas
   socket.on("add text box", ({ room, canvasJSON }) => {
