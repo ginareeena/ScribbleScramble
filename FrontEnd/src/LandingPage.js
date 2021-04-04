@@ -29,7 +29,6 @@ const LandingPageComp = () => {
   const startScribbling = (evt) => {
     evt.preventDefault();
     console.log("it's scribble time!");
-    console.log(evt.target.name)
     socket.emit("scribble time", {
       username,
       room: roomToJoin,
@@ -53,7 +52,6 @@ const LandingPageComp = () => {
                 autoComplete="false"
                 onChange={(evt) => {
                   setUsername(evt.target.value.trim());
-                  console.log(username);
                 }}
               />
 
@@ -72,11 +70,7 @@ const LandingPageComp = () => {
               <input
                 style={{ marginTop: "10px", marginBottom: "10px" }}
                 type="text"
-                onChange={(evt) => {
-                  let room = evt.target.value;
-                  setRoomToJoin(room);
-                  console.log(roomToJoin);
-                }}
+                onChange={(evt) => setRoomToJoin(evt.target.value)}
               />
               <StartDrawBtn>
                 <CreateRoomButton

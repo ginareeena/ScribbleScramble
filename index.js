@@ -71,26 +71,15 @@ const listRooms = () => {
     console.log(green(JSON.stringify(room)));
   });
 };
-const listRoomPlayers = (room) => {
-  console.log("players in room:");
-  for (let each in players) {
-    console.log(red(JSON.stringify(each)));
-  }
-};
 
 //socket events
 serverSocket.on("connection", (socket) => {
   console.log(yellow(`server new client connected on ${socket.id}`));
 
-  //re: players
-  // socket.on("add new player", (username) => {
-  //   console.log(blueBright("new player added: ", JSON.stringify(newPlayer)));
-  //   listPlayers();
-  // });
-
   socket.on("disconnect", () => {
     console.log(magenta("on: disconnect"));
     delete players[socket.username];
+    socket.disconnect();
     console.log(
       red(
         `player ${socket.username} has left the building (clientID: ${socket.id})`
@@ -114,6 +103,7 @@ serverSocket.on("connection", (socket) => {
     let newPlayer = new Player(socket);
     players[socket.username] = newPlayer;
 
+    //if join button:
     if (action === "join") {
       if (rooms.includes(room)) {
         socket.join(room);
@@ -123,11 +113,12 @@ serverSocket.on("connection", (socket) => {
         console.log(blueBright(`${socket.username} added to ${socket.room}`));
         listPlayers();
         listRooms();
-        listRoomPlayers();
       } else {
         socket.emit("invalid room");
         console.log(blueBright("emitted invalid room name"));
       }
+
+      //if create button:
     } else {
       room = nameIt();
       socket.room = room;
@@ -137,7 +128,6 @@ serverSocket.on("connection", (socket) => {
       console.log(blueBright(`${socket.username} added to ${socket.room}`));
       listPlayers();
       listRooms();
-      listRoomPlayers(room);
       socket.emit("scramble time", room);
       console.log(blueBright("emitted scramble time"));
     }

@@ -1,5 +1,4 @@
 import * as io from "socket.io-client";
-import useHistory from "react-router-dom";
 
 const socket = io(window.location.origin, {
   withCredentials: true,
@@ -13,12 +12,5 @@ socket.on("connect", () => {
 socket.on("invalid room", () => {
   alert("please enter a valid room name");
 });
-
-
-
-// export const disconnectSocket = () => {
-//   console.log("disconnecting socket");
-//   socket.disconnect();
-// };
 
 export default socket;
