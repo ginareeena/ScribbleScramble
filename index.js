@@ -84,7 +84,6 @@ serverSocket.on("connection", (socket) => {
         `player ${socket.username} has left the building (clientID: ${socket.id})`
       )
     );
-    listPlayers();
   });
 
   socket.on("scribble time", ({ username, room, action }) => {
