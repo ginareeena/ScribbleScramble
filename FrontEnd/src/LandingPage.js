@@ -18,23 +18,36 @@ const LandingPageComp = () => {
   const [roomToJoin, setRoomToJoin] = useState("");
   const history = useHistory();
 
+  const invalidRoomAlert = () => {
+    alert("please enter a valid room name");
+  };
+
   useEffect(() => {
-    socket.on("new room created", (name) => {
-      console.log("FE on: new room created:", name);
-      socket.emit("join room", { username, room: name });
-      history.push(`/scramble/${name}`);
+    socket.on("not a valid room", invalidRoomAlert());
+  });
+
+  useEffect(() => {
+    socket.on("scramble time", (name) => {
+      history.push(`scramble/${name}`);
     });
   });
 
-  const handleCreate = () => {
-    socket.emit("add new player", username);
-    console.log("FE: emit create new room");
-    socket.emit("create room", username);
+  const handleSubmit = () => {
+    socket.emit("scribble time", { username, room: roomToJoin });
+    console.log(
+      `client: emit scribble time -> user: ${username}, room: ${roomToJoin}`
+    );
   };
 
+  // const handleCreate = () => {
+  //   socket.emit("add new player", username);
+  //   console.log("FE: emit create new room");
+  //   socket.emit("create room", username);
+  // };
+
   const handleJoin = () => {
-    socket.emit("add new player", username);
-    console.log("FE emit add new player");
+    // socket.emit("add new player", username);
+    // console.log("FE emit add new player");
     if (roomToJoin) {
       socket.emit("join room", { username, room: roomToJoin });
       history.push(`scramble/${roomToJoin}`);
@@ -59,13 +72,14 @@ const LandingPageComp = () => {
                 autocomplete={false}
                 onChange={(evt) => setUsername(evt.target.value.trim())}
               />
+
               <AvatarCarousel />
 
               <StartDrawBtn>
                 <PublicRoomButton
                   type="button"
                   name="create room"
-                  onClick={handleCreate}
+                  onClick={handleSubmit}
                 >
                   Play!
                 </PublicRoomButton>

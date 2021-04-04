@@ -116,7 +116,7 @@ serverSocket.on("connection", (socket) => {
     } else {
       socket.room = room;
       socket.join(room);
-      socket.emit("scramble time");
+      socket.emit("scramble time", room);
     }
 
     console.log(blueBright(`${socket.username} added to ${socket.room}`));
