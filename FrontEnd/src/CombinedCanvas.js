@@ -20,6 +20,7 @@ import {
   WriteModeBtn,
   EndGameBtn,
   RoomHeader,
+  PaletteColorBtn,
 } from "./AppCSS";
 import { Link, useHistory } from "react-router-dom";
 // import LinkButton from "./LinkButton";
@@ -74,6 +75,9 @@ const CombinedCanvas = (props) => {
   useEffect(() => {
     if (currColor) {
       updateBrush();
+      if (canvas) {
+        startDrawMode();
+      }
     }
   }, [currColor]);
 
@@ -188,15 +192,15 @@ const CombinedCanvas = (props) => {
       </PlayArea>
 
       <Palette>
-        <div style={{ fontWeight: "bold" }}> Modes:</div>
+        {/* <div style={{ fontWeight: "bold" }}> Modes:</div> */}
         <ScrambleBtn
           title="Click me to move drawings!"
           onClick={() => startWriteMode()}
         >
           Scramble!
         </ScrambleBtn>
-        <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
-        <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
+        {/* <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn> */}
+        {/* <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn> */}
         {/* <DrawerComp> */}
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>

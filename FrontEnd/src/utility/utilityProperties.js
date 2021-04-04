@@ -19,28 +19,28 @@ export const darkColors = {
   black: "black",
 };
 
-const sizes = {
-  small: {
-    name: "brushSize",
-    value: "5",
-    icon: "/images/point.png",
-    size: "35%",
-  },
+// const sizes = {
+//   small: {
+//     name: "brushSize",
+//     value: "5",
+//     icon: "/images/point.png",
+//     size: "35%",
+//   },
 
-  medium: {
-    name: "brushSize",
-    value: "10",
-    icon: "/images/point.png",
-    size: "60%",
-  },
+//   medium: {
+//     name: "brushSize",
+//     value: "10",
+//     icon: "/images/point.png",
+//     size: "60%",
+//   },
 
-  large: {
-    name: "brushSize",
-    value: "20",
-    icon: "/images/point.png",
-    size: "95%",
-  },
-};
+//   large: {
+//     name: "brushSize",
+//     value: "20",
+//     icon: "/images/point.png",
+//     size: "95%",
+//   },
+// };
 
 export const iconBackgrounds = [
   "red",

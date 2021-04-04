@@ -8,6 +8,7 @@ import {
   CreateRoomButton,
   HowToPlay,
   LandingPageHeader,
+  DrawerTitle,
 } from "./AppCSS";
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
@@ -99,8 +100,6 @@ const LandingPageComp = () => {
       </LandingPageHeader>
 
       <HowToPlay>
-        <Drawer />
-        <Drawer />
         <div>
           <img
             src={process.env.PUBLIC_URL + "/images/batty.png"}
@@ -114,18 +113,32 @@ const LandingPageComp = () => {
             alt="batty"
           />
           <h3>FAQ:</h3>
-          <h4>What's a Scribb Scrab?</h4>
-          <div style={{ width: "345px", marginRight: "0px" }}>
-            A combination of words and drawings such as:
-          </div>
-          <div style={{ width: "345px", marginRight: "0px" }}>
-            Illustrated poems, concrete poetry etc
-          </div>
+
+          <Drawer title={"What's a Scribb Scrab?"}>
+            <div
+              style={{
+                width: "345px",
+                marginRight: "0px",
+                marginTop: "5px",
+                marginBottom: "3px",
+              }}
+            >
+              A combination of words and drawings such as:
+            </div>
+            <div
+              style={{
+                width: "345px",
+                marginRight: "0px",
+                marginBottom: "10px",
+              }}
+            >
+              Illustrated poems, concrete poetry etc
+            </div>
+          </Drawer>
 
           <div>
-            {/* DRAWER 1 Start */}
-            <Drawer title={<h4>How Do I Play?</h4>}>
-              <ol>
+            <Drawer title={"How Do I Play?"}>
+              <ol style={{ marginTop: "2px", marginBottom: "5px" }}>
                 <li>Click "Play" to Create A Room</li>
                 <li>
                   Enter A Name and Click "Join Room" to Join A Friend's Room
@@ -146,53 +159,20 @@ const LandingPageComp = () => {
             </Drawer>
           </div>
 
-          <Drawer title={<h4>What Is Scramble Mode?</h4>}>
-            <div>
-              Scribble Scramble Has Three Modes:{" "}
-              <span style={{ fontWeight: "bold" }}>Draw,</span>{" "}
-              <span style={{ fontWeight: "bold" }}>Write</span> or{" "}
-              <span style={{ fontWeight: "bold" }}>Scramble!</span>
+          <Drawer title={"What Is Scramble Mode?"}>
+            <div style={{ marginTop: "5px" }}>
+              <span
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                Scramble Mode
+              </span>{" "}
+              <span>
+                allows you to scramble/move drawings and text around the canvas!
+              </span>
             </div>
-
-            <ul>
-              <li>
-                {" "}
-                <span style={{ fontWeight: "bold" }}>Draw Mode</span> lets you
-                draw
-              </li>
-              <li>
-                <span style={{ fontWeight: "bold" }}> Write Mode</span> lets you
-                write + edit text
-              </li>
-              <li>
-                <span style={{ fontWeight: "bold" }}>Scramble Mode</span> lets
-                you scramble/move drawings or text!
-              </li>
-            </ul>
           </Drawer>
-          {/* <div>
-            Scribble Scramble Has Three Modes:{" "}
-            <span style={{ fontWeight: "bold" }}>Draw,</span>{" "}
-            <span style={{ fontWeight: "bold" }}>Write</span> or{" "}
-            <span style={{ fontWeight: "bold" }}>Scramble!</span>
-          </div>
-
-          <ul>
-            <li>
-              {" "}
-              <span style={{ fontWeight: "bold" }}>Draw Mode</span> lets you
-              draw
-            </li>
-            <li>
-              <span style={{ fontWeight: "bold" }}> Write Mode</span> lets you
-              write + edit text
-            </li>
-            <li>
-              <span style={{ fontWeight: "bold" }}>Scramble Mode</span> lets you
-              scramble/move drawings or text!
-            </li>
-          </ul> */}
-          {/* DRAWER 2 end */}
         </div>
       </HowToPlay>
     </div>
