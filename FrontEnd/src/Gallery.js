@@ -40,7 +40,8 @@ const Gallery = () => {
           ...buttonStyle,
         }}
       >
-        <img src="/images/leftArrow.png" style={{ width: "22px" }} />
+        
+        <img src="/images/GalleryImages/leftArrow.png" style={{ width: "22px" }} />
       </ButtonBack>
       <Slider>
         {imageSet.map((image) => {
