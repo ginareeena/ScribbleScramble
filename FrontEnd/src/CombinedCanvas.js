@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { fabric } from "fabric";
 import {
   StyledCanvas,
@@ -23,7 +23,6 @@ import {
   ChatBoxPlacement,
 } from "./AppCSS";
 import ChatBox from "./ChatBox";
-import { useHistory } from "react-router-dom";
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 
