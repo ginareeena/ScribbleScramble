@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { lightColors, darkColors, tools } from "./utility/utilityProperties.js";
-
+import React from "react";
+import { lightColors, darkColors } from "./utility/utilityProperties.js";
 import { PaletteColorBtn } from "./AppCSS";
 
-const PaletteComp = ({ currColor, setColor }) => {
+const PaletteComp = ({ setColor }) => {
   return (
     <div id="palette">
       <div style={{ display: "flex" }}>
