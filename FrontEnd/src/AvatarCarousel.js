@@ -22,7 +22,7 @@ const AvatarCarousel = memo(() => {
   const iconSet = icons;
   const scramblize = (iconSet = icons) => {
     let max = iconSet.length;
-    for (let i = max - 1; i > 0; i--) {
+    for (let i = max - 1; i >= 0; i--) {
       const randomIcon = Math.floor(Math.random() * max);
      return [iconSet[i], iconSet[randomIcon] = iconSet[randomIcon], iconSet[i]]
     }
