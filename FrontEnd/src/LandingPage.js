@@ -14,7 +14,7 @@ import {
 import socket from "./Socket";
 import AvatarCarousel from "./AvatarCarousel";
 import Drawer from "./Drawer";
-import Gallery from "./Gallery"
+import Gallery from "./Gallery";
 
 const LandingPageComp = () => {
   const [username, setUsername] = useState("random");
@@ -99,7 +99,6 @@ const LandingPageComp = () => {
 
       <HowToPlay>
         <div>
-        <Gallery />
           <h3>FAQ:</h3>
           <Drawer title={"What's a Scribb Scrab?"}>
             <div
@@ -239,6 +238,7 @@ const LandingPageComp = () => {
             </div>
           </Drawer>
         </div>
+        <Gallery style={{ float: "right" }} />
       </HowToPlay>
     </div>
   );
