@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import socketIoClient from "socket.io-client"
-//import socket from "./Socket"
-const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
+
 const SOCKET_SERVER_URL = window.location.origin;
+const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 const UsingChat = (room) => {
   console.log('I am in Using Chat react hook!')
