@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fabric } from "fabric";
 import {
-  Title2,
   StyledCanvas,
   PlayArea,
   CanvasBackground,
@@ -19,12 +18,18 @@ import {
   DrawBtn,
   WriteModeBtn,
   EndGameBtn,
+  RoomHeader,
+  PaletteColorBtn,
 } from "./AppCSS";
-import { Link } from "react-router-dom";
 import ChatBox from "./ChatBox"
+import { Link, useHistory } from "react-router-dom";
+// import LinkButton from "./LinkButton";
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 import { fish } from "./Icons";
+
+import EndGame from "./EndGame";
+import SaveScribs from "./SaveScribs";
 
 // Canvas:
 // Writing Mode/ Scramble Mode
@@ -37,8 +42,22 @@ const CombinedCanvas = () => {
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
-  const params = useParams();
+  const [scribs, setScribs] = useState("");
   const room = useParams().room;
+  const history = useHistory();
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+    socket.emit("get room players", room);
+    console.log("canvas: get room players");
+  }, [room]);
+
+  useEffect(() => {
+    socket.on("all players", (playerList) => {
+      setPlayers(playerList);
+    });
+    return () => socket.off("all players");
+  });
 
   //creates initial canvas
   useEffect(() => {
@@ -66,12 +85,18 @@ const CombinedCanvas = () => {
   useEffect(() => {
     if (currColor) {
       updateBrush();
+      if (canvas) {
+        startDrawMode();
+      }
     }
   }, [currColor]);
 
   useEffect(() => {
     if (brushSize && canvas.freeDrawingBrush) {
       updateBrush();
+    }
+    if (canvas) {
+      startDrawMode();
     }
   }, [brushSize]);
 
@@ -97,9 +122,12 @@ const CombinedCanvas = () => {
     }
   }
 
-  // function toggleDrawingMode() {
-  //   canvas.isDrawingMode = !canvas.isDrawingMode;
-  // }
+  function clearCanvas() {
+    if (canvas) {
+      canvas.clear();
+      canvas.backgroundColor = "white";
+    }
+  }
 
   function startDrawMode() {
     canvas.isDrawingMode = true;
@@ -113,10 +141,11 @@ const CombinedCanvas = () => {
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
     console.log("front end emiting combinedCanvas:", room, canvasJSON);
-    if(!canvas.isDrawingMode) {socket.emit("add new text box", {room, canvasJSON})} else {
+    if (!canvas.isDrawingMode) {
+      socket.emit("add new text box", { room, canvasJSON });
+    } else {
       socket.emit("send new lines", { room, canvasJSON });
     }
-
   }
 
   // write a randomizer that randomizers the text functionality
@@ -142,14 +171,13 @@ const CombinedCanvas = () => {
 
   function handleEndGame() {
     setCanvas(canvas);
-
-    finalDrawing = canvas.toDataURL();
-    // finalDrawing = canvas.discardActiveObject().renderAll().toDataURL("png");
-    // finalDrawing = canvas.toSVG();
-    //  finalDrawing = canvas.toJSON();
-    // finalDrawing = canvas.toJSON({format: 'png'});
-
+    finalDrawing = canvas.toDataURL("image/png");
+    setScribs(finalDrawing);
     socket.emit("send final image", finalDrawing);
+    console.log("scribs in combined canvas", scribs);
+    // needed to send finalDrawing because react doesn't set scribs right away so wasn't sending image
+    // passing scribs down as props via history here instead of link!
+    history.push("/endgame", { scribs: finalDrawing });
   }
 
   const changeFont = (evt) => {
@@ -161,9 +189,24 @@ const CombinedCanvas = () => {
   };
 
   return (
-    <div>
-      <Title2>ROOM: {params.room}</Title2>
-      <Title2>{room}</Title2>
+//     <div>
+//       <Title2>ROOM: {params.room}</Title2>
+//       <Title2>{room}</Title2>
+    <div style={{ marginBottom: "100px" }}>
+      <RoomHeader>
+        <span
+          style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
+        >
+          Room:
+        </span>
+        <span style={{ color: "white" }}> {room} </span>
+        <span
+          style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
+        >
+          Players:
+        </span>
+        <span style={{ color: "white" }}>{players.join(", ")}</span>
+      </RoomHeader>
       <ChatBox room={room}/>
       <PlayArea
         onClick={() => {
@@ -176,24 +219,15 @@ const CombinedCanvas = () => {
       </PlayArea>
 
       <Palette>
-        <div style={{ fontWeight: "bold" }}> Modes:</div>
-        <ScrambleBtn onClick={() => startWriteMode()}>Scramble!</ScrambleBtn>
-        <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn>
-        <WriteModeBtn onClick={() => startWriteMode()}>Write</WriteModeBtn>
-
-        {/* <div id="drawing-mode-options">
-          <label
-            htmlFor="drawing-mode-selector"
-            style={{ marginRight: "8px", fontWeight: "bold", fontSize: "14px" }}
-          >
-            Drawing Modes:
-          </label>
-          <select id="drawing-mode-selector">
-            <option value="Drawing">Draw Mode</option>
-            <option value="Writing">Write Mode</option>
-            <option value="Scramble">Scramble Mode</option>
-          </select>
-        </div> */}
+        {/* <div style={{ fontWeight: "bold" }}> Modes:</div> */}
+        <ScrambleBtn
+          title="Click me to move drawings!"
+          onClick={() => startWriteMode()}
+        >
+          Scramble!
+        </ScrambleBtn>
+        {/* <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn> */}
+        <WriteModeBtn onClick={() => startWriteMode()}>Edit Text</WriteModeBtn>
         <BrushSizesContainer>
           <div style={{ marginTop: "2px", marginRight: "2px" }}>
             {/* Brush Sizes: */}
@@ -203,21 +237,33 @@ const CombinedCanvas = () => {
               setBrushSize(5);
             }}
           >
-            <img src="/images/point.png" style={{ width: "30%" }} />
+            <img
+              src="/images/point.png"
+              style={{ width: "30%" }}
+              alt="choose small paint brush"
+            />
           </SmallBrushBtn>
           <MedBrushBtn
             onClick={() => {
               setBrushSize(15);
             }}
           >
-            <img src="/images/point.png" style={{ width: "90%" }} />
+            <img
+              src="/images/point.png"
+              style={{ width: "90%" }}
+              alt="choose medium paint brush"
+            />
           </MedBrushBtn>
           <LargeBrushBtn
             onClick={() => {
               setBrushSize(35);
             }}
           >
-            <img src="/images/point.png" style={{ height: "90%" }} />
+            <img
+              src="/images/point.png"
+              style={{ height: "90%" }}
+              alt="choose large paint brush"
+            />
           </LargeBrushBtn>
         </BrushSizesContainer>
         <SelectedColor>
@@ -233,20 +279,28 @@ const CombinedCanvas = () => {
         <PaletteColors>
           <PaletteComp currColor={currColor} setColor={setColor} />
         </PaletteColors>
-        <PngButton onClick={() => canvas.clear()}>
+        <PngButton onClick={() => clearCanvas()}>
           <img src="/images/trashBtn.png" style={{ width: "100%" }} />
         </PngButton>
         <PngButton onClick={() => setColor("white")}>
-          <img src="/images/eraser3.png" style={{ width: "100%" }} />
+          <img
+            src="/images/eraser3.png"
+            style={{ width: "100%" }}
+            alt="eraser"
+          />
         </PngButton>
       </Palette>
       <Palette>
-        {/* <WriteModeBtn onClick={() => startWriteMode()}>Write Mode</WriteModeBtn> */}
         <div id="text-options">
           <span style={{ fontWeight: "bold" }}>Text Palette:{"  "}</span>
 
           <label htmlFor="font-family">Font:</label>
-          <select id="font-family" value={font} onChange={changeFont}>
+          <select
+            id="font-family"
+            value={font}
+            onChange={changeFont}
+            style={{ width: "90px", marginLeft: "5px" }}
+          >
             <option value="Arial">Arial</option>
             <option value="comic sans ms">Comic Sans MS</option>
             <option value="impact">Impact</option>
@@ -254,11 +308,7 @@ const CombinedCanvas = () => {
           </select>
         </div>
         <AddTxtBtn onClick={() => handleTextBtn()}>Add Text</AddTxtBtn>
-        <EndGameBtn onClick={() => handleEndGame()}>
-          <Link to="/endgame" style={{ color: "white" }}>
-            I'm Done!
-          </Link>
-        </EndGameBtn>
+        <EndGameBtn onClick={() => handleEndGame()}>I'm Done!</EndGameBtn>
       </Palette>
     </div>
   );

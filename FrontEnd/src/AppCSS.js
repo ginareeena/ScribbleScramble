@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import Modal from "styled-react-modal";
 
 import { BrowserRouter as Link } from "react-router-dom";
 
@@ -9,11 +8,11 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 *** Table of Contents ***
 
- - Line 15: Container Elements
- - Line 70: Basic Elements
- - Line 110: Canvas Elements
- - Line 150: Image Elements
- - Line 180: Button Elements
+ - Line 20: Container Elements
+ - Line 150: Basic Elements
+ - Line 206: Canvas Elements
+ - Line 315: Image Elements
+ - Line 331: Button Elements
 
 */
 
@@ -21,18 +20,20 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 export const Body = styled.div`
   display: flex;
+  background-size: 90%;
   @media (max-width: 2650px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg);
+    background-image: url(${process.env.PUBLIC_URL}/images/background.png);
 
     flex-flow: column wrap;
     width: 100%;
   }
   @media (max-width: 813px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg)
+    background-image: url(${process.env.PUBLIC_URL}/images/background.png)
       repeat;
     width: 813px;
     margin-right: 5px;
   }
+  background-position-x: -20px;
 `;
 
 // media query stuff not currently used by might be later
@@ -65,24 +66,64 @@ export const AvatarCarouselStyle = styled.div`
 
 export const LandingPage = styled.div`
   background-color: #ecf6f0;
-  height: 300px;
+  border-radius: 6px;
+  height: 320px;
+  width: 348px;
   display: flex;
   justify-content: center;
-  width: 345px;
-  margin: auto;
   margin-top: 35px;
   margin-bottom: 40px;
+  margin-left: 140px;
+`;
+
+export const LandingPageHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+//#4c9c8a
+//#ecf6f0;
+
+export const RoomHeader = styled.div`
+  background-color: #4c9c8a;
+  border-radius: 6px;
+  height: 100px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-size: 20px;
 `;
 
 export const HowToPlay = styled.div`
   background-color: #ecf6f0;
-  height: 320px;
-  width: 800px;
+  border-radius: 9px;
+  width: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-bottom: 90px;
+  margin-bottom: 125px;
+  margin-top: 0px;
+  padding: 25px;
+  padding-bottom: 27px;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 2px;
+`;
+
+export const DrawerTitle = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const DrawerH4 = styled.h4`
+  margin: 10px 0px;
 `;
 
 export const ScribbScrabb = styled.div`
@@ -147,8 +188,10 @@ export const MasterScramblers = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 200px;
+  height: 160px;
   margin: auto;
+  margin-top: 9px;
+  margin-bottom: 0px;
 `;
 
 export const FooterStyle = styled.footer`
@@ -156,7 +199,7 @@ export const FooterStyle = styled.footer`
   justify-content: center;
   align-items: center;
   background-color: #ecf6f0;
-  height: 270px;
+  padding: 35px;
 `;
 
 // Canvas Elements
@@ -178,15 +221,15 @@ export const CanvasBackground = styled.div`
   margin-bottom: 10px;
 `;
 
-// container for all palette buttons
+// container for all buttons-> writing/ drawing, etc
 export const Palette = styled.div`
   display: flex;
   justify-content: center;
   background: #4c9c8a;
   align-items: center;
   margin: auto;
-  margin-top: 10px;
   margin-bottom: 15px;
+  padding: 0 0 0 0;
   border-radius: 8px;
   @media (max-width: 2650px) {
     width: 800px;
@@ -198,6 +241,11 @@ export const Palette = styled.div`
 `;
 
 //container for just the color swatches portion of the palette
+
+export const PaletteColorBtn = styled.button`
+  border: none;
+  margin-bottom: 0px;
+`;
 
 export const BrushSizesContainer = styled.div`
   display: flex;
@@ -254,16 +302,16 @@ export const SelectedColor = styled.div`
 `;
 
 export const PaletteColors = styled.div`
-  margin: 5px;
+  display: flex;
   margin-left: 8px;
   margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 `;
 
-export const PaletteBtns = styled.div`
-  margin-top: 10px;
-`;
+// export const PaletteBtns = styled.div``;
 
-// Image Elements
+// Image Elementspalet
 
 export const StartDrawImg = styled.div`
   display: flex;
@@ -329,14 +377,13 @@ export const WriteModeBtn = styled.button`
   border: 2px solid darkgrey;
   align: center;
   margin-left: 5px;
-  height: 30px;
-  width: 60px;
   background-color: #134d44;
   color: white;
   font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 5px 10px;
 `;
 
 export const DrawBtn = styled.button`
@@ -362,9 +409,8 @@ export const LandingBtns = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 10px;
-  margin-top: 5px;
   width: 130px;
+  margin-top: 10px;
 `;
 
 export const LandingButton = styled.button`
@@ -383,7 +429,7 @@ export const LandingButton = styled.button`
   align-items: center;
 `;
 
-export const ChooseRoomButton = styled.button`
+export const PublicRoomButton = styled.button`
   border-radius: 2px;
   border: 2px solid darkgrey;
   align: center;
@@ -391,8 +437,7 @@ export const ChooseRoomButton = styled.button`
   color: white;
   font-size: 14px;
   font-weight: bold;
-  height: 35px;
-  width: 130px;
+  padding: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -444,8 +489,8 @@ export const AddTxtBtn = styled.button`
   border: 2px solid darkgrey;
   align: center;
   margin: 0 1em;
-  margin-top: 5px;
-  height: 28px;
+  margin-right: 3px;
+  padding: 5px;
   width: 80px;
   background-color: #134d44;
   color: white;
@@ -454,31 +499,29 @@ export const AddTxtBtn = styled.button`
   align-items: center;
 `;
 
-export const DownloadBtn = styled.button`
-  border-radius: 6px;
+export const DownloadAhref = styled.a`
+  border-radius: 7px;
   border: 2px solid darkgrey;
-  align: center;
-  position: absolute;
-  top: 50%;
-  height: 35px;
-  width: 115px;
+  padding: 3px 10px;
   background-color: #134d44;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 `;
 
 export const PlayAgainBtn = styled.button`
   border-radius: 6px;
   border: 2px solid darkgrey;
   align: center;
-  position: absolute;
-  top: 50%;
-  height: 35px;
+  height: 15px;
   width: 115px;
   background-color: #134d44;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 `;
 
@@ -487,8 +530,8 @@ export const EndGameBtn = styled.button`
   border: 2px solid darkgrey;
   align: center;
   margin: 0 1em;
-  margin-top: 5px;
-  height: 28px;
+  margin-left: 5px;
+  padding: 5px;
   width: 80px;
   background-color: #134d44;
   color: white;
@@ -497,10 +540,23 @@ export const EndGameBtn = styled.button`
   align-items: center;
 `;
 
+export const EndGameElement = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+`;
+
+export const EndGameH1 = styled.h1`
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+`;
+
 export const EndGamePage = styled.div`
   background-color: #ecf6f0;
   height: 600px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 800px;
@@ -510,5 +566,14 @@ export const EndGamePage = styled.div`
 `;
 
 export const EndGameContainer = styled.div`
+  height: 200px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+`;
+
+export const FAQdiv = styled.div`
+  margin-top: 7px;
 `;
