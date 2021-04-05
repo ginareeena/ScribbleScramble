@@ -582,6 +582,7 @@ export const FAQdiv = styled.div`
 export const ChatBoxPlacement = styled.span`
   position: relative;
   z-index: 2;
+  right: -250px;
 `;
 
 // display: flex;
