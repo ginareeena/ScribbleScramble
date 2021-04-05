@@ -48,16 +48,12 @@ const CombinedCanvas = () => {
   const history = useHistory();
   const [players, setPlayers] = useState([]);
 
-  useEffect(() => {
-    socket.emit("get room players", room);
-    console.log("canvas: get room players");
-  }, [room]);
 
   useEffect(() => {
     socket.on("all players", (playerList) => {
+      console.log('on all players')
       setPlayers(playerList);
     });
-    return () => socket.off("all players");
   });
 
   //creates initial canvas

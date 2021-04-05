@@ -23,7 +23,9 @@ const LandingPageComp = () => {
 
   useEffect(() => {
     socket.on("scramble time", (name) => {
-      history.push(`scramble/${name}`);
+      history.push(`/${name}`);
+      socket.emit("get room players", name)
+      console.log("get room players")
       return () => socket.off("scramble time");
     });
   }, [history]);

@@ -92,7 +92,7 @@ serverSocket.on("connection", (socket) => {
       socket.room = room;
       socket.join(room);
       players[socket.username] = socket.room;
-      socket.emit("scramble time", room);
+      socket.emit("scramble time", room, socket.username);
     }
     //just to check :)
     console.log(green(rooms));
@@ -107,7 +107,7 @@ serverSocket.on("connection", (socket) => {
         playersInRoom.push(username);
       }
     }
-    socket.emit("all players", playersInRoom);
+    socket.in(room).emit("all players", playersInRoom);
     console.log("emitting all players", playersInRoom);
   });
 

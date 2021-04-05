@@ -9,7 +9,7 @@ const Routes = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={LandingPageComp} />
-        <Route path="/scramble/:room" component={CombinedCanvas}/>
+        <Route path="/:room" component={CombinedCanvas}/>
         <Route path="/endgame" component={EndGame}/>
 
       </Switch>
