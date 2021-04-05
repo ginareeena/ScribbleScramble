@@ -8,7 +8,6 @@ import {
   CreateRoomButton,
   HowToPlay,
   LandingPageHeader,
-  DrawerTitle,
   FAQdiv,
   GalleryDiv,
 } from "./AppCSS";
@@ -25,8 +24,7 @@ const LandingPageComp = () => {
   useEffect(() => {
     socket.on("scramble time", (name) => {
       history.push(`/${name}`);
-      socket.emit("get room players", name)
-      console.log("get room players")
+      socket.emit("get room players", name);
       return () => socket.off("scramble time");
     });
   }, [history]);
@@ -57,9 +55,7 @@ const LandingPageComp = () => {
                   setUsername(evt.target.value.trim());
                 }}
               />
-
               <AvatarCarousel />
-
               <StartDrawBtn>
                 <PublicRoomButton
                   type="button"
@@ -69,7 +65,6 @@ const LandingPageComp = () => {
                   Play!
                 </PublicRoomButton>
               </StartDrawBtn>
-
               <input
                 style={{ marginTop: "5px", marginBottom: "5px" }}
                 type="text"
@@ -91,23 +86,19 @@ const LandingPageComp = () => {
         <img
           src={"/images/howPlay.png"}
           style={{
-            width: "115px", //246 //124
-            // marginRight: "20px",
+            width: "115px",
             marginTop: "200px",
             marginLeft: "25px",
           }}
           alt="how"
         />
       </LandingPageHeader>
-      {/* FAQ Block */}
-
       <HowToPlay>
         <div>
           <h3>FAQ:</h3>
           <GalleryDiv>
-            {/* <div style={{ width: "450px", margin: "auto" }}> */}
             <Gallery style={{ float: "right" }} />
-            <Drawer title={"What's a Scribb Scrab?"}>
+            <Drawer title={"What's a Scribb Scrabb?"}>
               <div
                 style={{
                   width: "500px",
@@ -125,40 +116,30 @@ const LandingPageComp = () => {
                   marginBottom: "10px",
                 }}
               >
-                Illustrated poems, concrete poetry etc
+                Illustrated poems, concrete poetry, etc.
               </div>
             </Drawer>
-
             <div>
               <Drawer title={"How Do I Play?"}>
                 <ol style={{ marginTop: "2px", marginBottom: "5px" }}>
-                  <li>Click "Play" to Create A Room</li>
+                  <li>Click "Play" to create a room</li>
                   <li>
-                    Enter A Name and Click "Join Room" to Join A Friend's Room.
+                    Enter a name and click "Join Room" to join a friend's room.
                   </li>
-                  <li>Give Your Room Name To Friends You Want To Join.</li>
-
-                  <li>Draw Or Write Whatever You Want!</li>
+                  <li>Give your room mame to friends you want to join.</li>
+                  <li>Draw or write whatever you want!</li>
                   <li>
-                    Click The Scramble Button to Grab and Move Drawings or Text.
+                    Click the Scramble button to grab and move drawings or text.
                   </li>
-                  <li> When You're Done Click "I'm Done"</li>
-                  <li>Download Your Scribb Scrabb to Share With Friends!</li>
+                  <li> When you're done, click "I'm Done"</li>
+                  <li>Download your Scribb Scrabb to share with friends!</li>
                 </ol>
               </Drawer>
             </div>
-
             <Drawer title={"What Is Scramble Mode?"}>
               <div style={{ marginTop: "6px" }}>
-                <span>Clicking </span>
-                <span
-                  style={{
-                    fontWeight: "bold",
-                  }}
-                >
-                  Scramble
-                </span>{" "}
                 <span>
+                  Clicking <strong>Scramble </strong>
                   allows you to grab and move drawings and text around the
                   canvas.
                 </span>
@@ -169,18 +150,11 @@ const LandingPageComp = () => {
                   />
                 </div>
                 <FAQdiv>
-                  First draw your drawing then click{" "}
-                  <span
-                    style={{
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Scramble
-                  </span>{" "}
+                  First draw your drawing then click
+                  <strong> Scramble </strong>
                   to enable scrambling
                 </FAQdiv>
                 <div>
-                  {" "}
                   <img
                     style={{ width: "400px", marginTop: "15px" }}
                     src="/images/demo1.png"
@@ -188,18 +162,15 @@ const LandingPageComp = () => {
                 </div>
                 <FAQdiv>
                   Click on the line you want to move or drag to select multiple
-                  lines to move at once{" "}
+                  lines to move at once
                 </FAQdiv>
                 <div>
-                  {" "}
                   <img
                     style={{ width: "400px", marginTop: "15px" }}
                     src="/images/demo2.png"
                   />
                 </div>
-                {/* <div>First draw your drawing </div> */}
                 <div>
-                  {" "}
                   <img
                     style={{ width: "400px", marginTop: "15px" }}
                     src="/images/demo3.png"
@@ -207,7 +178,6 @@ const LandingPageComp = () => {
                 </div>
                 <FAQdiv>You can also move rotate/edit/scale text</FAQdiv>
                 <div>
-                  {" "}
                   <img
                     style={{ width: "400px", marginTop: "15px" }}
                     src="/images/demo9.png"
@@ -218,26 +188,18 @@ const LandingPageComp = () => {
                   tools to renable drawing.
                 </FAQdiv>
                 <div>
-                  {" "}
                   <img
                     style={{ width: "400px", marginTop: "15px" }}
                     src="/images/demo9b.png"
                   />
                 </div>
                 <FAQdiv>
-                  You can also edit text that's already been placed by clicking{" "}
-                  <span
-                    style={{
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Scramble
-                  </span>{" "}
-                  or Edit Text
-                  <div>and then clicking inside the text you want to edit.</div>
+                  You can also edit text that's already been placed by clicking
+                  <strong> Scramble </strong>
+                  or Edit Text and then clicking inside the text you want to
+                  edit.
                 </FAQdiv>
                 <div>
-                  {" "}
                   <img
                     style={{ width: "400px", marginTop: "15px" }}
                     src="/images/demo9e.png"
@@ -245,10 +207,8 @@ const LandingPageComp = () => {
                 </div>
               </div>
             </Drawer>
-            {/* </div> */}
           </GalleryDiv>
         </div>
-        {/* <Gallery style={{ float: "right" }} /> */}
       </HowToPlay>
     </div>
   );

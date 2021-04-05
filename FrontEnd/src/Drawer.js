@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
 import { DrawerTitle, DrawerH4 } from "./AppCSS";
 
 const Drawer = ({ title, children }) => {
@@ -11,7 +10,6 @@ const Drawer = ({ title, children }) => {
 
   return (
     <div>
-      {/* <div onClick={toggle}>{title}</div> */}
       <DrawerTitle onClick={toggle}>
         <DrawerH4>{title}</DrawerH4>
         <img

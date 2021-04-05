@@ -17,6 +17,7 @@ export const flower = process.env.PUBLIC_URL + "/images/avatars/flower.png";
 export const fly = process.env.PUBLIC_URL + "/images/avatars/fly.png";
 export const horse = process.env.PUBLIC_URL + "/images/avatars/horse.png";
 export const icecream = process.env.PUBLIC_URL + "/images/avatars/icecream.png";
+export const island = process.env.PUBLIC_URL + "images/avatars/island.png"
 export const link = process.env.PUBLIC_URL + "/images/avatars/link.png";
 export const monster = process.env.PUBLIC_URL + "/images/avatars/monster.png"
 export const pika = process.env.PUBLIC_URL + "/images/avatars/pika.png";
@@ -57,7 +58,9 @@ const icons = [
   fly,
   horse,
   icecream,
+  island,
   link,
+  monster,
   pika,
   pizza,
   pretzel,

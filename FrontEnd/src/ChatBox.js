@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import UsingChat from "./UsingChat"
 
-const ChatBox = (props) => {
-  console.log('chatbox props', props)
-const {room} = props
+const ChatBox = ({room}) => {
 const {messages, sendMessage} = UsingChat(room);
 const [newMessage, setNewMessage] = useState("")
-console.log('in Chatbox - arr of Messages:', messages)
-
 
 const handleTypingMessage = (event) => {
   setNewMessage(event.target.value)
@@ -17,11 +13,10 @@ const handleSubmit = () => {
    setNewMessage('')
     }
 
-
 return (
     <div id="chat box">
       <div>
-        <h4> Scribble a note to your partner!</h4>  
+        <h4> Scribble a note to your partner!</h4>
       </div>
       <div>
       <ul className="messageList" style={{listStyleType: "none"}}>
@@ -29,7 +24,7 @@ return (
           <li key={index}
           className={`single-message ${
             message.ownedByCurrentPlayer ? "my-message" : "received-message"
-          }`} 
+          }`}
           >
             {message.body}
           </li>
