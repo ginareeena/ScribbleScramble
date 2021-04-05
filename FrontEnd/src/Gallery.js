@@ -35,29 +35,11 @@ const Gallery = ({ style }) => {
         ...style,
       }}
     >
-      {/* <ButtonBack
-          style={{
-            position: "absolute",
-            right: "110%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            ...buttonStyle,
-          }}
-        >
-          <img
-            src="/images/leftArrow.png"
-            style={{ width: "22px" }}
-            alt="icon carousel left arrow"
-          />
-        </ButtonBack> */}
-
       <ButtonBack
         style={{
           position: "absolute",
           left: "110%",
-          // right: "-120%",
           top: "50%",
-          // top: "8rem",
           transform: "translateY(-50%)",
           ...buttonStyle,
         }}
@@ -91,10 +73,8 @@ const Gallery = ({ style }) => {
       <ButtonNext
         style={{
           position: "absolute",
-          // left: "-40%",
           right: "110%",
           top: "50%",
-          // top: "-7rem",
           transform: "translateY(-50%)",
           ...buttonStyle,
         }}
