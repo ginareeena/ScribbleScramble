@@ -34,6 +34,7 @@ export const Body = styled.div`
     width: 813px;
     margin-right: 5px;
   }
+  background-position-x: -20px;
 `;
 
 // media query stuff not currently used by might be later
