@@ -46,6 +46,7 @@ import {
   pretzel,
   monster,
   exercise,
+  watermelon,
 } from "./Icons";
 
 const buttonStyle = {
@@ -72,7 +73,6 @@ const AvatarCarousel = () => {
     tomato,
     violin,
     whale,
-
     horse,
     link,
     wasp,
@@ -90,6 +90,7 @@ const AvatarCarousel = () => {
     pretzel,
     monster,
     exercise,
+    watermelon,
   ];
   const scramblize = (iconSet) => {
     const max = iconSet.length;
