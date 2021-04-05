@@ -19,25 +19,13 @@ import {
   EndGameBtn,
   RoomHeader,
   ChatBoxStyle,
-  CanvasAndChatContainer,
   CanvasAllContainer,
   ChatBoxPlacement,
 } from "./AppCSS";
 import ChatBox from "./ChatBox";
-import { Link, useHistory } from "react-router-dom";
-// import LinkButton from "./LinkButton";
+import { useHistory } from "react-router-dom";
 import PaletteComp from "./Palette";
 import socket from "./Socket";
-import { fish } from "./Icons";
-
-import EndGame from "./EndGame";
-import SaveScribs from "./SaveScribs";
-
-// Canvas:
-// Writing Mode/ Scramble Mode
-// DrawingButton
-
-//storing color, brush size, font and canvas in state
 
 const CombinedCanvas = () => {
   const [canvas, setCanvas] = useState("");
@@ -49,15 +37,13 @@ const CombinedCanvas = () => {
   const history = useHistory();
   const [players, setPlayers] = useState([]);
 
-
   useEffect(() => {
     socket.on("all players", (playerList) => {
-      console.log('on all players')
+      console.log("on all players");
       setPlayers(playerList);
     });
   });
 
-  //creates initial canvas
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
@@ -65,15 +51,12 @@ const CombinedCanvas = () => {
   useEffect(() => {
     if (canvas) {
       updateBrush();
-
       socket.on("load new lines", (value) => {
-        console.log("drawing received in front end: ", value);
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
     } else if (canvas) {
       socket.on("create new text box", (value) => {
-        console.log("front end heard create new text box");
         canvas.loadFromJSON(value);
         setCanvas(canvas);
       });
@@ -135,10 +118,8 @@ const CombinedCanvas = () => {
   }
 
   function handleDraworWrite() {
-    console.log("handleDraworWrite triggered!");
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
-    console.log("front end emiting combinedCanvas:", room, canvasJSON);
     if (!canvas.isDrawingMode) {
       socket.emit("add new text box", { room, canvasJSON });
     } else {
@@ -146,11 +127,7 @@ const CombinedCanvas = () => {
     }
   }
 
-  // write a randomizer that randomizers the text functionality
-
-  // text logic
   const handleTextBtn = () => {
-    //remove this when add logic to room/player
     canvas.isDrawingMode = false;
     const newText = new fabric.IText("Type here...", {
       left: 150,
@@ -161,7 +138,6 @@ const CombinedCanvas = () => {
     canvas.add(newText).renderAll();
     setCanvas(canvas);
     let canvasJSON = canvas.toJSON();
-    console.log("emitting inside handleText");
     socket.emit("send new lines", { room, canvasJSON });
   };
 
@@ -172,9 +148,6 @@ const CombinedCanvas = () => {
     finalDrawing = canvas.toDataURL("image/png");
     setScribs(finalDrawing);
     socket.emit("send final image", finalDrawing);
-    console.log("scribs in combined canvas", scribs);
-    // needed to send finalDrawing because react doesn't set scribs right away so wasn't sending image
-    // passing scribs down as props via history here instead of link!
     history.push("/endgame", { scribs: finalDrawing });
   }
 
@@ -187,12 +160,7 @@ const CombinedCanvas = () => {
   };
 
   return (
-    //     <div>
-    //       <Title2>ROOM: {params.room}</Title2>
-    //       <Title2>{room}</Title2>
     <div style={{ marginBottom: "100px" }}>
-      {/* <CanvasChatContainer> */}
-      {/* <CanvasAndChatContainer> */}
       <CanvasAllContainer>
         <RoomHeader>
           <span
@@ -214,10 +182,7 @@ const CombinedCanvas = () => {
           }}
         >
           <CanvasBackground>
-            <StyledCanvas
-              id="canvas"
-              // style={{ position: "absolute" }}
-            ></StyledCanvas>
+            <StyledCanvas id="canvas"></StyledCanvas>
             <ChatBoxPlacement>
               <ChatBoxStyle>
                 <ChatBox room={room} />
@@ -225,23 +190,18 @@ const CombinedCanvas = () => {
             </ChatBoxPlacement>
           </CanvasBackground>
         </PlayArea>
-        {/* </CanvasChatContainer> */}
         <Palette>
-          {/* <div style={{ fontWeight: "bold" }}> Modes:</div> */}
           <ScrambleBtn
             title="Click me to move drawings!"
             onClick={() => startWriteMode()}
           >
             Scramble!
           </ScrambleBtn>
-          {/* <DrawBtn onClick={() => startDrawMode()}>Draw</DrawBtn> */}
           <WriteModeBtn onClick={() => startWriteMode()}>
             Edit Text
           </WriteModeBtn>
           <BrushSizesContainer>
-            <div style={{ marginTop: "2px", marginRight: "2px" }}>
-              {/* Brush Sizes: */}
-            </div>
+            <div style={{ marginTop: "2px", marginRight: "2px" }}></div>
             <SmallBrushBtn
               onClick={() => {
                 setBrushSize(5);
@@ -302,8 +262,7 @@ const CombinedCanvas = () => {
         </Palette>
         <Palette>
           <div id="text-options">
-            <span style={{ fontWeight: "bold" }}>Text Palette:{"  "}</span>
-
+            <span style={{ fontWeight: "bold" }}>Text Palette:</span>
             <label htmlFor="font-family">Font:</label>
             <select
               id="font-family"
@@ -321,8 +280,6 @@ const CombinedCanvas = () => {
           <EndGameBtn onClick={() => handleEndGame()}>I'm Done!</EndGameBtn>
         </Palette>
       </CanvasAllContainer>
-
-      {/* </CanvasAndChatContainer> */}
     </div>
   );
 };
