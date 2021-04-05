@@ -20,23 +20,14 @@ const buttonStyle = {
 
 const AvatarCarousel = memo(() => {
   const iconSet = icons;
-  const scramblize = (iconSet) => {
-    const max = iconSet.length;
-    let randomIconIdx = Math.floor(Math.random() * max);
-    return iconSet[randomIconIdx];
+  const scramblize = (iconSet = icons) => {
+    let max = iconSet.length;
+    for (let i = max - 1; i > 0; i--) {
+      const randomIcon = Math.floor(Math.random() * max);
+     return [iconSet[i], iconSet[randomIcon] = iconSet[randomIcon], iconSet[i]]
+    }
   };
 
-  const max = iconSet.length;
-  
-console.log('max', max)
-  const scrambleIdx = (idx = 0) => {
-    if(idx < max) {
-      return idx++;
-    } else {
-      idx = 1
-      return idx
-    } 
-  };
 
   return (
     <CarouselProvider
@@ -64,10 +55,12 @@ console.log('max', max)
         <Slider>
           {iconSet.map((icon) => {
             icon = scramblize(iconSet);
-            let idx = 0
+            let idxSource = Array(iconSet)
+            let i = 0
+            i++
             return (
-              <Slide key={idx++}>
-                <Image src={icon} alt={icon} />
+              <Slide key={idxSource[i]}>
+                <Image src={icon[1]} alt={icon[1]} />
               </Slide>
             );
           })}
