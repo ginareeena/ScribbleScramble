@@ -5,7 +5,6 @@ const SOCKET_SERVER_URL = window.location.origin;
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 const UsingChat = (room) => {
-  console.log('I am in Using Chat react hook!')
   const [messages, setMessages] = useState([]);
   const socketRef = useRef();
 
@@ -31,7 +30,6 @@ const UsingChat = (room) => {
       senderId: socketRef.current.id,
     });
   };
-
   return { messages, sendMessage };
 };
 
