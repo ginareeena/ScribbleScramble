@@ -32,14 +32,21 @@ const CombinedCanvas = () => {
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
   const [players, setPlayers] = useState([]);
+
   const room = useParams().room;
   const history = useHistory();
 
   useEffect(() => {
+    socket.emit("get room players", room);
+    console.log("canvas: get room players");
+  }, [room]);
+
+  useEffect(() => {
     socket.on("all players", (playerList) => {
       setPlayers(playerList);
+      console.log('all players')
     });
-  });
+  }, [players]);
 
   useEffect(() => {
     setCanvas(initCanvas());

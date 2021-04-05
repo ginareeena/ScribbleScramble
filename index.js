@@ -83,7 +83,7 @@ serverSocket.on("connection", (socket) => {
         playersInRoom.push(username);
       }
     }
-    socket.in(room).emit("all players", playersInRoom);
+    socket.emit("all players", playersInRoom);
   });
 
   socket.on("add text box", ({ room, canvasJSON }) => {
