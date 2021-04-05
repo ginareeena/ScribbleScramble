@@ -4,6 +4,6 @@ const db = require('./dbIndex')
 module.exports = db.define('scribble', {
     image: {
         type: Sequelize.JSON,
-        allowNull: false
+        defaultValue:`${process.env.PUBLIC_URL}/images/batty.png`
     }
 })

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import Modal from "styled-react-modal";
 
 import { BrowserRouter as Link } from "react-router-dom";
 
@@ -9,11 +8,11 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 *** Table of Contents ***
 
- - Line 15: Container Elements
- - Line 70: Basic Elements
- - Line 110: Canvas Elements
- - Line 150: Image Elements
- - Line 180: Button Elements
+ - Line 20: Container Elements
+ - Line 150: Basic Elements
+ - Line 206: Canvas Elements
+ - Line 315: Image Elements
+ - Line 331: Button Elements
 
 */
 
