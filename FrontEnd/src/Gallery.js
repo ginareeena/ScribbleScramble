@@ -18,8 +18,11 @@ const Gallery = ({ style }) => {
 
   const scramblize = (imageSet) => {
     const max = imageSet.length;
-    let randomIconIdx = Math.floor(Math.random() * max);
-    return imageSet[randomIconIdx];
+    for(let i = max - 1; i >= 0; i--) {
+      let randomImage = Math.floor(Math.random() * max);
+      return [imageSet[i], imageSet[randomImage] = imageSet[randomImage], imageSet[i]];
+    }
+    
   };
 
   return (
@@ -53,9 +56,9 @@ const Gallery = ({ style }) => {
         {imageSet.map((image) => {
           image = scramblize(imageSet);
           return (
-            <Slide key={image.idx}>
+            <Slide key={image[1].idx}>
               <Image
-                src={image.imageURL}
+                src={image[1].imageURL}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -64,7 +67,7 @@ const Gallery = ({ style }) => {
                   marginTop: "1rem",
                   padding: ".3rem",
                 }}
-                alt={image.alt}
+                alt={image[1].alt}
               />
             </Slide>
           );
