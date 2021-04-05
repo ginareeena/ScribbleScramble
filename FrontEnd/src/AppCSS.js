@@ -593,6 +593,7 @@ export const ChatBoxStyle = styled.div`
   flex-direction: column;
   background-color: white;
   margin: 20px;
+  padding: 10px;
 `;
 //holds canvas plus header and palette
 export const CanvasAllContainer = styled.div``;

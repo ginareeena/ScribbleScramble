@@ -228,11 +228,6 @@ const CombinedCanvas = () => {
               </ChatBoxStyle>
             </ChatBoxPlacement>
           </CanvasBackground>
-          {/* <ChatBoxPlacement>
-            <ChatBoxStyle>
-              <ChatBox room={room} />
-            </ChatBoxStyle>
-          </ChatBoxPlacement> */}
         </PlayArea>
         {/* </CanvasChatContainer> */}
         <Palette>
