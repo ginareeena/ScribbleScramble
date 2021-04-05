@@ -32,14 +32,12 @@ const CombinedCanvas = () => {
   const [currColor, setColor] = useState("#005E7A");
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
-  const [scribs, setScribs] = useState("");
+  const [players, setPlayers] = useState([]);
   const room = useParams().room;
   const history = useHistory();
-  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     socket.on("all players", (playerList) => {
-      console.log("on all players");
       setPlayers(playerList);
     });
   });
@@ -146,7 +144,6 @@ const CombinedCanvas = () => {
   function handleEndGame() {
     setCanvas(canvas);
     finalDrawing = canvas.toDataURL("image/png");
-    setScribs(finalDrawing);
     socket.emit("send final image", finalDrawing);
     history.push("/endgame", { scribs: finalDrawing });
   }
