@@ -140,8 +140,10 @@ serverSocket.on("connection", (socket) => {
   //re: chat room
   const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"
   //join a conversation --> prob don't need; refactor
-  const {room}= socket.handshake.query
-  // socket.join(roomId)
+  const {room} = socket.handshake.query
+  console.log('current socket', socket)
+  if (socket.in(room)){
+    socket.join(room)}
   //listen for new messages
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
     serverSocket.in(room).emit(NEW_CHAT_MESSAGE_EVENT, data)

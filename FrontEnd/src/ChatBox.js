@@ -6,7 +6,7 @@ const ChatBox = (props) => {
 const {room} = props.room
 const {messages, sendMessage} = UsingChat(room);
 const [newMessage, setNewMessage] = useState("")
-console.log('in Chatbocx - arr of Messages:', messages)
+console.log('in Chatbox - arr of Messages:', messages)
 
 
 const handleTypingMessage = (event) => {
