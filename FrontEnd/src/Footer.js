@@ -10,12 +10,10 @@ import {
   cake,
   storm,
   beet,
-  horse,
   wasp,
   flower,
   unicorn,
   watermelon,
-  coffee,
   egg,
 } from "./Icons";
 
