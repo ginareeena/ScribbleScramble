@@ -3,7 +3,7 @@ import UsingChat from "./UsingChat"
 
 const ChatBox = (props) => {
   console.log('chatbox props', props)
-const {room} = props.room
+const {room} = props
 const {messages, sendMessage} = UsingChat(room);
 const [newMessage, setNewMessage] = useState("")
 console.log('in Chatbox - arr of Messages:', messages)

@@ -141,7 +141,7 @@ serverSocket.on("connection", (socket) => {
   const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"
   //join a conversation --> prob don't need; refactor
   const {room} = socket.handshake.query
-  console.log('current socket', socket)
+  console.log(room)
   if (socket.in(room)){
     socket.join(room)}
   //listen for new messages
