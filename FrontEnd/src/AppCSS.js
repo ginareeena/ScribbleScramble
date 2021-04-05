@@ -577,3 +577,26 @@ export const EndGameContainer = styled.div`
 export const FAQdiv = styled.div`
   margin-top: 7px;
 `;
+
+//chat box placement
+export const ChatBoxPlacement = styled.span`
+  position: relative;
+`;
+
+// display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+
+//styles chat box
+export const ChatBoxStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+`;
+//holds canvas plus header and palette
+export const CanvasAllContainer = styled.div``;
+
+//holds the canvas object and the chat object
+export const CanvasAndChatContainer = styled.div``;
