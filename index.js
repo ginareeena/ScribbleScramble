@@ -107,7 +107,7 @@ serverSocket.on("connection", (socket) => {
         playersInRoom.push(username);
       }
     }
-    socket.emit("all players", playersInRoom);
+    socket.in(room).emit("all players", playersInRoom);
     console.log("emitting all players", playersInRoom);
   });
 
