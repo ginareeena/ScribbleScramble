@@ -578,11 +578,11 @@ export const FAQdiv = styled.div`
   margin-top: 7px;
 `;
 
-//chat box placement
 export const ChatBoxPlacement = styled.span`
   position: relative;
   z-index: 2;
   right: -250px;
+  top: -16px;
 `;
 
 // display: flex;
@@ -593,11 +593,35 @@ export const ChatBoxPlacement = styled.span`
 export const ChatBoxStyle = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #ecf6f0;
+  border-radius: 8px;
   margin: 20px;
   padding: 10px;
   z-index: 2;
 `;
+
+// //chat box placement
+// export const ChatBoxPlacement = styled.span`
+//   position: relative;
+//   z-index: 2;
+//   right: -250px;
+//   top: -16px;
+// `;
+
+// // display: flex;
+// //   flex-direction: column;
+// //   justify-content: flex-start;
+
+// //styles chat box
+// export const ChatBoxStyle = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   background-color: #ecf6f0;
+//   border-radius: 8px;
+//   margin: 20px;
+//   padding: 10px;
+//   z-index: 2;
+// `;
 //holds canvas plus header and palette
 export const CanvasAllContainer = styled.div``;
 
