@@ -105,7 +105,6 @@ const LandingPageComp = () => {
         <div>
           <Gallery />
           <h3>FAQ:</h3>
-
           <Drawer title={"What's a Scribb Scrab?"}>
             <div
               style={{
