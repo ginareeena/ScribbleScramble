@@ -136,6 +136,16 @@ serverSocket.on("connection", (socket) => {
     console.log("server side heard drawing from front end!", value);
     socket.in(value.room).emit("load new lines", value.canvasJSON);
   });
+
+  //re: chat room
+  const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"
+  //join a conversation --> prob don't need; refactor
+  const {room}= socket.handshake.query
+  // socket.join(roomId)
+  //listen for new messages
+  socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+    serverSocket.in(room).emit(NEW_CHAT_MESSAGE_EVENT, data)
+  })
 });
 
 http.listen(port, () => {

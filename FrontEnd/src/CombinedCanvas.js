@@ -21,7 +21,7 @@ import {
   EndGameBtn,
 } from "./AppCSS";
 import { Link } from "react-router-dom";
-
+import ChatBox from "./ChatBox"
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 import { fish } from "./Icons";
@@ -164,6 +164,7 @@ const CombinedCanvas = () => {
     <div>
       <Title2>ROOM: {params.room}</Title2>
       <Title2>{room}</Title2>
+      <ChatBox room={room}/>
       <PlayArea
         onClick={() => {
           handleDraworWrite();
