@@ -581,6 +581,7 @@ export const FAQdiv = styled.div`
 //chat box placement
 export const ChatBoxPlacement = styled.span`
   position: relative;
+  z-index: 2;
 `;
 
 // display: flex;
@@ -594,6 +595,7 @@ export const ChatBoxStyle = styled.div`
   background-color: white;
   margin: 20px;
   padding: 10px;
+  z-index: 2;
 `;
 //holds canvas plus header and palette
 export const CanvasAllContainer = styled.div``;
