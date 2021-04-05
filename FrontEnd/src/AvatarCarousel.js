@@ -8,15 +8,8 @@ import {
   ButtonNext,
   Image,
 } from "pure-react-carousel";
-
 import { AvatarSelector } from "./AppCSS";
-
 import icons from "./Icons";
-
-const buttonStyle = {
-  background: "transparent",
-  border: "none",
-};
 
 const AvatarCarousel = memo(() => {
   const iconSet = icons;
@@ -27,8 +20,6 @@ const AvatarCarousel = memo(() => {
      return [iconSet[i], iconSet[randomIcon] = iconSet[randomIcon], iconSet[i]]
     }
   };
-
-
   return (
     <CarouselProvider
       naturalSlideWidth={1}
@@ -85,3 +76,8 @@ const AvatarCarousel = memo(() => {
   );
 });
 export default AvatarCarousel;
+
+const buttonStyle = {
+  background: "transparent",
+  border: "none",
+};
