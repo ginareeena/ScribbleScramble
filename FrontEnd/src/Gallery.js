@@ -10,7 +10,7 @@ import {
   Image,
 } from "pure-react-carousel";
 
-const Gallery = () => {
+const Gallery = ({ style }) => {
   const buttonStyle = {
     background: "transparent",
     border: "none",
@@ -28,6 +28,12 @@ const Gallery = () => {
       naturalSlideHeight={1}
       totalSlides={imageSet.length}
       infinite={true}
+      style={{
+        width: "155px",
+        height: "116.25",
+        position: "relative",
+        ...style,
+      }}
     >
       {/* <ButtonBack
           style={{
@@ -47,8 +53,8 @@ const Gallery = () => {
 
       <ButtonBack
         style={{
-          // position: "absolute",
-          right: "110%",
+          position: "absolute",
+          left: "110%",
           // right: "-120%",
           top: "50%",
           // top: "8rem",
@@ -84,9 +90,9 @@ const Gallery = () => {
       </Slider>
       <ButtonNext
         style={{
-          // position: "absolute",
+          position: "absolute",
           // left: "-40%",
-          left: "110%",
+          right: "110%",
           top: "50%",
           // top: "-7rem",
           transform: "translateY(-50%)",

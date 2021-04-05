@@ -600,3 +600,8 @@ export const CanvasAllContainer = styled.div``;
 
 //holds the canvas object and the chat object
 export const CanvasAndChatContainer = styled.div``;
+
+export const GalleryDiv = styled.div`
+  width: 460px;
+  margin: auto;
+`;
