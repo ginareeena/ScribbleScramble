@@ -250,7 +250,7 @@ const CombinedCanvas = () => {
           </PngButton>
           <PngButton onClick={() => setColor("white")}>
             <img
-              src="/images/eraser3.png"
+              src="/images/eraser.png"
               style={{ width: "100%" }}
               alt="eraser"
             />
