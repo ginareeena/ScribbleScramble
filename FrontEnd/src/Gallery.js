@@ -1,6 +1,4 @@
 import React from "react";
-import { imageSet } from "./ImageIdx";
-import "pure-react-carousel/dist/react-carousel.es.css";
 import {
   CarouselProvider,
   Slider,
@@ -9,6 +7,8 @@ import {
   ButtonNext,
   Image,
 } from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
+import { imageSet } from "./ImageIdx";
 
 const Gallery = ({ style }) => {
   const buttonStyle = {
