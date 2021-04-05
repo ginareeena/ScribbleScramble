@@ -21,10 +21,9 @@ import {
   RoomHeader,
   PaletteColorBtn,
 } from "./AppCSS";
-
+import ChatBox from "./ChatBox"
 import { Link, useHistory } from "react-router-dom";
 // import LinkButton from "./LinkButton";
-
 import PaletteComp from "./Palette";
 import socket from "./Socket";
 import { fish } from "./Icons";
@@ -190,6 +189,9 @@ const CombinedCanvas = () => {
   };
 
   return (
+//     <div>
+//       <Title2>ROOM: {params.room}</Title2>
+//       <Title2>{room}</Title2>
     <div style={{ marginBottom: "100px" }}>
       <RoomHeader>
         <span
@@ -205,7 +207,7 @@ const CombinedCanvas = () => {
         </span>
         <span style={{ color: "white" }}>{players.join(", ")}</span>
       </RoomHeader>
-
+      <ChatBox room={room}/>
       <PlayArea
         onClick={() => {
           handleDraworWrite();
