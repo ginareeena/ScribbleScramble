@@ -1,9 +1,9 @@
 module.exports = class Player {
-  constructor(socketID, username) {
-    this.socketID = socketID;
-    this.username = username;
-    this.room = "";
-    // this.avatar = "";
+  constructor(socket) {
+    this.socketID = socket.id;
+    this.username = socket.username;
+    this.room = socket.room;
+    this.avatar = socket.avatar;
     // this.currentTurn = false;
   }
   setRoom(room) {
@@ -12,9 +12,9 @@ module.exports = class Player {
   getRoom() {
     return this.room;
   }
-  // setUsername(name) {
-  //   this.username = name;
-  // }
+  getUsername() {
+    return this.username;
+  }
   // setAvatar() {}
   // setIsDraw() {
   //   this.isDrawing = true;

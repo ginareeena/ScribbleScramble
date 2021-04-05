@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import {
   CarouselProvider,
@@ -11,87 +11,15 @@ import {
 
 import { AvatarSelector } from "./AppCSS";
 
-import {
-  bird,
-  cake,
-  catzoom,
-  cotton,
-  crab,
-  deer,
-  firefly,
-  fish,
-  icecream,
-  pizza,
-  sandwich,
-  spiderman,
-  storm,
-  taxi,
-  tomato,
-  violin,
-  whale,
-  beet,
-  cat,
-  coffee,
-  creature,
-  flower,
-  horse,
-  link,
-  wasp,
-  ski,
-  alien,
-  unicorn,
-  fly,
-  egg,
-  pika,
-  pretzel,
-  monster,
-  exercise,
-  watermelon,
-} from "./Icons";
+import icons from "./Icons";
 
 const buttonStyle = {
   background: "transparent",
   border: "none",
 };
 
-const AvatarCarousel = () => {
-  const iconSet = [
-    bird,
-    cake,
-    catzoom,
-    cotton,
-    crab,
-    deer,
-    firefly,
-    fish,
-    icecream,
-    pizza,
-    sandwich,
-    spiderman,
-    storm,
-    taxi,
-    tomato,
-    violin,
-    whale,
-    horse,
-    link,
-    wasp,
-    ski,
-    flower,
-    alien,
-    beet,
-    cat,
-    coffee,
-    creature,
-    unicorn,
-    fly,
-    egg,
-    pika,
-    pretzel,
-    monster,
-    exercise,
-    watermelon,
-  ];
+const AvatarCarousel = memo(() => {
+  const iconSet = icons;
   const scramblize = (iconSet) => {
     const max = iconSet.length;
     let randomIconIdx = Math.floor(Math.random() * max);
@@ -106,11 +34,9 @@ const AvatarCarousel = () => {
     <CarouselProvider
       naturalSlideWidth={1}
       naturalSlideHeight={1}
-      totalSlides={35}
+      totalSlides={iconSet.length}
       infinite={true}
     >
-      {" "}
-      {/* <span> */}
       <AvatarSelector>
         <ButtonBack
           style={{
@@ -121,7 +47,11 @@ const AvatarCarousel = () => {
             ...buttonStyle,
           }}
         >
-          <img src="/images/leftArrow.png" style={{ width: "22px" }} />
+          <img
+            src="/images/leftArrow.png"
+            style={{ width: "22px" }}
+            alt="icon carousel left arrow"
+          />
         </ButtonBack>
         <Slider>
           {iconSet.map((icon) => {
@@ -143,10 +73,14 @@ const AvatarCarousel = () => {
             ...buttonStyle,
           }}
         >
-          <img src="/images/rightArrow.png" style={{ width: "22px" }} />
+          <img
+            src="/images/rightArrow.png"
+            style={{ width: "22px" }}
+            alt="icon carousel right arrow"
+          />
         </ButtonNext>
       </AvatarSelector>
     </CarouselProvider>
   );
-};
+});
 export default AvatarCarousel;

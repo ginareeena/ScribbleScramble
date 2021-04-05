@@ -16,55 +16,51 @@ import AvatarCarousel from "./AvatarCarousel";
 import Drawer from "./Drawer";
 
 const LandingPageComp = () => {
-  const [username, setUsername] = useState("scribbling");
+  const [username, setUsername] = useState("random");
   const [roomToJoin, setRoomToJoin] = useState("");
   const history = useHistory();
 
   useEffect(() => {
-    socket.on("new room created", (name) => {
-      console.log("FE on: new room created:", name);
-      socket.emit("join room", { username, room: name });
-      history.push(`/scramble/${name}`);
+    socket.on("scramble time", (name) => {
+      history.push(`scramble/${name}`);
+      return () => socket.off("scramble time");
     });
-  });
+  }, [history]);
 
-  const handleCreate = () => {
-    socket.emit("add new player", username);
-    console.log("FE: emit create new room");
-    socket.emit("create new room", username);
-  };
-
-  const handleJoin = () => {
-    socket.emit("add new player", username);
-    console.log("FE emit add new player");
-    if (roomToJoin) {
-      socket.emit("join room", { username, room: roomToJoin });
-      history.push(`scramble/${roomToJoin}`);
-    } else {
-      alert("please enter a room name");
-    }
+  const startScribbling = (evt) => {
+    evt.preventDefault();
+    socket.emit("scribble time", {
+      username,
+      room: roomToJoin,
+    });
   };
 
   return (
     <div>
       <LandingPageHeader>
         <LandingPage>
-          <form>
+          <div>
             <LandingBtns>
               <input
                 style={{ marginTop: "10px", marginBottom: "10px" }}
                 type="text"
                 name="username"
-                defaultValue="Enter Name"
-                onChange={(evt) => setUsername(evt.target.value.trim())}
+                placeholder="Enter a username"
+                minLength={1}
+                maxLength={30}
+                autoComplete="false"
+                onChange={(evt) => {
+                  setUsername(evt.target.value.trim());
+                }}
               />
+
               <AvatarCarousel />
 
               <StartDrawBtn>
                 <PublicRoomButton
                   type="button"
                   name="create"
-                  onClick={handleCreate}
+                  onClick={(evt) => startScribbling(evt)}
                 >
                   Play!
                 </PublicRoomButton>
@@ -73,21 +69,21 @@ const LandingPageComp = () => {
               <input
                 style={{ marginTop: "5px", marginBottom: "5px" }}
                 type="text"
-                name="join-room-name"
-                onChange={(evt) => setRoomToJoin(evt.target.value.trim())}
+                placeholder="Know your room?"
+                onChange={(evt) => setRoomToJoin(evt.target.value)}
               />
               <StartDrawBtn>
                 <CreateRoomButton
                   type="button"
                   name="join"
-                  onClick={handleJoin}
+                  onClick={(evt) => startScribbling(evt)}
                 >
                   Join Room
                 </CreateRoomButton>
               </StartDrawBtn>
             </LandingBtns>
-          </form>
-        </LandingPage>{" "}
+          </div>
+        </LandingPage>
         <img
           src={"/images/howPlay.png"}
           style={{

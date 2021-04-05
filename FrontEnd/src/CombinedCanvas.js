@@ -44,9 +44,21 @@ const CombinedCanvas = () => {
   const [brushSize, setBrushSize] = useState(11);
   const [font, setFont] = useState("arial");
   const [scribs, setScribs] = useState("");
-  const params = useParams();
   const room = useParams().room;
   const history = useHistory();
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+    socket.emit("get room players", room);
+    console.log("canvas: get room players");
+  }, [room]);
+
+  useEffect(() => {
+    socket.on("all players", (playerList) => {
+      setPlayers(playerList);
+    });
+    return () => socket.off("all players");
+  });
 
   //creates initial canvas
   useEffect(() => {
@@ -183,12 +195,17 @@ const CombinedCanvas = () => {
         <span
           style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
         >
-          {" "}
-          Room:{" "}
+          Room:
         </span>
-
-        <span style={{ color: "white" }}> {params.room} </span>
+        <span style={{ color: "white" }}> {room} </span>
+        <span
+          style={{ fontWeight: "bold", color: "white", marginRight: "5px" }}
+        >
+          Players:
+        </span>
+        <span style={{ color: "white" }}>{players.join(", ")}</span>
       </RoomHeader>
+
       <PlayArea
         onClick={() => {
           handleDraworWrite();
@@ -218,21 +235,33 @@ const CombinedCanvas = () => {
               setBrushSize(5);
             }}
           >
-            <img src="/images/point.png" style={{ width: "30%" }} />
+            <img
+              src="/images/point.png"
+              style={{ width: "30%" }}
+              alt="choose small paint brush"
+            />
           </SmallBrushBtn>
           <MedBrushBtn
             onClick={() => {
               setBrushSize(15);
             }}
           >
-            <img src="/images/point.png" style={{ width: "90%" }} />
+            <img
+              src="/images/point.png"
+              style={{ width: "90%" }}
+              alt="choose medium paint brush"
+            />
           </MedBrushBtn>
           <LargeBrushBtn
             onClick={() => {
               setBrushSize(35);
             }}
           >
-            <img src="/images/point.png" style={{ height: "90%" }} />
+            <img
+              src="/images/point.png"
+              style={{ height: "90%" }}
+              alt="choose large paint brush"
+            />
           </LargeBrushBtn>
         </BrushSizesContainer>
         <SelectedColor>
@@ -252,7 +281,11 @@ const CombinedCanvas = () => {
           <img src="/images/trashBtn.png" style={{ width: "100%" }} />
         </PngButton>
         <PngButton onClick={() => setColor("white")}>
-          <img src="/images/eraser3.png" style={{ width: "100%" }} />
+          <img
+            src="/images/eraser3.png"
+            style={{ width: "100%" }}
+            alt="eraser"
+          />
         </PngButton>
       </Palette>
       <Palette>
