@@ -21,18 +21,20 @@ THEIR APPROPRIATE SECTIONS. PLEASE UPDATE TOC AS NEEDED.
 
 export const Body = styled.div`
   display: flex;
+  background-size: 90%;
   @media (max-width: 2650px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg);
+    background-image: url(${process.env.PUBLIC_URL}/images/background.png);
 
     flex-flow: column wrap;
     width: 100%;
   }
   @media (max-width: 813px) {
-    background-image: url(${process.env.PUBLIC_URL}/images/background.jpg)
+    background-image: url(${process.env.PUBLIC_URL}/images/background.png)
       repeat;
     width: 813px;
     margin-right: 5px;
   }
+  background-position-x: -20px;
 `;
 
 // media query stuff not currently used by might be later
@@ -187,8 +189,10 @@ export const MasterScramblers = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 90px;
+  height: 160px;
   margin: auto;
+  margin-top: 9px;
+  margin-bottom: 0px;
 `;
 
 export const FooterStyle = styled.footer`
@@ -196,7 +200,7 @@ export const FooterStyle = styled.footer`
   justify-content: center;
   align-items: center;
   background-color: #ecf6f0;
-  height: 270px;
+  padding: 35px;
 `;
 
 // Canvas Elements
@@ -569,4 +573,8 @@ export const EndGameContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 15px;
+`;
+
+export const FAQdiv = styled.div`
+  margin-top: 7px;
 `;
