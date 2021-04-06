@@ -571,6 +571,7 @@ export const ChatBoxPlacement = styled.span`
 export const ChatBoxStyle = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 200px;
   background-color: #ecf6f0;
   border-radius: 8px;
   margin: 20px;
