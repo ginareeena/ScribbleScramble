@@ -103,18 +103,13 @@ export const RoomHeader = styled.div`
 export const HowToPlay = styled.div`
   background-color: #ecf6f0;
   border-radius: 9px;
-  width: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
   margin-bottom: 125px;
-  margin-top: 0px;
-  padding: 25px;
-  padding-bottom: 27px;
-  padding-top: 10px;
-  padding-left: 5px;
-  padding-right: 2px;
+  padding: 10px 20px;
+  padding-bottom: 25px;
 `;
 
 export const DrawerTitle = styled.div`
@@ -629,6 +624,5 @@ export const CanvasAllContainer = styled.div``;
 export const CanvasAndChatContainer = styled.div``;
 
 export const GalleryDiv = styled.div`
-  width: 460px;
-  margin: auto;
+  width: 495px;
 `;

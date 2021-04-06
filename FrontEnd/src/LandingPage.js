@@ -25,8 +25,8 @@ const LandingPageComp = () => {
   useEffect(() => {
     socket.on("scramble time", (name) => {
       history.push(`/${name}`);
-      socket.emit("get room players", name)
-      console.log("get room players")
+      socket.emit("get room players", name);
+      console.log("get room players");
       return () => socket.off("scramble time");
     });
   }, [history]);
@@ -40,7 +40,13 @@ const LandingPageComp = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <LandingPageHeader>
         <LandingPage>
           <div>
@@ -103,10 +109,14 @@ const LandingPageComp = () => {
 
       <HowToPlay>
         <div>
+          <Gallery
+            style={{ float: "right", marginRight: "40px", marginTop: "38px" }}
+          />
           <h3>FAQ:</h3>
+
           <GalleryDiv>
             {/* <div style={{ width: "450px", margin: "auto" }}> */}
-            <Gallery style={{ float: "right" }} />
+
             <Drawer title={"What's a Scribb Scrab?"}>
               <div
                 style={{

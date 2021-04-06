@@ -18,10 +18,10 @@ import {
   WriteModeBtn,
   EndGameBtn,
   RoomHeader,
-  ChatBoxStyle,
   CanvasAndChatContainer,
   CanvasAllContainer,
   ChatBoxPlacement,
+  ChatBoxStyle,
 } from "./AppCSS";
 import ChatBox from "./ChatBox";
 import { Link, useHistory } from "react-router-dom";
@@ -49,10 +49,9 @@ const CombinedCanvas = () => {
   const history = useHistory();
   const [players, setPlayers] = useState([]);
 
-
   useEffect(() => {
     socket.on("all players", (playerList) => {
-      console.log('on all players')
+      console.log("on all players");
       setPlayers(playerList);
     });
   });

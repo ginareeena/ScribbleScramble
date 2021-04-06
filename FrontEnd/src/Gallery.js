@@ -9,6 +9,9 @@ import {
   ButtonNext,
   Image,
 } from "pure-react-carousel";
+import "./gallery.css";
+
+const size = 40;
 
 const Gallery = ({ style }) => {
   const buttonStyle = {
@@ -18,11 +21,14 @@ const Gallery = ({ style }) => {
 
   const scramblize = (imageSet) => {
     const max = imageSet.length;
-    for(let i = max - 1; i >= 0; i--) {
+    for (let i = max - 1; i >= 0; i--) {
       let randomImage = Math.floor(Math.random() * max);
-      return [imageSet[i], imageSet[randomImage] = imageSet[randomImage], imageSet[i]];
+      return [
+        imageSet[i],
+        (imageSet[randomImage] = imageSet[randomImage]),
+        imageSet[i],
+      ];
     }
-    
   };
 
   return (
@@ -32,8 +38,8 @@ const Gallery = ({ style }) => {
       totalSlides={imageSet.length}
       infinite={true}
       style={{
-        width: "155px",
-        height: "116.25",
+        width: `${size * 4}px`,
+        height: `${size * 3}px`,
         position: "relative",
         ...style,
       }}
@@ -72,20 +78,16 @@ const Gallery = ({ style }) => {
       </ButtonBack>
       <Slider>
         {imageSet.map((image) => {
-          image = scramblize(imageSet);
+          // image = scramblize(imageSet);
           return (
-            <Slide key={image[1].idx}>
+            <Slide key={image.idx}>
               <Image
-                src={image[1].imageURL}
+                src={image.imageURL}
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  marginRight: "1rem",
-                  marginLeft: "0px",
-                  marginTop: "1rem",
-                  padding: ".3rem",
+                  width: `${size * 4}px`,
+                  height: `${size * 3}px`,
                 }}
-                alt={image[1].alt}
+                alt={image.alt}
               />
             </Slide>
           );
