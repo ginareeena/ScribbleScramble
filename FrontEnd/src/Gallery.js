@@ -8,27 +8,15 @@ import {
   Image,
 } from "pure-react-carousel";
 import "./gallery.css";
-
-const size = 40;
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { imageSet } from "./ImageIdx";
+
+const size = 40;
 
 const Gallery = ({ style }) => {
   const buttonStyle = {
     background: "transparent",
     border: "none",
-  };
-
-  const scramblize = (imageSet) => {
-    const max = imageSet.length;
-    for (let i = max - 1; i >= 0; i--) {
-      let randomImage = Math.floor(Math.random() * max);
-      return [
-        imageSet[i],
-        (imageSet[randomImage] = imageSet[randomImage]),
-        imageSet[i],
-      ];
-    }
   };
 
   return (
@@ -60,7 +48,6 @@ const Gallery = ({ style }) => {
       </ButtonBack>
       <Slider>
         {imageSet.map((image) => {
-          // image = scramblize(imageSet);
           return (
             <Slide key={image.idx}>
               <Image
@@ -79,8 +66,8 @@ const Gallery = ({ style }) => {
         style={{
           position: "absolute",
           right: "110%",
-          top: "50%",
-          transform: "translateY(-50%)",
+          top: "25%",
+          transform: "translateY(50%)",
           ...buttonStyle,
         }}
       >
