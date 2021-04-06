@@ -571,6 +571,7 @@ export const EndGameContainer = styled.div`
 
 export const FAQdiv = styled.div`
   margin-top: 7px;
+  justify-content: center;
 `;
 
 export const ChatBoxPlacement = styled.span`

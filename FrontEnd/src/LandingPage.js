@@ -159,18 +159,18 @@ const LandingPageComp = () => {
                 </span>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px" }}
+                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
                     src="/images/scramblePic.png"
                   />
                 </div>
                 <FAQdiv>
                   First draw your scribble then click
-                  <strong> Scramble </strong> <br />
-                  to enable scrambling
+                  <strong> Scramble </strong> 
+                  to<br /> enable scrambling
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px" }}
+                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
                     src="/images/demo1.png"
                   />
                 </div>
@@ -180,20 +180,20 @@ const LandingPageComp = () => {
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px" }}
+                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem" }}
                     src="/images/demo2.png"
                   />
                 </div>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px" }}
+                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
                     src="/images/demo3.png"
                   />
                 </div>
                 <FAQdiv>You can also move rotate/edit/scale text</FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px" }}
+                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
                     src="/images/demo9.png"
                   />
                 </div>
@@ -203,19 +203,19 @@ const LandingPageComp = () => {
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px" }}
+                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
                     src="/images/demo9b.png"
                   />
                 </div>
                 <FAQdiv>
                   You can also edit text that's already been placed by clicking
                   <strong> Scramble </strong>
-                  or Edit Text and then clicking inside the text you want to
+                  or <strong>Edit Text</strong> and then clicking inside the <br />text you want to
                   edit.
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px" }}
+                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
                     src="/images/demo9e.png"
                   />
                 </div>
