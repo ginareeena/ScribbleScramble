@@ -102,7 +102,7 @@ const LandingPageComp = () => {
       <HowToPlay>
         <div>
           <Gallery
-            style={{ float: "right", marginRight: "40px", marginTop: "38px" }}
+            style={{ float: "right", marginRight: "40px", marginTop: "38px", marginBottom: ".2rem" }}
           />
           <h3>FAQ:</h3>
 
@@ -111,37 +111,42 @@ const LandingPageComp = () => {
               <div
                 style={{
                   width: "500px",
-                  marginRight: "0px",
+                  
                   marginTop: "5px",
                   marginBottom: "3px",
+                  paddingLeft: "1rem"
                 }}
               >
-                A combination of words and drawings such as:
+                Any combination of words <br /> and
+                scribbles:
+                
               </div>
               <div
                 style={{
                   width: "200px",
-                  marginRight: "0px",
+                  
                   marginBottom: "10px",
+                  paddingLeft: "2rem"
                 }}
               >
-                Illustrated poems, concrete poetry, etc.
+                - Illustrated poetry <br />
+                - Concrete poems, etc.
               </div>
             </Drawer>
             <div>
               <Drawer title={"How Do I Play?"}>
-                <ol style={{ marginTop: "2px", marginBottom: "5px" }}>
-                  <li>Click "Play" to create a room</li>
+                <ol style={{ marginTop: ".5rem", marginBottom: ".3rem" }}>
+                  <li style={{ lineHeight: "1.5rem" }}>Click "Play" to create a room</li>
                   <li>
                     Enter a name and click "Join Room" to join a friend's room.
                   </li>
-                  <li>Give your room mame to friends you want to join.</li>
+                  <li style={{ lineHeight: "1.5rem" }}>Give your room mame to friends you want to join.</li>
                   <li>Draw or write whatever you want!</li>
-                  <li>
-                    Click the Scramble button to grab and move drawings or text.
+                  <li style={{ lineHeight: "1.5rem" }}>
+                    Click the Scramble button to grab and move <br /> drawings or text.
                   </li>
-                  <li> When you're done, click "I'm Done"</li>
-                  <li>Download your Scribb Scrabb to share with friends!</li>
+                  <li style={{ lineHeight: "1.5rem" }}> When you're done, click "I'm Done"</li>
+                  <li style={{ lineHeight: "1.5rem" }}>Download your Scribb Scrabb to share with friends!</li>
                 </ol>
               </Drawer>
             </div>
@@ -159,8 +164,8 @@ const LandingPageComp = () => {
                   />
                 </div>
                 <FAQdiv>
-                  First draw your drawing then click
-                  <strong> Scramble </strong>
+                  First draw your scribble then click
+                  <strong> Scramble </strong> <br />
                   to enable scrambling
                 </FAQdiv>
                 <div>
