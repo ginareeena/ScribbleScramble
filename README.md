@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/License-ISC-green) ![](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=plastic&up_color=blue&up_message=online&url=https%3A%2F%2Fscribble-scramble.herokuapp.com%2F)
+![](https://img.shields.io/badge/&style=plastic&lable=License&message=ISC&color=green) ![](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=plastic&up_color=blue&up_message=online&url=https%3A%2F%2Fscribble-scramble.herokuapp.com%2F)
 
 # Scribble Scramble
 
