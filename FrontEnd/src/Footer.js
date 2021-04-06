@@ -15,13 +15,20 @@ import {
   unicorn,
   watermelon,
   egg,
+  monster,
+  pika,
+  fly,
+  deer,
+  pizza, 
+  link,
+  island
 } from "./Icons";
 
 function Footer() {
-  const krIcons = [creature, storm];
-  const mIcons = [crab, wasp, whale, creature, cotton];
-  const gIcons = [cat, whale, watermelon, egg, unicorn];
-  const keIcons = [firefly, flower, wasp];
+  const krIcons = [creature, storm, fly, egg];
+  const mIcons = [cotton, monster, pika, link]
+  const gIcons = [cat, whale, unicorn, watermelon];
+  const keIcons = [firefly, flower, deer, island];
   const generalIcons = [
     cotton,
     crab,
@@ -32,6 +39,16 @@ function Footer() {
     cake,
     storm,
     beet,
+    wasp,
+    flower,
+    unicorn,
+    watermelon,
+    egg,
+    monster,
+    pika,
+    fly,
+    deer,
+    pizza
   ];
 
   const scramblize = (iconSet) => {
