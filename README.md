@@ -1,4 +1,20 @@
-# ScribbleScramble
+![](https://img.shields.io/badge/License-ISC-green)
+
+# Scribble Scramble
+
+Scribble Scramble is an interactive app for creating collaborative visual poetry.
+
+Join a room with your friends and write or draw new content, or scramble someone else's.
+
+## Deployed version: 
+- https://scribble-scramble.herokuapp.com/
+
+## Installation
+- Once the repo has been forked and cloned to your machine, `cd` into the ScribbleScramble directory.
+- Run `npm install`
+- You may also need to install the following packages separately: 
+
+`npm install concurrently express moniker socket.io morgan nodemon fabric mime pure-react-carousel styled-components socket.io-client`
 
 ## Starting our Servers
 
@@ -10,13 +26,21 @@
 
 - Build can be run from root directory with `cd FrontEnd` and then `npm run build`
 
-## Database
 
-- Database is setup in PostGreSQL with the DB named 'scribble'
+## Contributing
 
-## Image Handling
+Have ideas, or made an amazing scrib scrab? Found a bug? We'll squish it. 
 
-- Images handled as JSON data in components and saved as JSON data in the database
-- On save, will download as jpeg via data URL
-  - This data url will be temporary and stored locally; once user navigates from 'EndGame' page, will lose access
-  - We will have the JSON version saved in the DB for use in our gallery
+Pull that request, and we'll check it out. Opening an issue for major suggestions is appreciated.
+
+## Master Scribblers
+
+Scribble Scramble is brought to you by the following engineers: 
+- Gina Moffit: https://github.com/ginareeena
+- Kelsey Greene: https://github.com/kgreene17
+- Meghan McFarland: https://github.com/meghanmc04
+- Kristen Studioso: https://github.com/studiosok
+
+## License
+
+ISC
