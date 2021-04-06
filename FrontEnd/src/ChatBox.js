@@ -19,18 +19,18 @@ const ChatBox = ({ room }) => {
         <h4> Scribble a note to your partner!</h4>
       </div>
       <div>
-        <ul className="messageList" style={{ listStyleType: "none" }}>
+        <div className="messageList" style={{ listStyleType: "none" }}>
           {messages.map((message, index) => (
-            <li
+            <div
               key={index}
               className={`single-message ${
                 message.ownedByCurrentPlayer ? "my-message" : "received-message"
               }`}
             >
-              {message.body}
-            </li>
+              {message.length > 10 ? `${message.body.slice(0, 13)} \n ${message.body.slice(14)}` : message.body}
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
       <textarea
         value={newMessage}
