@@ -32,7 +32,7 @@ const Gallery = ({ style }) => {
         ...style,
       }}
     >
-      <ButtonBack
+      <ButtonNext
         style={{
           position: "absolute",
           left: "110%",
@@ -45,7 +45,7 @@ const Gallery = ({ style }) => {
           src="/images/GalleryImages/rightArrow.png"
           style={{ width: "22px" }}
         />
-      </ButtonBack>
+      </ButtonNext>
       <Slider>
         {imageSet.map((image) => {
           return (
@@ -62,7 +62,7 @@ const Gallery = ({ style }) => {
           );
         })}
       </Slider>
-      <ButtonNext
+      <ButtonBack
         style={{
           position: "absolute",
           right: "110%",
@@ -75,7 +75,7 @@ const Gallery = ({ style }) => {
           src="/images/GalleryImages/leftArrow.png"
           style={{ width: "22px" }}
         />
-      </ButtonNext>
+      </ButtonBack>
     </CarouselProvider>
   );
 };

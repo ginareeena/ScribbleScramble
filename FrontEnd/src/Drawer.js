@@ -16,6 +16,7 @@ const Drawer = ({ title, children }) => {
           style={{
             width: "15px",
             marginLeft: "2px",
+            
           }}
           src="/images/drawericon.png"
         />
