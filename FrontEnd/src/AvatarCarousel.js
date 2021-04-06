@@ -17,7 +17,11 @@ const AvatarCarousel = memo(() => {
     let max = iconSet.length;
     for (let i = max - 1; i >= 0; i--) {
       const randomIcon = Math.floor(Math.random() * max);
-     return [iconSet[i], iconSet[randomIcon] = iconSet[randomIcon], iconSet[i]]
+      return [
+        iconSet[i],
+        (iconSet[randomIcon] = iconSet[randomIcon]),
+        iconSet[i],
+      ];
     }
   };
   return (
@@ -46,9 +50,9 @@ const AvatarCarousel = memo(() => {
         <Slider>
           {iconSet.map((icon) => {
             icon = scramblize(iconSet);
-            let idxSource = Array(iconSet)
-            let i = 0
-            i++
+            let idxSource = Array(iconSet);
+            let i = 0;
+            i++;
             return (
               <Slide key={idxSource[i]}>
                 <Image src={icon[1]} alt={icon[1]} />

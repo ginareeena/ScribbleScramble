@@ -38,13 +38,11 @@ const CombinedCanvas = () => {
 
   useEffect(() => {
     socket.emit("get room players", room);
-    console.log("canvas: get room players");
   }, [room]);
 
   useEffect(() => {
     socket.on("all players", (playerList) => {
       setPlayers(playerList);
-      console.log('all players')
     });
   }, [players]);
 
