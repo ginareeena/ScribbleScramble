@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UsingChat from "./UsingChat"
+import UsingChat from "./UsingChat";
 
 const ChatBox = ({room}) => {
 const {messages, sendMessage} = UsingChat(room);
@@ -31,7 +31,9 @@ return (
         ))}
       </ul>
       </div>
-      <textarea value= {newMessage} onChange={handleTypingMessage}
+      <textarea
+        value={newMessage}
+        onChange={handleTypingMessage}
         placeholder="Write something..."
         className="new-message-input"
       />
@@ -39,7 +41,7 @@ return (
         Send
       </button>
     </div>
-)
-}
+  );
+};
 
 export default ChatBox

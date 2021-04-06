@@ -38,7 +38,13 @@ const LandingPageComp = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <LandingPageHeader>
         <LandingPage>
           <div>
@@ -95,9 +101,12 @@ const LandingPageComp = () => {
       </LandingPageHeader>
       <HowToPlay>
         <div>
+          <Gallery
+            style={{ float: "right", marginRight: "40px", marginTop: "38px" }}
+          />
           <h3>FAQ:</h3>
+
           <GalleryDiv>
-            <Gallery style={{ float: "right" }} />
             <Drawer title={"What's a Scribb Scrabb?"}>
               <div
                 style={{
