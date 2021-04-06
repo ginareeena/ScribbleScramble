@@ -19,7 +19,7 @@ import {
 
 function Footer() {
   const krIcons = [creature, storm];
-  const mIcons = [crab, wasp, whale, creature, cotton]
+  const mIcons = [crab, wasp, whale, creature, cotton];
   const gIcons = [cat, whale, watermelon, egg, unicorn];
   const keIcons = [firefly, flower, wasp];
   const generalIcons = [

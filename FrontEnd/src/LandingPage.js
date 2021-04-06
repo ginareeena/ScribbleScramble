@@ -23,7 +23,7 @@ const LandingPageComp = () => {
 
   useEffect(() => {
     socket.on("scramble time", (name) => {
-      history.push(`/${name}`);
+      history.push(`/scramble/${name}`);
       socket.emit("get room players", name);
       return () => socket.off("scramble time");
     });
@@ -102,51 +102,63 @@ const LandingPageComp = () => {
       <HowToPlay>
         <div>
           <Gallery
-            style={{ float: "right", marginRight: "40px", marginTop: "38px", marginBottom: ".2rem" }}
+            style={{
+              float: "right",
+              marginRight: "40px",
+              marginTop: "38px",
+              marginBottom: ".2rem",
+            }}
           />
           <h3>FAQ:</h3>
 
           <GalleryDiv>
-            <Drawer title={"What's a Scribb Scrabb?"}>
+            <Drawer title={"What's a Scrib Scrabb?"}>
               <div
                 style={{
                   width: "500px",
-                  
+
                   marginTop: "5px",
                   marginBottom: "3px",
-                  paddingLeft: "1rem"
+                  paddingLeft: "1rem",
                 }}
               >
-                Any combination of words <br /> and
-                scribbles:
-                
+                Any combination of words <br /> and scribbles:
               </div>
               <div
                 style={{
                   width: "200px",
-                  
+
                   marginBottom: "10px",
-                  paddingLeft: "2rem"
+                  paddingLeft: "2rem",
                 }}
               >
-                - Illustrated poetry <br />
-                - Concrete poems, etc.
+                - Illustrated poetry <br />- Concrete poems, etc.
               </div>
             </Drawer>
             <div>
               <Drawer title={"How Do I Play?"}>
                 <ol style={{ marginTop: ".5rem", marginBottom: ".3rem" }}>
-                  <li style={{ lineHeight: "1.5rem" }}>Click "Play" to create a room</li>
+                  <li style={{ lineHeight: "1.5rem" }}>
+                    Click "Play" to create a room
+                  </li>
                   <li>
                     Enter a name and click "Join Room" to join a friend's room.
                   </li>
-                  <li style={{ lineHeight: "1.5rem" }}>Give your room mame to friends you want to join.</li>
+                  <li style={{ lineHeight: "1.5rem" }}>
+                    Give your room mame to friends you want to join.
+                  </li>
                   <li>Draw or write whatever you want!</li>
                   <li style={{ lineHeight: "1.5rem" }}>
-                    Click the Scramble button to grab and move <br /> drawings or text.
+                    Click the Scramble button to grab and move <br /> drawings
+                    or text.
                   </li>
-                  <li style={{ lineHeight: "1.5rem" }}> When you're done, click "I'm Done"</li>
-                  <li style={{ lineHeight: "1.5rem" }}>Download your Scribb Scrabb to share with friends!</li>
+                  <li style={{ lineHeight: "1.5rem" }}>
+                    {" "}
+                    When you're done, click "I'm Done"
+                  </li>
+                  <li style={{ lineHeight: "1.5rem" }}>
+                    Download your Scribb Scrabb to share with friends!
+                  </li>
                 </ol>
               </Drawer>
             </div>
@@ -159,18 +171,27 @@ const LandingPageComp = () => {
                 </span>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
+                    style={{
+                      width: "400px",
+                      marginTop: "15px",
+                      paddingLeft: "3rem",
+                    }}
                     src="/images/scramblePic.png"
                   />
                 </div>
                 <FAQdiv>
                   First draw your scribble then click
-                  <strong> Scramble </strong> 
-                  to<br /> enable scrambling
+                  <strong> Scramble </strong>
+                  to
+                  <br /> enable scrambling
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
+                    style={{
+                      width: "400px",
+                      marginTop: "15px",
+                      paddingLeft: "3rem",
+                    }}
                     src="/images/demo1.png"
                   />
                 </div>
@@ -180,20 +201,32 @@ const LandingPageComp = () => {
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem" }}
+                    style={{
+                      width: "400px",
+                      marginTop: "15px",
+                      paddingLeft: "3rem",
+                    }}
                     src="/images/demo2.png"
                   />
                 </div>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
+                    style={{
+                      width: "400px",
+                      marginTop: "15px",
+                      paddingLeft: "3rem",
+                    }}
                     src="/images/demo3.png"
                   />
                 </div>
                 <FAQdiv>You can also move rotate/edit/scale text</FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
+                    style={{
+                      width: "400px",
+                      marginTop: "15px",
+                      paddingLeft: "3rem",
+                    }}
                     src="/images/demo9.png"
                   />
                 </div>
@@ -203,19 +236,28 @@ const LandingPageComp = () => {
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
+                    style={{
+                      width: "400px",
+                      marginTop: "15px",
+                      paddingLeft: "3rem",
+                    }}
                     src="/images/demo9b.png"
                   />
                 </div>
                 <FAQdiv>
                   You can also edit text that's already been placed by clicking
                   <strong> Scramble </strong>
-                  or <strong>Edit Text</strong> and then clicking inside the <br />text you want to
-                  edit.
+                  or <strong>Edit Text</strong> and then clicking inside the{" "}
+                  <br />
+                  text you want to edit.
                 </FAQdiv>
                 <div>
                   <img
-                    style={{ width: "400px", marginTop: "15px", paddingLeft: "3rem"  }}
+                    style={{
+                      width: "400px",
+                      marginTop: "15px",
+                      paddingLeft: "3rem",
+                    }}
                     src="/images/demo9e.png"
                   />
                 </div>

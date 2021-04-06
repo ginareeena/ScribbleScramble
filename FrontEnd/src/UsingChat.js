@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import socketIoClient from "socket.io-client"
+import socketIoClient from "socket.io-client";
 
 const SOCKET_SERVER_URL = window.location.origin;
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
@@ -10,7 +10,7 @@ const UsingChat = (room) => {
 
   useEffect(() => {
     socketRef.current = socketIoClient(SOCKET_SERVER_URL, {
-      query: { room: room }
+      query: { room: room },
     });
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
       const incomingMessage = {

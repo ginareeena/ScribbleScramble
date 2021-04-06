@@ -14,7 +14,7 @@ const EndGame = (props) => {
     <EndGamePage>
       <EndGameContainer>
         <EndGameH1>Thanks For Playing!</EndGameH1>
-        <EndGameElement>What a Beautiful Scribb Scrabb!</EndGameElement>
+        <EndGameElement>What a Beautiful Scrib Scrabb!</EndGameElement>
         <EndGameElement>
           <img
             src={finalScribs}

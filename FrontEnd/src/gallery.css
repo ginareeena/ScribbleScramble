@@ -1,4 +1,9 @@
-/* ul.carousel__slider-tray {
+/* 
+
+*** This file is referenced elsewhere —> do not delete until references removed ***
+
+
+ul.carousel__slider-tray {
   display: flex !important;
 }
 
@@ -6,3 +11,4 @@ ul.carousel__slider-tray li {
   width: unset !important;
   flex: 0 0 33% !important;
 } */
+

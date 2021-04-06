@@ -82,9 +82,6 @@ export const LandingPageHeader = styled.div`
   align-items: center;
 `;
 
-//#4c9c8a
-//#ecf6f0;
-
 export const RoomHeader = styled.div`
   background-color: #4c9c8a;
   border-radius: 6px;
@@ -148,7 +145,7 @@ export const StyledLink = styled(Link)`
 export const Title = styled.h1`
   font-size: 2em;
   text-align: center;
-  color: #982649;
+  color: white;
   background-color: black;
   width: 800px;
   height: 145px;
@@ -198,7 +195,6 @@ export const FooterStyle = styled.footer`
 `;
 
 // Canvas Elements
-
 export const StyledCanvas = styled.canvas`
   width: 450px;
   margin: auto;
@@ -236,7 +232,6 @@ export const Palette = styled.div`
 `;
 
 //container for just the color swatches portion of the palette
-
 export const PaletteColorBtn = styled.button`
   border: none;
   margin-bottom: 0px;
@@ -304,10 +299,7 @@ export const PaletteColors = styled.div`
   margin-top: 0px;
 `;
 
-// export const PaletteBtns = styled.div``;
-
-// Image Elementspalet
-
+// Image Elements palette
 export const StartDrawImg = styled.div`
   display: flex;
   justify-content: center;
@@ -323,7 +315,6 @@ export const StartWriteImg = styled.div`
 `;
 
 // Button Elements
-
 export const Button = styled.button`
   border-radius: 3px;
   border: 2px solid darkgrey;
@@ -345,11 +336,6 @@ export const StartWriteBtn = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
-
-//#7744ff; //purples
-//#DB730E
-//#502e5e;
-//#3C2646
 
 export const ScrambleBtn = styled.button`
   border-radius: 6px;
@@ -594,9 +580,6 @@ export const ChatBoxStyle = styled.div`
 
 //holds canvas plus header and palette
 export const CanvasAllContainer = styled.div``;
-
-//holds the canvas object and the chat object
-export const CanvasAndChatContainer = styled.div``;
 
 export const GalleryDiv = styled.div`
   width: 495px;
