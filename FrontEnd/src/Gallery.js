@@ -1,6 +1,4 @@
 import React from "react";
-import { imageSet } from "./ImageIdx";
-import "pure-react-carousel/dist/react-carousel.es.css";
 import {
   CarouselProvider,
   Slider,
@@ -12,6 +10,8 @@ import {
 import "./gallery.css";
 
 const size = 40;
+import "pure-react-carousel/dist/react-carousel.es.css";
+import { imageSet } from "./ImageIdx";
 
 const Gallery = ({ style }) => {
   const buttonStyle = {
@@ -44,29 +44,11 @@ const Gallery = ({ style }) => {
         ...style,
       }}
     >
-      {/* <ButtonBack
-          style={{
-            position: "absolute",
-            right: "110%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            ...buttonStyle,
-          }}
-        >
-          <img
-            src="/images/leftArrow.png"
-            style={{ width: "22px" }}
-            alt="icon carousel left arrow"
-          />
-        </ButtonBack> */}
-
       <ButtonBack
         style={{
           position: "absolute",
           left: "110%",
-          // right: "-120%",
           top: "50%",
-          // top: "8rem",
           transform: "translateY(-50%)",
           ...buttonStyle,
         }}
@@ -96,10 +78,8 @@ const Gallery = ({ style }) => {
       <ButtonNext
         style={{
           position: "absolute",
-          // left: "-40%",
           right: "110%",
           top: "50%",
-          // top: "-7rem",
           transform: "translateY(-50%)",
           ...buttonStyle,
         }}

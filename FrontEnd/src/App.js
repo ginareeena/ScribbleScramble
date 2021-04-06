@@ -1,7 +1,7 @@
 import React from "react";
-import Routes from "./Routes";
 import { Body, Header, Title } from "./AppCSS";
 import Footer from "./Footer";
+import Routes from "./Routes";
 
 function App() {
   return (
