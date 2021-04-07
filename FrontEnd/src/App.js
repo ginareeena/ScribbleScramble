@@ -10,7 +10,11 @@ function App() {
         <Header className="App-header">
           <Title>
             <a href="/">
-              <img src="/images/logoSm.png" alt="scribble scramble logo" />
+              <img
+                style={{ width: "800px" }}
+                src="/images/logoBig.png"
+                alt="scribble scramble logo"
+              />
             </a>
           </Title>
         </Header>
