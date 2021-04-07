@@ -11,7 +11,8 @@ function App() {
           <Title>
             <a href="/">
               <img
-                style={{ width: "800px" }}
+                // style={{ width: "800px" }}
+                style={{ width: "750px", marginTop: "10px" }}
                 src="/images/logoBig.png"
                 alt="scribble scramble logo"
               />
