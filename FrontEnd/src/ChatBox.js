@@ -27,12 +27,15 @@ const ChatBox = ({ room }) => {
                 message.ownedByCurrentPlayer ? "my-message" : "received-message"
               }`}
             >
-              {message.length > 10 ? `${message.body.slice(0, 13)} \n ${message.body.slice(14)}` : message.body}
+              {message.length > 10
+                ? `${message.body.slice(0, 13)} \n ${message.body.slice(14)}`
+                : message.body}
             </div>
           ))}
         </div>
       </div>
       <textarea
+        style={{ marginTop: "10px" }}
         value={newMessage}
         onChange={handleTypingMessage}
         placeholder="Write something..."
