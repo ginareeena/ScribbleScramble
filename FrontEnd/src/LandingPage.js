@@ -145,19 +145,19 @@ const LandingPageComp = () => {
                     Enter a name and click "Join Room" to join a friend's room.
                   </li>
                   <li style={{ lineHeight: "1.5rem" }}>
-                    Give your room mame to friends you want to join.
+                    Give your room name to friends you want to join.
                   </li>
                   <li>Draw or write whatever you want!</li>
                   <li style={{ lineHeight: "1.5rem" }}>
-                    Click the Scramble button to grab and move <br /> drawings
-                    or text.
+                    Click the Scramble button to grab and move <br />
+                    drawings or text.
                   </li>
                   <li style={{ lineHeight: "1.5rem" }}>
                     {" "}
                     When you're done, click "I'm Done"
                   </li>
                   <li style={{ lineHeight: "1.5rem" }}>
-                    Download your Scribb Scrabb to share with friends!
+                    Download your Scrib Scrabb to share with friends!
                   </li>
                 </ol>
               </Drawer>
