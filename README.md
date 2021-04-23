@@ -39,4 +39,4 @@ Scribble Scramble is brought to you by the following engineers:
 
 ### License
 
-ISC - do what you want, credit original Master Scribblers
+ISC - do what you want, credit original Master Scribblers.
